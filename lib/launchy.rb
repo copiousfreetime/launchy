@@ -23,7 +23,11 @@ module Launchy
     class << self
         def do_magic(*params)
             klass = Launchy::Spawnable::Application.find_application_class_for(*params)
-            klass.run(*params)
+            if klass then 
+                klass.run(*params)
+            else
+                $stderr.puts "Unable to launch #{params.join(' ')}"
+            end
         end
     end
 end
