@@ -1,0 +1,46 @@
+# SOURCE: http://tattle.rubygarden.org
+--- 
+host_os: 
+  freebsd6.1: 1
+  darwin8.5.3: 4
+  solaris2.9: 8
+  darwin7.9.0: 12
+  darwin8.6.2: 14
+  darwin8.7.1: 31
+  darwin8.8.0: 52
+  freebsd4.11: 1
+  darwin8.7.2: 2
+  darwin8.9.0: 6
+  darwin8.0: 10
+  darwin8.8.1: 136
+  darwin8.7.3: 3
+  darwin9.0: 4
+  linux: 7
+  darwin8.9.1: 21
+  darwin8.8.2: 53
+  Windows XP: 1
+  openbsd3.9: 1
+  cygwin: 10
+  darwin8.8.3: 15
+  darwin8.2.0: 3
+  darwin8.8.4: 5
+  darwin8.8.5: 3
+  darwin8.3.0: 3
+  openbsd4.0: 6
+  Mac OS X: 13
+  darwin: 1
+  freebsd5: 3
+  darwin8.4.0: 6
+  darwin8.4.1: 1
+  darwin8.5.0: 8
+  freebsd6: 22
+  darwin8.5.1: 1
+  darwin8.6.0: 24
+  freebsd6.0: 2
+  solaris2.8: 5
+  darwin8.5.2: 10
+  solaris2.10: 13
+  darwin8.7.0: 39
+  darwin8.6.1: 81
+  mswin32: 290
+  linux-gnu: 479
