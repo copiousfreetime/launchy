@@ -40,10 +40,20 @@ namespace :dist do
 
     GEM_SPEC = eval(Launchy::SPEC.to_ruby)
 
-    Rake::GemPackageTask.new(GEM_SPEC) do |pkg|
+    gem_task = Rake::GemPackageTask.new(GEM_SPEC) do |pkg|
         pkg.need_tar = Launchy::SPEC.need_tar
         pkg.need_zip = Launchy::SPEC.need_zip
     end
+
+    GEM_SPEC_WIN32 = eval(Launchy::SPEC_WIN32.to_ruby)
+
+    desc "Build the Win32 gem"
+    task :gem_win32 => [ "#{gem_task.package_dir}/#{GEM_SPEC_WIN32.file_name}" ]
+    file "#{gem_task.package_dir}/#{GEM_SPEC_WIN32.file_name}" => [gem_task.package_dir] + GEM_SPEC_WIN32.files do 
+        gem_file = Gem::Builder.new(GEM_SPEC_WIN32).build
+        mv gem_file, "#{gem_task.package_dir}/#{gem_file}"
+    end
+    task :package => [:gem_win32]
 
     desc "Install as a gem"
     task :install => [:clobber, :package] do
