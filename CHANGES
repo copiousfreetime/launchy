@@ -1,4 +1,8 @@
 = launchy Changelog
+=== Version 0.1.1
+
+* fixed rubyforge task to release mswin32 gem also
+
 === Version 0.1.0 
 
 * Initial public release

@@ -33,9 +33,11 @@ namespace :dist do
 
         puts "Uploading to rubyforge..."
         files = FileList[File.join("pkg","#{Launchy::SPEC.name}-#{Launchy::VERSION}*.*")].to_a
-        puts files
-        #rubyforge.login
-        #rubyforge.add_release(Launchy::SPEC.rubyforge_project, Launchy::SPEC.name, Launchy::VERSION, *files)
+        files.each do |f|
+            puts "    #{f}"
+        end
+        rubyforge.login
+        rubyforge.add_release(Launchy::SPEC.rubyforge_project, Launchy::SPEC.name, Launchy::VERSION, *files)
         puts "done."
     end
 end
