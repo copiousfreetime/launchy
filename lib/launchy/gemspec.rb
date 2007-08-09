@@ -8,7 +8,7 @@ module Launchy
     SPEC = Launchy::Specification.new do |spec|
                 spec.name               = "launchy"
                 spec.version            = Launchy::VERSION
-                spec.rubyforge_project  = "launchy"
+                spec.rubyforge_project  = "copiousfreetime"
                 spec.author             = "Jeremy Hinegardner"
                 spec.email              = "jeremy@hinegardner.org"
                 spec.homepage           = "http://launchy.rubyforge.org/"
