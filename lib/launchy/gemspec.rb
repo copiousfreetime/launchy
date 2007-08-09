@@ -44,6 +44,7 @@ module Launchy
                 spec.local_coverage_dir = "doc/coverage"
                 spec.remote_coverage_dir= "coverage"
 
+                spec.remote_user        = "jjh"
                 spec.remote_site_dir    = "#{spec.name}/"
 
            end
