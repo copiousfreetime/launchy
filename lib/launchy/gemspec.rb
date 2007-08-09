@@ -13,9 +13,16 @@ module Launchy
                 spec.email              = "jeremy@hinegardner.org"
                 spec.homepage           = "http://launchy.rubyforge.org/"
 
-                spec.summary            = "A Summary of launchy."
+                spec.summary            = "A helper to launch apps from within ruby programs."
                 spec.description        = <<-DESC
-                A longer more detailed description of launchy.
+                Launchy is helper class for launching +cross-platform+
+                applications.
+
+                There are application concepts (browser, email client,
+                etc) that are common across all platforms, and they may
+                be launched in different manners.  Launchy is here to
+                assist in launching the appropriate application on the
+                appropriate platform from within your ruby projects.
                 DESC
 
                 spec.extra_rdoc_files   = FileList["[A-Z]*"]
@@ -29,12 +36,7 @@ module Launchy
                 
                 spec.executable         = spec.name
 
-                if /(mswin)|(windows)/.match(RUBY_PLATFORM) then
-                    spec.add_dependency("win32-process")
-                    spec.platform           = Gem::Platform::WIN32
-                else
-                    spec.platform           = Gem::Platform::RUBY
-                end
+                spec.platform           = Gem::Platform::RUBY
                 spec.required_ruby_version  = ">= 1.8.5"
 
                 spec.local_rdoc_dir     = "doc/rdoc"
@@ -45,6 +47,10 @@ module Launchy
                 spec.remote_site_dir    = "#{spec.name}/"
 
            end
+
+    SPEC_WIN32 = SPEC.dup
+    SPEC_WIN32.add_dependency("win32-process")
+    SPEC_WIN32.platform = Gem::Platform::WIN32
 end
 
 

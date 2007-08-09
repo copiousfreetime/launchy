@@ -6,7 +6,7 @@ require 'rubyforge'
 namespace :doc do
     desc "Deploy the RDoc documentation to rubyforge"
     task :deploy => :rerdoc do
-        sh "rsync -zav --delete #{Launchy::SPEC.local_rdoc_dir}/ #{Launchy::SPEC.rubyforge_rdoc_dest}"
+        sh "rsync -zav --delete #{Launchy::SPEC.local_rdoc_dir}/ #{Launchy::SPEC.remote_rdoc_location}"
     end
 end
 
@@ -34,7 +34,7 @@ namespace :dist do
         puts "Uploading to rubyforge..."
         files = FileList[File.join("pkg","#{Launchy::SPEC.name}-#{Launchy::VERSION}.*")].to_a
         rubyforge.login
-        #rubyforge.add_release(Launchy::SPEC.rubyforge_project, Launchy::SPEC.name, Launchy::VERSION, *files)
+        rubyforge.add_release(Launchy::SPEC.rubyforge_project, Launchy::SPEC.name, Launchy::VERSION, *files)
         puts "done."
     end
 end

@@ -61,6 +61,11 @@ namespace :dist do
         puts Launchy::SPEC.to_ruby
     end
 
+    desc "dump win32 gemspec"
+    task :gemspec_win32 do
+        puts Launchy::SPEC_WIN32.to_ruby
+    end
+
     desc "reinstall gem"
     task :reinstall => [:install, :uninstall]
 

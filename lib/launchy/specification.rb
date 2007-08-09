@@ -124,5 +124,10 @@ module Launchy
         def method_missing(method_id,*params,&block)
             @spec.send method_id, *params, &block
         end
+
+        # deep copy for duplication
+        def dup
+            Marshal.load(Marshal.dump(self))
+        end
     end
 end
