@@ -38,7 +38,9 @@ end
 #-----------------------------------------------------------------------
 namespace :dist do
 
-    Rake::GemPackageTask.new(Launchy::SPEC) do |pkg|
+    GEM_SPEC = eval(Launchy::SPEC.to_ruby)
+
+    Rake::GemPackageTask.new(GEM_SPEC) do |pkg|
         pkg.need_tar = Launchy::SPEC.need_tar
         pkg.need_zip = Launchy::SPEC.need_zip
     end
@@ -63,3 +65,14 @@ namespace :dist do
     task :reinstall => [:install, :uninstall]
 
 end
+
+#-----------------------------------------------------------------------
+# update the top level clobber task to depend on all possible sub-level
+# tasks that have a name like ':clobber'  in other namespaces
+#-----------------------------------------------------------------------
+Rake.application.tasks.each do |t| 
+    if t.name =~ /:clobber/ then
+        task :clobber => [t.name]
+    end 
+end
+

@@ -28,17 +28,19 @@ module Launchy
                                           FileList["lib/**/*.rb", "resources/**/*"]
                 
                 spec.executable         = spec.name
-                
 
-                # add dependencies
-                spec.add_dependency("systemu")
-                
-                spec.platform           = Gem::Platform::RUBY
+                if /(mswin)|(windows)/.match(RUBY_PLATFORM) then
+                    spec.add_dependency("win32-process")
+                    spec.platform           = Gem::Platform::WIN32
+                else
+                    spec.platform           = Gem::Platform::RUBY
+                end
+                spec.required_ruby_version  = ">= 1.8.5"
 
                 spec.local_rdoc_dir     = "doc/rdoc"
-                spec.remote_rdoc_dir    = "#{spec.name}/rdoc"
+                spec.remote_rdoc_dir    = ""
                 spec.local_coverage_dir = "doc/coverage"
-                spec.remote_coverage_dir= "#{spec.name}/coverage"
+                spec.remote_coverage_dir= "coverage"
 
                 spec.remote_site_dir    = "#{spec.name}/"
 

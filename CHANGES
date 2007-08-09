@@ -1,4 +1,13 @@
 = launchy Changelog
-=== Version 0.0.1
+=== Version 0.1.0 
 
 * Initial public release
+* switched to using fork to spawn process and require 'win32/process' if on windows
+
+=== Version 0.0.2
+
+* First attempt at using systemu to spawn processes
+
+=== Version 0.0.1
+
+* Initially working release

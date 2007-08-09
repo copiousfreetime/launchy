@@ -1,6 +1,5 @@
 require 'launchy/spawnable'
 require 'rbconfig'
-require 'systemu'
 
 module Launchy
     module Spawnable
@@ -62,11 +61,16 @@ module Launchy
                 end
             end
             
-            # run the command via systemu
+            # run the command
             def run(cmd,*args)
                 args.unshift(cmd)
-                systemu args.join(' ')
+                if my_os_family == :windows then
+                    require 'win32/process'
+                end
+                child_pid = fork { system args.join(' ') }
+                Process.detach(child_pid)
             end
         end
     end
 end
+
