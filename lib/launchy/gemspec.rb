@@ -25,7 +25,7 @@ module Launchy
                 appropriate platform from within your ruby projects.
                 DESC
 
-                spec.extra_rdoc_files   = FileList["[A-Z]*"]
+                spec.extra_rdoc_files   = FileList["CHANGES", "LICENSE", "README"]
                 spec.has_rdoc           = true
                 spec.rdoc_main          = "README"
                 spec.rdoc_options       = [ "--line-numbers" , "--inline-source" ]
