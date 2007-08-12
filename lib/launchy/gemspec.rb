@@ -11,18 +11,18 @@ module Launchy
                 spec.rubyforge_project  = "copiousfreetime"
                 spec.author             = "Jeremy Hinegardner"
                 spec.email              = "jeremy@hinegardner.org"
-                spec.homepage           = "http://launchy.rubyforge.org/"
+                spec.homepage           = "http://copiousfreetime.rubyforge.org/launchy/"
 
                 spec.summary            = "A helper to launch apps from within ruby programs."
                 spec.description        = <<-DESC
-                Launchy is helper class for launching +cross-platform+
-                applications.
+                Launchy is helper class for launching cross-platform applications in a
+                fire and forget manner.  
 
-                There are application concepts (browser, email client,
-                etc) that are common across all platforms, and they may
-                be launched in different manners.  Launchy is here to
-                assist in launching the appropriate application on the
-                appropriate platform from within your ruby projects.
+                There are application concepts (browser, email client, etc) that are common
+                across all platforms, and they may be launched differently on each
+                platform.  Launchy is here to make a common approach to launching
+                external application from within ruby programs.
+                
                 DESC
 
                 spec.extra_rdoc_files   = FileList["CHANGES", "LICENSE", "README"]
