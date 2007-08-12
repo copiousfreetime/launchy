@@ -116,6 +116,7 @@ module Launchy
                 else
                     # fork and the child process should NOT run any exit handlers
                     child_pid = fork do 
+                                    cmd_line += " > /dev/null 2>&1"
                                     system cmd_line
                                     exit! 
                                 end

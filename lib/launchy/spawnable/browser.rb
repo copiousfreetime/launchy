@@ -6,13 +6,13 @@ module Launchy
         class Browser < Application
             
             DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS = {
-                :kde     => %w[ kfmclient ],
-                :gnome   => %w[ gnome-open ],
-                :xfce    => %w[ exo-open ],
-                :generic => %w[ htmlview ]
+                :kde     => "kfmclient",
+                :gnome   => "gnome-open",
+                :xfce    => "exo-open",
+                :generic => "htmlview"
             }
             
-            FALLBACK_BROWSERS = %w[ firefox seamonkey opera mozilla netscape galeon links lynx ]
+            FALLBACK_BROWSERS = %w[ firefox seamonkey opera mozilla netscape galeon ]
             
             class << self
                 def run(*args)
@@ -36,10 +36,7 @@ module Launchy
                 #     3) desktop environment launcher program
                 #     4) a list of fallback browsers
                 def nix_app_list
-                    browser_cmds = []
-                    browser_cmds << ENV['LAUNCHY_BROWSER']
-                    browser_cmds << ENV['BROWSER']
-                    browser_cmds << "xdg-open"
+                    browser_cmds = ['xdg-open']
                     browser_cmds << DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS[nix_desktop_environment]
                     browser_cmds << FALLBACK_BROWSERS
                     browser_cmds.flatten!
@@ -68,7 +65,19 @@ module Launchy
             
             # return the full command line path to the browser or nil
             def browser
-                @browser ||= app_list.collect { |bin| find_executable(bin) }.reject { |x| x.nil? }.first
+                if not @browser then
+                    if ENV['LAUNCHY_BROWSER'] and File.exists?(ENV['LAUNCHY_BROWSER']) then
+                        Launchy.log "Using LAUNCHY_BROWSER environment variable : #{ENV['LAUNCHY_BROWSER']}"
+                        @browser = ENV['LAUNCHY_BROWSER']
+                    elsif ENV['BROWSER'] and File.exists?(ENV['BROWSER']) then
+                        Launchy.log "Using BROWSER environment variable : #{ENV['BROWSER']}"
+                        @browser = ENV['BROWSER']
+                    else
+                        @browser = app_list.find { |bin| find_executable(bin) }.find { |x| not x.nil?  }
+                        Launchy.log "Using application list :  #{@browser}"
+                    end
+                end
+                return @browser
             end
             
             # launch the browser at the appointed url
