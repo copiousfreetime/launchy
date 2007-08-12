@@ -1,5 +1,13 @@
 == Changelog
 
+=== Version 0.2.0 - 2007-08-11
+
+* rework browser finding
+** manual override with LAUNCHY_BROWSER environment variable
+** on *nix use desktop application launcher with fallback to list of browsers
+* On windows, switch to 'start' command and remove dependency on win32-process
+* Add debug output by setting LAUNCHY_DEBUG environment variable to 'true'
+
 === Version 0.1.2 - 2007-08-11
 
 * forked child exits without calling at_exit handlers
