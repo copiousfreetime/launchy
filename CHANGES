@@ -6,6 +6,7 @@
 ** manual override with LAUNCHY_BROWSER environment variable
 ** on *nix use desktop application launcher with fallback to list of browsers
 * On windows, switch to 'start' command and remove dependency on win32-process
+* removed win32 gem
 * Add debug output by setting LAUNCHY_DEBUG environment variable to 'true'
 
 === Version 0.1.2 - 2007-08-11

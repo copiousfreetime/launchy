@@ -48,10 +48,6 @@ module Launchy
                 spec.remote_site_dir    = "#{spec.name}/"
 
            end
-
-    SPEC_WIN32 = SPEC.dup
-    SPEC_WIN32.add_dependency("win32-process")
-    SPEC_WIN32.platform = Gem::Platform::WIN32
 end
 
 

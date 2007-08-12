@@ -46,16 +46,6 @@ namespace :dist do
         pkg.need_zip = Launchy::SPEC.need_zip
     end
 
-    GEM_SPEC_WIN32 = eval(Launchy::SPEC_WIN32.to_ruby)
-
-    desc "Build the Win32 gem"
-    task :gem_win32 => [ "#{gem_task.package_dir}/#{GEM_SPEC_WIN32.file_name}" ]
-    file "#{gem_task.package_dir}/#{GEM_SPEC_WIN32.file_name}" => [gem_task.package_dir] + GEM_SPEC_WIN32.files do 
-        gem_file = Gem::Builder.new(GEM_SPEC_WIN32).build
-        mv gem_file, "#{gem_task.package_dir}/#{gem_file}"
-    end
-    task :package => [:gem_win32]
-
     desc "Install as a gem"
     task :install => [:clobber, :package] do
         sh "sudo gem install pkg/#{Launchy::SPEC.full_name}.gem"
@@ -72,11 +62,6 @@ namespace :dist do
         puts Launchy::SPEC.to_ruby
     end
 
-    desc "dump win32 gemspec"
-    task :gemspec_win32 do
-        puts Launchy::SPEC_WIN32.to_ruby
-    end
-
     desc "reinstall gem"
     task :reinstall => [:install, :uninstall]
 
@@ -84,7 +69,7 @@ namespace :dist do
     task :copious => [:package] do
         Rake::SshFilePublisher.new('jeremy@copiousfreetime.org',
                                '/var/www/vhosts/www.copiousfreetime.org/htdocs/gems/gems',
-                               'pkg',"#{Launchy::SPEC.full_name}.gem","#{Launchy::SPEC_WIN32.full_name}.gem").upload
+                               'pkg',"#{Launchy::SPEC.full_name}.gem").upload
         sh "ssh jeremy@copiousfreetime.org rake -f /var/www/vhosts/www.copiousfreetime.org/htdocs/gems/Rakefile"
     end
 end
