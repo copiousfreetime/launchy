@@ -73,8 +73,8 @@ module Launchy
                         Launchy.log "Using BROWSER environment variable : #{ENV['BROWSER']}"
                         @browser = ENV['BROWSER']
                     else
-                        @browser = app_list.find { |bin| find_executable(bin) }.find { |x| not x.nil?  }
-                        Launchy.log "Using application list :  #{@browser}"
+                        @browser = app_list.collect { |bin| find_executable(bin) }.find { |x| not x.nil? }
+                        Launchy.log "Using application list : #{@browser}"
                     end
                 end
                 return @browser

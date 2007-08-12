@@ -85,7 +85,7 @@ module Launchy
                     when /cygwin/i
                         family = :nix
                     else
-                        $stderr.puts "Unknown OS familiy for '#{test_os}'.  Please report this bug."
+                        $stderr.puts "Unknown OS familiy for '#{test_os}'.  Please report this bug to #{Launchy::SPEC.email}"
                         family = :unknown
                     end
                 end
