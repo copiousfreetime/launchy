@@ -33,6 +33,6 @@ describe Launchy::Spawnable::Application do
     end
     
     it "should find the correct class to launch an ftp url" do
-        Launchy::Spawnable::Application.find_application_class_for("ftp://download.fedora.redhat.com").should == Launchy::Spawnable::Browser
+        Launchy::Spawnable::Application.find_application_class_for("ftp://ftp.ruby-lang.org/pub/ruby/").should == Launchy::Spawnable::Browser
     end
 end

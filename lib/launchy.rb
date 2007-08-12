@@ -29,6 +29,14 @@ module Launchy
                 $stderr.puts "Unable to launch #{params.join(' ')}"
             end
         end
+        
+        # Setting the LAUNCHY_DEBUG environment variable to 'true' will spew 
+        # debug information to $stderr
+        def log(msg)
+            if ENV['LAUNCHY_DEBUG'] == 'true' then
+                $stderr.puts "LAUNCHY_DEBUG: #{msg}"
+            end
+        end
     end
 end
 
