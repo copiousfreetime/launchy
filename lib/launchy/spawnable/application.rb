@@ -67,7 +67,11 @@ module Launchy
                 if my_os_family == :windows then
                     require 'win32/process'
                 end
-                child_pid = fork { system args.join(' ') }
+                # fork and the child process should NOT run any exit handlers
+                child_pid = fork do 
+                                system args.join(' ') 
+                                exit! 
+                            end
                 Process.detach(child_pid)
             end
         end
