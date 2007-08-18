@@ -2,7 +2,7 @@
 
 === Version 0.2.1 - 2007-08-18
 
-* use per OS callbacks to find application list [Bug #13132]
+* fix inability to find windows executables [Bug #13132]
 
 === Version 0.2.0 - 2007-08-11
 
