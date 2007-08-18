@@ -1,14 +1,14 @@
-== Changelog
+== Changes
 
-=== Version 0.2.0
+=== Version 0.2.1 - 2007-08-18
 
-* use callbacks to find application list instead of array
+* use per OS callbacks to find application list [Bug #13132]
 
 === Version 0.2.0 - 2007-08-11
 
 * rework browser finding
-** manual override with LAUNCHY_BROWSER environment variable
-** on *nix use desktop application launcher with fallback to list of browsers
+* manual override with LAUNCHY_BROWSER environment variable
+* on *nix use desktop application launcher with fallback to list of browsers
 * On windows, switch to 'start' command and remove dependency on win32-process
 * removed win32 gem
 * Add debug output by setting LAUNCHY_DEBUG environment variable to 'true'

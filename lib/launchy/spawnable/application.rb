@@ -106,9 +106,23 @@ module Launchy
                 Application.my_os_family(test_os)
             end
             
-            # returns the list of command line application names for the current os
+            # returns the list of command line application names for the current os.  The list 
+            # returned should only contain appliations or commands that actually exist on the
+            # system.  The list members should have their full path to the executable.
             def app_list
-                self.send("#{my_os_family}_app_list")
+                @app_list ||= self.send("#{my_os_family}_app_list")
+            end
+            
+            # On darwin a good general default is the 'open' executable.
+            def darwin_app_list
+                Launchy.log "Using 'open' application on darwin."
+                [ find_executable('open') ]
+            end
+            
+            # On windows a good general default is the 'start' Command Shell command
+            def windows_app_list
+                Launchy.log "Using 'start' command on windows."
+                %w[ start ]
             end
             
             # run the command

@@ -36,32 +36,24 @@ module Launchy
                 #     3) desktop environment launcher program
                 #     4) a list of fallback browsers
                 def nix_app_list
-                    browser_cmds = ['xdg-open']
-                    browser_cmds << DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS[nix_desktop_environment]
-                    browser_cmds << FALLBACK_BROWSERS
-                    browser_cmds.flatten!
-                    browser_cmds.delete_if { |b| b.nil? || (b.strip.size == 0) }
-                    Launchy.log "*Nix Browser List: #{browser_cmds.join(', ')}"
-                    browser_cmds
+                    if not @nix_app_list then
+                        browser_cmds = ['xdg-open']
+                        browser_cmds << DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS[nix_desktop_environment]
+                        browser_cmds << FALLBACK_BROWSERS
+                        browser_cmds.flatten!
+                        browser_cmds.delete_if { |b| b.nil? || (b.strip.size == 0) }
+                        Launchy.log "Initial *Nix Browser List: #{browser_cmds.join(', ')}"
+                        @nix_app_list = browser_cmds.collect { |bin| find_executable(bin) }.find_all { |x| not x.nil? }
+                        Launchy.log "Filtered *Nix Browser List: #{@nix_app_list.join(', ')}"
+                    end
+                    @nix_app_list
                 end
                                     
             end
             
-            APP_LIST = { 
-                :windows => %w[ start ],
-                :darwin  => :darwin_app_list,
-                :nix     => :nix_app_list,
-                :unknown => [],
-                }
-            
             def initialize
                 raise "Unable to find browser to launch for os family '#{my_os_family}'." unless browser
-            end
-                        
-            # returns the list of command line application names for the current os
-            def app_list
-                self.send("#{my_os_family}_app_list")
-            end
+            end                        
             
             # return the full command line path to the browser or nil
             def browser
@@ -72,9 +64,11 @@ module Launchy
                     elsif ENV['BROWSER'] and File.exists?(ENV['BROWSER']) then
                         Launchy.log "Using BROWSER environment variable : #{ENV['BROWSER']}"
                         @browser = ENV['BROWSER']
-                    else
-                        @browser = app_list.collect { |bin| find_executable(bin) }.find { |x| not x.nil? }
+                    elsif app_list.size > 0 then
+                        @browser = app_list.first
                         Launchy.log "Using application list : #{@browser}"
+                    else
+                        $stderr.puts "Unable to launch. No Browser application found."
                     end
                 end
                 return @browser
