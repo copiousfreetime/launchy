@@ -27,25 +27,7 @@ module Launchy
                     end
                 end
                 
-                # Determine the appropriate desktop environment for *nix machine.  Currently this is
-                # linux centric.  The detection is based upon the detection used by xdg-open from 
-                # http://portland.freedesktop.org/wiki/XdgUtils
-                def nix_desktop_environment
-                    de = :generic
-                    if ENV["KDE_FULL_SESSION"] || ENV["KDE_SESSION_UID"] then
-                        de = :kde
-                    elsif ENV["GNOME_DESKTOP_SESSION_ID"] then
-                        de = :gnome
-                    elsif find_executable("xprop") then
-                        if %x[ xprop -root _DT_SAVE_MODE | grep ' = \"xfce\"$' ].strip.size > 0 then
-                            de = :xfce
-                        end
-                    end
-                    Launchy.log "nix_desktop_environment => #{de}"
-                    return de
-                end
-                
-                # find an executable in the available paths
+               # find an executable in the available paths
                 # mkrf did such a good job on this I had to borrow it.
                 def find_executable(bin,*paths)
                     paths = ENV['PATH'].split(File::PATH_SEPARATOR) if paths.empty?
@@ -89,6 +71,27 @@ module Launchy
                         family = :unknown
                     end
                 end
+            end
+
+
+            # Determine the appropriate desktop environment for *nix machine.  Currently this is
+            # linux centric.  The detection is based upon the detection used by xdg-open from 
+            # http://portland.freedesktop.org/wiki/XdgUtils
+            def nix_desktop_environment
+                if not @nix_desktop_environment then
+                    @nix_desktop_environment = :generic
+                    if ENV["KDE_FULL_SESSION"] || ENV["KDE_SESSION_UID"] then
+                        @nix_desktop_environment = :kde
+                    elsif ENV["GNOME_DESKTOP_SESSION_ID"] then
+                        @nix_desktop_environment = :gnome
+                    elsif find_executable("xprop") then
+                        if %x[ xprop -root _DT_SAVE_MODE | grep ' = \"xfce\"$' ].strip.size > 0 then
+                            @nix_desktop_environment = :xfce
+                        end
+                    end
+                    Launchy.log "nix_desktop_environment => #{@nix_dekstop_environment}"
+                end
+                return @nix_desktop_environment
             end
             
             # find an executable in the available paths
