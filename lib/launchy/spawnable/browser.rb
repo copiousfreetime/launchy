@@ -28,33 +28,32 @@ module Launchy
                         return false
                     end
                 end
-                
-                # Find a list of potential browser applications to run on *nix machines.  
-                # The order is:
-                #     1) What is in ENV['LAUNCHY_BROWSER'] or ENV['BROWSER']
-                #     2) xdg-open
-                #     3) desktop environment launcher program
-                #     4) a list of fallback browsers
-                def nix_app_list
-                    if not @nix_app_list then
-                        browser_cmds = ['xdg-open']
-                        browser_cmds << DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS[nix_desktop_environment]
-                        browser_cmds << FALLBACK_BROWSERS
-                        browser_cmds.flatten!
-                        browser_cmds.delete_if { |b| b.nil? || (b.strip.size == 0) }
-                        Launchy.log "Initial *Nix Browser List: #{browser_cmds.join(', ')}"
-                        @nix_app_list = browser_cmds.collect { |bin| find_executable(bin) }.find_all { |x| not x.nil? }
-                        Launchy.log "Filtered *Nix Browser List: #{@nix_app_list.join(', ')}"
-                    end
-                    @nix_app_list
-                end
-                                    
             end
             
             def initialize
                 raise "Unable to find browser to launch for os family '#{my_os_family}'." unless browser
             end                        
-            
+                
+            # Find a list of potential browser applications to run on *nix machines.  
+            # The order is:
+            #     1) What is in ENV['LAUNCHY_BROWSER'] or ENV['BROWSER']
+            #     2) xdg-open
+            #     3) desktop environment launcher program
+            #     4) a list of fallback browsers
+            def nix_app_list
+                if not @nix_app_list then
+                    browser_cmds = ['xdg-open']
+                    browser_cmds << DESKTOP_ENVIRONMENT_BROWSER_LAUNCHERS[nix_desktop_environment]
+                    browser_cmds << FALLBACK_BROWSERS
+                    browser_cmds.flatten!
+                    browser_cmds.delete_if { |b| b.nil? || (b.strip.size == 0) }
+                    Launchy.log "Initial *Nix Browser List: #{browser_cmds.join(', ')}"
+                    @nix_app_list = browser_cmds.collect { |bin| find_executable(bin) }.find_all { |x| not x.nil? }
+                    Launchy.log "Filtered *Nix Browser List: #{@nix_app_list.join(', ')}"
+                end
+                @nix_app_list
+            end
+                                    
             # return the full command line path to the browser or nil
             def browser
                 if not @browser then
