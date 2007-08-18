@@ -1,5 +1,9 @@
 == Changelog
 
+=== Version 0.2.0
+
+* use callbacks to find application list instead of array
+
 === Version 0.2.0 - 2007-08-11
 
 * rework browser finding

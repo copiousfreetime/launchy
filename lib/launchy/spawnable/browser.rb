@@ -49,8 +49,8 @@ module Launchy
             
             APP_LIST = { 
                 :windows => %w[ start ],
-                :darwin  => %w[ open ],
-                :nix     => nix_app_list,
+                :darwin  => :darwin_app_list,
+                :nix     => :nix_app_list,
                 :unknown => [],
                 }
             
@@ -60,7 +60,7 @@ module Launchy
                         
             # returns the list of command line application names for the current os
             def app_list
-                APP_LIST[my_os_family]
+                self.send("#{my_os_family}_app_list")
             end
             
             # return the full command line path to the browser or nil

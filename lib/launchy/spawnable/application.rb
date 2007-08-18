@@ -106,6 +106,11 @@ module Launchy
                 Application.my_os_family(test_os)
             end
             
+            # returns the list of command line application names for the current os
+            def app_list
+                self.send("#{my_os_family}_app_list")
+            end
+            
             # run the command
             def run(cmd,*args)
                 args.unshift(cmd)
