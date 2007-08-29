@@ -1,5 +1,12 @@
 == Changes
 
+=== Next Version
+
+* reorganize the code structure, removing Spawnable namespace
+* removed 'do_magic' method, changed it to 'open'
+* fix broken cygwin support
+* add command line options to command
+
 === Version 0.2.1 - 2007-08-18
 
 * fix inability to find windows executables [Bug #13132]
