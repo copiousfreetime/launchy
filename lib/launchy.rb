@@ -21,7 +21,7 @@ module Launchy
     module_function :require_all_libs_relative_to
     
     class << self
-        def do_magic(*params)
+        def open(*params)
             klass = Launchy::Application.find_application_class_for(*params)
             if klass then 
                 klass.run(*params)

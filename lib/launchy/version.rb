@@ -1,8 +1,8 @@
 module Launchy
     class Version
         MAJOR   = 0
-        MINOR   = 2
-        BUILD   = 1
+        MINOR   = 3
+        BUILD   = 0
 
         class << self
             def to_a

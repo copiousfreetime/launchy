@@ -42,7 +42,12 @@ module Launchy
             
             # return the current 'host_os' string from ruby's configuration
             def my_os
-                ::Config::CONFIG['host_os']
+                if ENV['LAUNCHY_HOST_OS'] then 
+                    Launchy.log "Using LAUNCHY_HOST_OS override of '#{ENV['LAUNCHY_HOST_OS']}'"
+                    return ENV['LAUNCHY_HOST_OS']
+                else
+                    ::Config::CONFIG['host_os']
+                end
             end
         
             # detect what the current os is and return :windows, :darwin or :nix
@@ -102,7 +107,7 @@ module Launchy
             Application.my_os
         end
         
-        # detect what the current os is and return :windows, :darwin or :nix
+        # detect what the current os is and return :windows, :darwin, :nix, or :cygwin
         def my_os_family(test_os = my_os)
             Application.my_os_family(test_os)
         end
