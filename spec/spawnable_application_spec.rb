@@ -1,17 +1,17 @@
 require File.join(File.dirname(__FILE__),"spec_helper.rb")
 require 'yaml'
 
-describe Launchy::Spawnable::Application do
+describe Launchy::Application do
     before(:each) do
         yml = YAML::load(IO.read(File.join(File.dirname(__FILE__),"tattle-host-os.yml")))
         @host_os = yml['host_os']
-        @app = Launchy::Spawnable::Application.new
+        @app = Launchy::Application.new
         
     end
 
     it "should find all tattled os" do
         @host_os.keys.each do |os|
-            Launchy::Spawnable::Application::KNOWN_OS_FAMILIES.should include(@app.my_os_family(os))
+            Launchy::Application::KNOWN_OS_FAMILIES.should include(@app.my_os_family(os))
         end
     end
     
@@ -33,6 +33,6 @@ describe Launchy::Spawnable::Application do
     end
     
     it "should find the correct class to launch an ftp url" do
-        Launchy::Spawnable::Application.find_application_class_for("ftp://ftp.ruby-lang.org/pub/ruby/").should == Launchy::Spawnable::Browser
+        Launchy::Application.find_application_class_for("ftp://ftp.ruby-lang.org/pub/ruby/").should == Launchy::Browser
     end
 end

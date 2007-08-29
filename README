@@ -22,15 +22,15 @@ Currently only launching a browser is supported.
 
 From within your ruby code you can trust launchy to do the right thing:
 
-    Launchy.do_magic("http://www.ruby-lang.org/")
+    Launchy.open("http://www.ruby-lang.org/")
 
 Or, if you want to launch the application yourself:
 
-    Launchy::Spawnable::Browser.run("http://www.ruby-lang.org/")
+    Launchy::Browser.run("http://www.ruby-lang.org/")
 
 OR
 
-    Launchy::Spawnable::Browser.new.visit("http://www.ruby-lang.org/")
+    Launchy::Browser.new.visit("http://www.ruby-lang.org/")
 
 == LICENSE
 

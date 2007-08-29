@@ -22,7 +22,7 @@ module Launchy
     
     class << self
         def do_magic(*params)
-            klass = Launchy::Spawnable::Application.find_application_class_for(*params)
+            klass = Launchy::Application.find_application_class_for(*params)
             if klass then 
                 klass.run(*params)
             else
