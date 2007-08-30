@@ -1,11 +1,11 @@
 == Changes
 
-=== Next Version
+=== Version 0.3.0 - 2007-08-30
 
 * reorganize the code structure, removing Spawnable namespace
 * removed 'do_magic' method, changed it to 'open'
+* added override environment variable LAUNCH_HOST_OS for testing
 * fix broken cygwin support
-* add command line options to command
 
 === Version 0.2.1 - 2007-08-18
 
