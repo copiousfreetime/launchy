@@ -6,7 +6,6 @@ describe Launchy::Application do
         yml = YAML::load(IO.read(File.join(File.dirname(__FILE__),"tattle-host-os.yml")))
         @host_os = yml['host_os']
         @app = Launchy::Application.new
-        
     end
 
     it "should find all tattled os" do
@@ -34,5 +33,27 @@ describe Launchy::Application do
     
     it "should find the correct class to launch an ftp url" do
         Launchy::Application.find_application_class_for("ftp://ftp.ruby-lang.org/pub/ruby/").should == Launchy::Browser
+    end
+    
+    it "knows when it cannot find an application class" do
+        Launchy::Application.find_application_class_for("xyzzy:stuff,things").should == nil
+    end
+    
+    it "allows for environmental override of host_os" do
+        ENV["LAUNCHY_HOST_OS"] = "hal-9000"
+        Launchy::Application.my_os.should == "hal-9000"
+        ENV["LAUNCHY_HOST_OS"] = nil
+    end
+    
+    it "can detect the desktop environment of a *nix machien" do
+        @app.nix_desktop_environment.should == :generic
+
+        { "KDE_FULL_SESSION" => :kde,
+          "KDE_SESSION_UID"  => :kde,
+          "GNOME_DESKTOP_SESSION_ID" => :gnome }.each_pair do |k,v|
+            ENV[k] = "launchy-test"
+            Launchy::Application.new.nix_desktop_environment.should == v
+            ENV[k] = nil
+        end
     end
 end

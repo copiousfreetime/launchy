@@ -14,10 +14,10 @@ module Launchy
             end                
             
             def find_application_class_for(*args)
-                Launchy.log "finding application classes for [#{args.join(' ')}]"
+                Launchy.log "#{self.name} : finding application classes for [#{args.join(' ')}]"
                 application_classes.find do |klass| 
+                    Launchy.log "#{self.name} : Trying #{klass.name}"
                     if klass.handle?(*args) then
-                        Launchy.log "  #{klass.name}"
                         true
                     else
                         false
@@ -32,18 +32,18 @@ module Launchy
                 paths.each do |path|
                     file = File.join(path,bin)
                     if File.executable?(file) then
-                        Launchy.log "found executable #{file}"
+                        Launchy.log "#{self.name} : found executable #{file}"
                         return file
                     end
                 end
-                Launchy.log "Unable to find `#{bin}' in paths #{paths.join(', ')}"
+                Launchy.log "#{self.name} : Unable to find `#{bin}' in #{paths.join(', ')}"
                 return nil
             end
             
             # return the current 'host_os' string from ruby's configuration
             def my_os
                 if ENV['LAUNCHY_HOST_OS'] then 
-                    Launchy.log "Using LAUNCHY_HOST_OS override of '#{ENV['LAUNCHY_HOST_OS']}'"
+                    Launchy.log "#{self.name} : Using LAUNCHY_HOST_OS override of '#{ENV['LAUNCHY_HOST_OS']}'"
                     return ENV['LAUNCHY_HOST_OS']
                 else
                     ::Config::CONFIG['host_os']
@@ -92,7 +92,7 @@ module Launchy
                         @nix_desktop_environment = :xfce
                     end
                 end
-                Launchy.log "nix_desktop_environment => #{@nix_dekstop_environment}"
+                Launchy.log "#{self.class.name} : nix_desktop_environment => '#{@nix_desktop_environment}'"
             end
             return @nix_desktop_environment
         end
@@ -118,22 +118,22 @@ module Launchy
         def app_list
             @app_list ||= self.send("#{my_os_family}_app_list")
         end
-        
+                
         # On darwin a good general default is the 'open' executable.
         def darwin_app_list
-            Launchy.log "Using 'open' application on darwin."
+            Launchy.log "#{self.class.name} : Using 'open' application on darwin."
             [ find_executable('open') ]
         end
         
         # On windows a good general default is the 'start' Command Shell command
         def windows_app_list
-            Launchy.log "Using 'start' command on windows."
+            Launchy.log "#{self.class.name} : Using 'start' command on windows."
             %w[ start ]
         end
         
         # Cygwin uses the windows start but through an explicit execution of the cmd shell
         def cygwin_app_list
-            Launchy.log "Using 'cmd /C start' on windows."
+            Launchy.log "#{self.class.name} : Using 'cmd /C start' on windows."
             [ "cmd /C start" ]
         end
         
@@ -141,11 +141,12 @@ module Launchy
         def run(cmd,*args)
             args.unshift(cmd)
             cmd_line = args.join(' ')
-            Launchy.log "Spawning on #{my_os_family} : #{cmd_line}"
+            Launchy.log "#{self.class.name} : Spawning on #{my_os_family} : #{cmd_line}"
+            
             if my_os_family == :windows then
                 system cmd_line
             else
-                # fork and the child process should NOT run any exit handlers
+                # fork, and the child process should NOT run any exit handlers
                 child_pid = fork do 
                                 cmd_line += " > /dev/null 2>&1"
                                 system cmd_line

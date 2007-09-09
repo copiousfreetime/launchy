@@ -21,9 +21,12 @@ module Launchy
             # return true if this class can handle the given parameter(s)
             def handle?(*args)
                 begin 
+                    Launchy.log "#{self.name} : testing if [#{args[0]}] (#{args[0].class}) is a url."
                     uri = URI.parse(args[0])
-                    return [URI::HTTP, URI::HTTPS, URI::FTP].include?(uri.class)
-                rescue Exception 
+                    result =  [URI::HTTP, URI::HTTPS, URI::FTP].include?(uri.class)
+                rescue Exception => e
+                    # hmm... why does rcov not see that this is executed ?
+                    Launchy.log "#{self.name} : not a url, #{e}" 
                     return false
                 end
             end
@@ -46,9 +49,9 @@ module Launchy
                 browser_cmds << FALLBACK_BROWSERS
                 browser_cmds.flatten!
                 browser_cmds.delete_if { |b| b.nil? || (b.strip.size == 0) }
-                Launchy.log "Initial *Nix Browser List: #{browser_cmds.join(', ')}"
+                Launchy.log "#{self.class.name} : Initial *Nix Browser List: #{browser_cmds.join(', ')}"
                 @nix_app_list = browser_cmds.collect { |bin| find_executable(bin) }.find_all { |x| not x.nil? }
-                Launchy.log "Filtered *Nix Browser List: #{@nix_app_list.join(', ')}"
+                Launchy.log "#{self.class.name} : Filtered *Nix Browser List: #{@nix_app_list.join(', ')}"
             end
             @nix_app_list
         end
@@ -57,16 +60,18 @@ module Launchy
         def browser
             if not @browser then
                 if ENV['LAUNCHY_BROWSER'] and File.exists?(ENV['LAUNCHY_BROWSER']) then
-                    Launchy.log "Using LAUNCHY_BROWSER environment variable : #{ENV['LAUNCHY_BROWSER']}"
+                    Launchy.log "#{self.class.name} : Using LAUNCHY_BROWSER environment variable : #{ENV['LAUNCHY_BROWSER']}"
                     @browser = ENV['LAUNCHY_BROWSER']
                 elsif ENV['BROWSER'] and File.exists?(ENV['BROWSER']) then
-                    Launchy.log "Using BROWSER environment variable : #{ENV['BROWSER']}"
+                    Launchy.log "#{self.class.name} : Using BROWSER environment variable : #{ENV['BROWSER']}"
                     @browser = ENV['BROWSER']
                 elsif app_list.size > 0 then
                     @browser = app_list.first
-                    Launchy.log "Using application list : #{@browser}"
+                    Launchy.log "#{self.class.name} : Using application list : #{@browser}"
                 else
-                    $stderr.puts "Unable to launch. No Browser application found."
+                    msg = "Unable to launch. No Browser application found."
+                    Launchy.log "#{self.class.name} : #{msg}"
+                    $stderr.puts msg
                 end
             end
             return @browser

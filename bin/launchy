@@ -9,4 +9,4 @@ rescue LoadError
     retry
 end
 
-Launchy.open(*ARGV)
+Launchy.command_line.run(ARGV)

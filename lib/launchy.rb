@@ -22,11 +22,19 @@ module Launchy
     
     class << self
         def open(*params)
-            klass = Launchy::Application.find_application_class_for(*params)
-            if klass then 
-                klass.run(*params)
-            else
-                $stderr.puts "Unable to launch #{params.join(' ')}"
+            begin
+                klass = Launchy::Application.find_application_class_for(*params)
+                if klass then 
+                    klass.run(*params)
+                else
+                    msg = "Unable to launch #{params.join(' ')}"
+                    Launchy.log "#{self.name} : #{msg}"
+                    $stderr.puts msg
+                end
+            rescue Exception => e
+                msg = "Failure in opening #{params.join(' ')} : #{e}"
+                Launchy.log "#{self.name} : #{msg}"
+                $stderr.puts msg
             end
         end
         
@@ -37,7 +45,14 @@ module Launchy
                 $stderr.puts "LAUNCHY_DEBUG: #{msg}"
             end
         end
+        
+        # Create an instance of the commandline application of launchy
+        def command_line
+            Launchy::CommandLine.new
+        end
     end
+    
+    
 end
 
 Launchy.require_all_libs_relative_to(__FILE__)
