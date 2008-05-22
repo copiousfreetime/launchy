@@ -8,10 +8,10 @@ describe Launchy::Application do
         @app = Launchy::Application.new
     end
 
-    it "should find all tattled os" do
-        @host_os.keys.each do |os|
-            Launchy::Application::KNOWN_OS_FAMILIES.should include(@app.my_os_family(os))
-        end
+    YAML::load(IO.read(File.join(File.dirname(__FILE__), "tattle-host-os.yml")))['host_os'].keys.sort.each do |os|
+      it "#{os} should be a found os" do
+        Launchy::Application::KNOWN_OS_FAMILIES.should include(@app.my_os_family(os))
+      end
     end
     
     it "should not find os of 'dos'" do

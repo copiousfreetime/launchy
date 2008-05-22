@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__),"spec_helper.rb")
 require 'stringio'
 
 describe Launchy do
-    it "instantiates an insteadn of Launchy::CommandLine for commandline" do
+    it "instantiates an instance of Launchy::CommandLine for commandline" do
         Launchy.command_line.class.should == Launchy::CommandLine
     end
     

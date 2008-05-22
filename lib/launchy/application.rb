@@ -53,6 +53,8 @@ module Launchy
             # detect what the current os is and return :windows, :darwin or :nix
             def my_os_family(test_os = my_os)
                 case test_os
+                when /mingw/i
+                    family = :windows
                 when /mswin/i
                     family = :windows
                 when /windows/i
@@ -66,6 +68,8 @@ module Launchy
                 when /bsd/i
                     family = :nix
                 when /linux/i
+                    family = :nix
+                when /aix/i
                     family = :nix
                 when /cygwin/i
                     family = :cygwin
