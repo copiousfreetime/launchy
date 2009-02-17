@@ -143,17 +143,27 @@ module Launchy
         
         # run the command
         def run(cmd,*args)
-            args.unshift(cmd)
-            cmd_line = args.join(' ')
-            Launchy.log "#{self.class.name} : Spawning on #{my_os_family} : #{cmd_line}"
+            Launchy.log "#{self.class.name} : Spawning on #{my_os_family} : #{cmd} #{args.inspect}"
             
             if my_os_family == :windows then
-                system cmd_line
+                # NOTE: the command is purposely omitted here because
+                #       running the filename via "cmd /c" is the same as
+                #       running "start filename" at the command-prompt
+                #
+                #       furthermore, when "cmd /c start filename" is
+                #       run, the shell interprets it as two commands:
+                #       (1) "start" opens a new terminal, and (2)
+                #       "filename" causes the file to be launched.
+                system 'cmd', '/c', *args
             else
                 # fork, and the child process should NOT run any exit handlers
                 child_pid = fork do 
-                                cmd_line += " > /dev/null 2>&1"
-                                system cmd_line
+                                # NOTE: we pass a dummy argument *before*
+                                #       the actual command to prevent sh
+                                #       from silently consuming our actual
+                                #       command and assigning it to $0!
+                                dummy = ''
+                                system 'sh', '-c', '"$@" >/dev/null 2>&1', dummy, cmd, *args
                                 exit! 
                             end
                 Process.detach(child_pid)
