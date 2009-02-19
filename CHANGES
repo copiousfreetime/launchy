@@ -1,4 +1,9 @@
 == Changes
+=== Version 0.3.3 - 2009-02-19
+
+* pass command line as discrete items to system() to avoid string
+  interpretation by the system shell. (Suraj N. Kurapati)
+
 === Version 0.3.2 - 2008-05-21
 
 * detect aix and mingw as known operating systems.
