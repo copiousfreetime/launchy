@@ -11,7 +11,7 @@ if rf_conf = Configuration.for_if_exist?("rubyforge") then
 
   namespace :dist do
     desc "Release files to rubyforge"
-    task :rubyforge => [:clean, :package, :package_win] do
+    task :rubyforge => [:clean, :package ] do
 
       rubyforge = RubyForge.new
 
