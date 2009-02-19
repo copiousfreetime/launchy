@@ -3,6 +3,7 @@
 
 * pass command line as discrete items to system() to avoid string
   interpretation by the system shell. (Suraj N. Kurapati)
+* rework project layout and tasks
 
 === Version 0.3.2 - 2008-05-21
 

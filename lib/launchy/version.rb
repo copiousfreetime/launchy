@@ -1,18 +1,17 @@
 module Launchy
-    class Version
-        MAJOR   = 0
-        MINOR   = 3
-        BUILD   = 3
+  module Version
+    MAJOR   = 0
+    MINOR   = 3
+    BUILD   = 3
 
-        class << self
-            def to_a
-                [MAJOR, MINOR, BUILD]
-            end
-
-            def to_s
-                to_a.join(".")
-            end
-        end
+    def self.to_a
+      [MAJOR, MINOR, BUILD]
     end
-    VERSION = Version.to_s
+
+    def self.to_s
+      to_a.join(".")
+    end
+    STRING = Version.to_s.freeze
+  end
+  VERSION = Version.to_s.freeze
 end

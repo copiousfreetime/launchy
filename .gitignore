@@ -3,3 +3,4 @@
 *.swp
 doc/
 coverage/
+pkg/
