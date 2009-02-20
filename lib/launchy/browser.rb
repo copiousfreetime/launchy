@@ -37,7 +37,7 @@ module Launchy
 
     def initialize
       @browser = nil
-      @nix_app_list = nil
+      @nix_app_list = []
       raise "Unable to find browser to launch for os family '#{my_os_family}'." unless browser
     end
 
@@ -56,7 +56,7 @@ module Launchy
     #     3) desktop environment launcher program
     #     4) a list of fallback browsers
     def nix_app_list
-      if not @nix_app_list then
+      if @nix_app_list.empty?
         browser_cmds = ['xdg-open']
         browser_cmds << desktop_environment_browser_launchers[nix_desktop_environment]
         browser_cmds << fallback_browsers

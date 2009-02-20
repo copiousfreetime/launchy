@@ -25,8 +25,8 @@ describe Launchy::Browser do
     Launchy::Browser.new.nix_app_list.class.should == Array
   end
 
-  { "BROWSER" => "/usr/bin/true",
-    "LAUNCHY_BROWSER" => "/usr/bin/true"}.each_pair do |e,v|
+  { "BROWSER" => "/bin/sh",
+    "LAUNCHY_BROWSER" => "/bin/sh"}.each_pair do |e,v|
     it "can use environmental variable overrides of #{e} for the browser" do
       ENV[e] = v
       Launchy::Browser.new.browser.should eql(v)
