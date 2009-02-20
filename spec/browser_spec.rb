@@ -5,7 +5,7 @@ describe Launchy::Browser do
     begin
       File.executable?(Launchy::Browser.new.browser).should == true
     rescue => e
-      e.message.should == "Unable to find browser to launch for os familiy 'nix'."
+      e.message.should == "Unable to find browser to launch for os family 'nix'."
     end
   end
 
@@ -29,7 +29,7 @@ describe Launchy::Browser do
     begin
       Launchy::Browser.new.nix_app_list.class.should == Array
     rescue => e
-      e.message.should == "Unable to find browser to launch for os familiy 'nix'."
+      e.message.should == "Unable to find browser to launch for os family 'nix'."
     end
   end
 

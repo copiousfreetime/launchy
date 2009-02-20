@@ -23,8 +23,12 @@ describe Launchy::Application do
     @app.my_os.should_not eql(nil)
   end
 
-  it "should find open" do
-    @app.find_executable('open').should eql("/usr/bin/open")
+  it "should find open or curl" do
+    r = "found open or curl"
+    found = %w[ open curl ].collect do |app|
+      @app.find_executable(app).nil?
+    end
+    found.should be_include( false )
   end
 
   it "should not find app xyzzy" do
