@@ -1,5 +1,10 @@
 = Launchy Changlog
 
+== Version 0.3.4 - 2009-12-17
+
+* clarify that launchy is under ISC license
+* fix missing data file in released gem needed for running specs
+
 == Version 0.3.3 - 2009-02-19
 
 * pass command line as discrete items to system() to avoid string
