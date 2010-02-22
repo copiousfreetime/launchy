@@ -2,6 +2,7 @@
 == Version 0.3.5 - 2010-02-22
 
 * add a test:spec task to run tests without rcov support
+* added 'testing' os family for running tests
 
 == Version 0.3.5 - 2009-12-17
 
