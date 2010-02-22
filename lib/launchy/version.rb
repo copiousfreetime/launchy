@@ -2,7 +2,7 @@ module Launchy
   module Version
     MAJOR   = 0
     MINOR   = 3
-    BUILD   = 5
+    BUILD   = 6
 
     def self.to_a
       [MAJOR, MINOR, BUILD]
