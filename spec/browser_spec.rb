@@ -45,7 +45,7 @@ describe Launchy::Browser do
   it "reports when it cannot find an browser" do
     old_error = $stderr
     $stderr = StringIO.new
-    ENV["LAUNCHY_HOST_OS"] = "linux"
+    ENV["LAUNCHY_HOST_OS"] = "testing"
     begin
       browser = Launchy::Browser.new
     rescue => e

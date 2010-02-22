@@ -4,7 +4,7 @@ module Launchy
   class Application
     class << self
       def known_os_families
-        @known_os_families ||= [ :windows, :darwin, :nix, :cygwin ]
+        @known_os_families ||= [ :windows, :darwin, :nix, :cygwin, :testing ]
       end
 
       def inherited(sub_class)
@@ -74,6 +74,8 @@ module Launchy
           family = :nix
         when /cygwin/i
           family = :cygwin
+        when /testing/i
+          family = :testing
         else
           $stderr.puts "Unknown OS familiy for '#{test_os}'.  Please report this bug to <jeremy at hinegardner dot org>"
           family = :unknown
@@ -140,6 +142,11 @@ module Launchy
     def cygwin_app_list
       Launchy.log "#{self.class.name} : Using 'cmd /C start' on windows."
       [ "cmd /C start" ]
+    end
+
+    # used only for running tests
+    def testing_app_list
+      []
     end
 
     # run the command
