@@ -148,14 +148,11 @@ module Launchy
 
       if my_os_family == :windows then
         # NOTE: the command is purposely omitted here because
-        #       running the filename via "cmd /c" is the same as
-        #       running "start filename" at the command-prompt
-        #
-        #       furthermore, when "cmd /c start filename" is
+        #       When "cmd /c start filename" is
         #       run, the shell interprets it as two commands:
         #       (1) "start" opens a new terminal, and (2)
         #       "filename" causes the file to be launched.
-        system 'cmd', '/c', *args
+        system 'cmd', '/c', cmd, *args
       else
         # fork, and the child process should NOT run any exit handlers
         child_pid = fork do
