@@ -26,7 +26,7 @@ module Launchy
         begin
           Launchy.log "#{self.name} : testing if [#{args[0]}] (#{args[0].class}) is a url."
           uri = URI.parse(args[0])
-          result =  [URI::HTTP, URI::HTTPS, URI::FTP].include?(uri.class)
+          result =  [URI::HTTP, URI::HTTPS, URI::FTP].include?(uri.class) || uri.scheme == 'file'
         rescue Exception => e
           # hmm... why does rcov not see that this is executed ?
           Launchy.log "#{self.name} : not a url, #{e}"

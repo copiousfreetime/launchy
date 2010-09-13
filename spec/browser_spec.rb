@@ -21,6 +21,10 @@ describe Launchy::Browser do
     Launchy::Browser.handle?("ftp://download.example.com").should == true
   end
 
+  it "should handle a file url" do
+    Launchy::Browser.handle?("file://local/file.html").should == true
+  end
+
   it "should not handle a mailto url" do
     Launchy::Browser.handle?("mailto:jeremy@example.com").should == false
   end
