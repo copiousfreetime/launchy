@@ -154,6 +154,7 @@ module Launchy
       Launchy.log "#{self.class.name} : Spawning on #{my_os_family} : #{cmd} #{args.inspect}"
 
       if my_os_family == :windows then
+        args.unshift('""') if cmd == "start"
         # NOTE: the command is purposely omitted here because
         #       When "cmd /c start filename" is
         #       run, the shell interprets it as two commands:
