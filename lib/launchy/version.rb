@@ -11,7 +11,7 @@ module Launchy
     def self.to_s
       to_a.join(".")
     end
-    STRING = Version.to_s.freeze
+    STRING = Version.to_s
   end
-  VERSION = Version.to_s.freeze
+  VERSION = Version.to_s
 end
