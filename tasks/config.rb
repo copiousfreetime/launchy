@@ -61,8 +61,8 @@ Configuration.for("gem") {
 Configuration.for('test') {
   mode      "spec"
   files     Configuration.for("packaging").files.test
-  options   %w[ --format specdoc --color ]
-  ruby_opts %w[ -w ]
+  options   %w[ --format documentation --color ]
+  ruby_opts %w[ ]
 }
 
 #-----------------------------------------------------------------------
@@ -71,8 +71,8 @@ Configuration.for('test') {
 Configuration.for('rcov') {
   output_dir  "coverage"
   libs        %w[ lib ]
-  rcov_opts   %w[ --html ]
-  ruby_opts   %w[ -w ]
+  rcov_opts   %w[ --html -o coverage ]
+  ruby_opts   %w[ ]
   test_files  Configuration.for('packaging').files.test
 }
 

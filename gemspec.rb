@@ -23,6 +23,11 @@ Launchy::GEM_SPEC = Gem::Specification.new do |spec|
   spec.add_dependency("rake", ">= 0.8.1")
   spec.add_dependency("configuration", ">= 0.0.5")
 
+  spec.add_development_dependency("rake", "~> 0.8.7")
+  spec.add_development_dependency("configuration", "~> 1.2.0")
+  spec.add_development_dependency("rspec-core", "~> 2.5.1")
+
+
   if rdoc = Configuration.for_if_exist?('rdoc') then
     spec.has_rdoc         = true
     spec.extra_rdoc_files = pkg.files.rdoc
