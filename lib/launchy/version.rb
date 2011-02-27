@@ -1,8 +1,8 @@
 module Launchy
   module Version
     MAJOR   = 0
-    MINOR   = 3
-    BUILD   = 7
+    MINOR   = 4
+    BUILD   = 0
 
     def self.to_a
       [MAJOR, MINOR, BUILD]
@@ -11,7 +11,7 @@ module Launchy
     def self.to_s
       to_a.join(".")
     end
-    STRING = Version.to_s.freeze
+    STRING = Version.to_s
   end
-  VERSION = Version.to_s.freeze
+  VERSION = Version.to_s
 end
