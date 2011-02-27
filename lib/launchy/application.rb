@@ -135,7 +135,7 @@ module Launchy
     # On windows a good general default is the 'start' Command Shell command
     def windows_app_list
       Launchy.log "#{self.class.name} : Using 'start' command on windows."
-            %w[ start ]
+      %w[ start ]
     end
 
     # Cygwin uses the windows start but through an explicit execution of the cmd shell
