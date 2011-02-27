@@ -1,5 +1,9 @@
 = Launchy Changlog
 
+== Version 0.4.0 - 2011-01-27
+
+* Add support for file:/// schema (postmodern)
+
 == Version 0.3.7 - 2010-07-19
 
 * Fix launchy on windows (mikefarmer)
