@@ -27,6 +27,7 @@ Bones {
   ignore_file   '.gitignore'
   history_file  'HISTORY'
 
+  rdoc.include << "README" << "HISTORY" << "LICENSE"
   spec.opts << "--color" << "--format documentation"
 
   summary 'Launchy is helper class for launching cross-platform applications in a fire and forget manner.'
