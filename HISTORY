@@ -1,5 +1,9 @@
 = Launchy Changlog
 
+== Version x.y.z
+
+* Switch to using bones
+
 == Version 0.4.0 - 2011-01-27
 
 * Add support for file:/// schema (postmodern)
