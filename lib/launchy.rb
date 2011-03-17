@@ -38,7 +38,6 @@ end
 require 'launchy/application'
 require 'launchy/browser'
 require 'launchy/command_line'
-require 'launchy/paths'
 require 'launchy/version'
 
 require 'spoon' if Launchy::Application.is_jruby?
