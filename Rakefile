@@ -6,11 +6,11 @@
 begin
   require 'bones'
 rescue LoadError
-  abort '### Pleas install the "bones" gem ###'
+  abort '### Please install the "bones" gem ###'
 end
 
-task :default => 'spec:run'
-task 'gem:release' => 'spec:run'
+task :default => 'test:run'
+task 'gem:release' => 'test:run'
 
 $:.unshift( "lib" )
 require 'launchy/version'
@@ -28,7 +28,6 @@ Bones {
   history_file  'HISTORY'
 
   rdoc.include << "README" << "HISTORY" << "LICENSE"
-  spec.opts << "--color" << "--format documentation"
 
   summary 'Launchy is helper class for launching cross-platform applications in a fire and forget manner.'
   description <<_
@@ -41,12 +40,14 @@ each platform.  Launchy is here to make a common approach to launching
 external application from within ruby programs.
 _
 
-  depend_on "spoon" , "~> 0.0.1" if RUBY_PLATFORM == "java"
-  depend_on "rake"  , "~> 0.8.7", :development => true
-  depend_on "rspec" , "~> 2.5.0", :development => true
-  depend_on 'bones' , "~> 3.6.5", :development => true
   if RUBY_PLATFORM == "java" then
     depend_on "spoon"   , "~> 0.0.1"
     gem.extras = { :platform => Gem::Platform.new( "java" ) }
   end
+
+  depend_on "rake"    , "~> 0.8.7", :development => true
+  depend_on "minitest", "~> 2.0.2", :development => true
+  depend_on 'bones'   , "~> 3.6.5", :development => true
+
+  test.files = FileList["spec/**/*_spec.rb"]
 }
