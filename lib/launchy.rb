@@ -51,3 +51,4 @@ module Launchy
 end
 
 Launchy.require_all_libs_relative_to(__FILE__)
+require 'spoon' if Launchy::Application.is_jruby?
