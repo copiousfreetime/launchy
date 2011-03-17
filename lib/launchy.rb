@@ -1,19 +1,4 @@
 module Launchy
-  #
-  # Utility method to require all files ending in .rb in the directory
-  # with the same name as this file minus .rb
-  #
-  def self.require_all_libs_relative_to(fname)
-    prepend   = File.basename(fname,".rb")
-    search_me = File.join(File.dirname(fname),prepend)
-
-    Dir.entries(search_me).each do |rb|
-      if File.extname(rb) == ".rb" then
-        require "#{prepend}/#{File.basename(rb,".rb")}"
-      end
-    end
-  end
-
   class << self
     #
     # Convenience method to launch an item
@@ -50,4 +35,10 @@ module Launchy
   end
 end
 
-Launchy.require_all_libs_relative_to(__FILE__)
+require 'launchy/application'
+require 'launchy/browser'
+require 'launchy/command_line'
+require 'launchy/paths'
+require 'launchy/version'
+
+require 'spoon' if Launchy::Application.is_jruby?

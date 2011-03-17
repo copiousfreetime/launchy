@@ -1,5 +1,4 @@
 require 'rbconfig'
-require 'spoon'
 
 module Launchy
   class Application
@@ -124,8 +123,8 @@ module Launchy
       Application.my_os_family(test_os)
     end
 
-    def jruby?
-      Application.jruby?
+    def is_jruby?
+      Application.is_jruby?
     end
 
     # returns the list of command line application names for the current os.  The list
