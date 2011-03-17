@@ -1,8 +1,11 @@
 = Launchy Changlog
 
-== Version x.y.z
+== Version 1.0.0 - 2011-03-17
 
+* Add JRuby support (Stephen Judkins)
+* Remove unused Paths module
 * Switch to using bones
+* Switch to use minitest
 
 == Version 0.4.0 - 2011-01-27
 
