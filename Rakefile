@@ -45,4 +45,8 @@ _
   depend_on "rake"  , "~> 0.8.7", :development => true
   depend_on "rspec" , "~> 2.5.0", :development => true
   depend_on 'bones' , "~> 3.6.5", :development => true
+  if RUBY_PLATFORM == "java" then
+    depend_on "spoon"   , "~> 0.0.1"
+    gem.extras = { :platform => Gem::Platform.new( "java" ) }
+  end
 }
