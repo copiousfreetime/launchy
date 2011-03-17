@@ -1,4 +1,5 @@
 require 'rbconfig'
+require 'spoon'
 
 module Launchy
   class Application
@@ -81,6 +82,10 @@ module Launchy
           family = :unknown
         end
       end
+
+      def is_jruby?
+        defined?(RUBY_PLATFORM) && ( RUBY_PLATFORM == "java" )
+      end
     end
 
 
@@ -119,6 +124,10 @@ module Launchy
       Application.my_os_family(test_os)
     end
 
+    def jruby?
+      Application.jruby?
+    end
+
     # returns the list of command line application names for the current os.  The list
     # returned should only contain appliations or commands that actually exist on the
     # system.  The list members should have their full path to the executable.
@@ -149,6 +158,15 @@ module Launchy
       []
     end
 
+    def shell_commands(cmd, args)
+      # NOTE: we pass a dummy argument *before*
+      #       the actual command to prevent sh
+      #       from silently consuming our actual
+      #       command and assigning it to $0!
+      dummy = ''
+      ['sh', '-c', '"$@" >/dev/null 2>&1', dummy, cmd, *args]
+    end
+
     # run the command
     def run(cmd,*args)
       Launchy.log "#{self.class.name} : Spawning on #{my_os_family} : #{cmd} #{args.inspect}"
@@ -160,15 +178,12 @@ module Launchy
         #       (1) "start" opens a new terminal, and (2)
         #       "filename" causes the file to be launched.
         system 'cmd', '/c', cmd, *args
+      elsif is_jruby?
+        Spoon.spawnp *shell_commands(cmd, args)
       else
         # fork, and the child process should NOT run any exit handlers
         child_pid = fork do
-          # NOTE: we pass a dummy argument *before*
-          #       the actual command to prevent sh
-          #       from silently consuming our actual
-          #       command and assigning it to $0!
-          dummy = ''
-          system 'sh', '-c', '"$@" >/dev/null 2>&1', dummy, cmd, *args
+          system *shell_commands(cmd, args)
           exit!
         end
         Process.detach(child_pid)

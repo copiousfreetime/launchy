@@ -41,6 +41,7 @@ each platform.  Launchy is here to make a common approach to launching
 external application from within ruby programs.
 _
 
+  depend_on "spoon" , "~> 0.0.1" if RUBY_PLATFORM == "java"
   depend_on "rake"  , "~> 0.8.7", :development => true
   depend_on "rspec" , "~> 2.5.0", :development => true
   depend_on 'bones' , "~> 3.6.5", :development => true
