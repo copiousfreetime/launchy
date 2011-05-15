@@ -1,53 +1,23 @@
-#--
-# Copyright (c) 2007 Jeremy Hinegardner
-# All rights reserved.  See LICENSE and/or COPYING for details.
-#++
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-begin
-  require 'bones'
-rescue LoadError
-  abort '### Please install the "bones" gem ###'
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.pattern = 'spec/**/*_spec.rb'
 end
 
-task :default => 'test:run'
-task 'gem:release' => 'test:run'
-
-$:.unshift( "lib" )
-require 'launchy/version'
-
-Bones {
-  name      "launchy"
-  author    "Jeremy Hinegardner"
-  email     "jeremy@copiousfreetime.org"
-  url       'http://www.copiousfreetime.org/projects/launchy'
-  version   Launchy::VERSION
-
-  ruby_opts     %w[ -W0 -rubygems ]
-  readme_file   'README'
-  ignore_file   '.gitignore'
-  history_file  'HISTORY'
-
-  rdoc.include << "README" << "HISTORY" << "LICENSE"
-
-  summary 'Launchy is helper class for launching cross-platform applications in a fire and forget manner.'
-  description <<_
-Launchy is helper class for launching cross-platform applications in a
-fire and forget manner.
-
-There are application concepts (browser, email client, etc) that are
-common across all platforms, and they may be launched differently on
-each platform.  Launchy is here to make a common approach to launching
-external application from within ruby programs.
-_
-
-  if RUBY_PLATFORM == "java" then
-    depend_on "spoon"   , "~> 0.0.1"
-    gem.extras = { :platform => Gem::Platform.new( "java" ) }
+namespace(:test) do
+  desc 'Run all tests on multiple ruby versions (requires rvm)'
+  task(:portability) do
+    %w[1.8.7 1.9.2 jruby-1.6.1].each do |version|
+      system <<-BASH
+        bash -c 'source ~/.rvm/scripts/rvm;
+                 rvm #{version};
+                 echo "--------- version #{version} ----------\n";
+                 bundle install;
+                 rake test'
+      BASH
+    end
   end
-
-  depend_on "rake"    , "~> 0.8.7", :development => true
-  depend_on "minitest", "~> 2.0.2", :development => true
-  depend_on 'bones'   , "~> 3.6.5", :development => true
-
-  test.files = FileList["spec/**/*_spec.rb"]
-}
+end

@@ -1,14 +1,14 @@
-require File.join(File.dirname(__FILE__),"spec_helper.rb")
+require File.expand_path(File.join(File.dirname(__FILE__),"..","spec_helper"))
 require 'yaml'
 
 describe Launchy::Application do
   before(:each) do
-    yml = YAML::load(IO.read(File.join(File.dirname(__FILE__),"tattle-host-os.yml")))
+    yml = YAML::load(IO.read(File.join(File.dirname(__FILE__),"..","tattle-host-os.yml")))
     @host_os = yml['host_os']
     @app = Launchy::Application.new
   end
 
-  YAML::load(IO.read(File.join(File.dirname(__FILE__), "tattle-host-os.yml")))['host_os'].keys.sort.each do |os|
+  YAML::load(IO.read(File.join(File.dirname(__FILE__),"..", "tattle-host-os.yml")))['host_os'].keys.sort.each do |os|
     it "#{os} should be a found os" do
       Launchy::Application::known_os_families.must_include( @app.my_os_family(os) )
     end
@@ -31,7 +31,7 @@ describe Launchy::Application do
   end
 
   it "should not find app xyzzy" do
-    @app.find_executable('xyzzy').must_be_nil 
+    @app.find_executable('xyzzy').must_be_nil
   end
 
   it "should find the correct class to launch an ftp url" do

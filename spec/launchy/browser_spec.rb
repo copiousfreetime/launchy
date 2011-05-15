@@ -1,5 +1,6 @@
-require File.join(File.dirname(__FILE__),"spec_helper.rb")
+require File.expand_path(File.join(File.dirname(__FILE__),"..","spec_helper"))
 require 'stringio'
+
 describe Launchy::Browser do
   it "should find a path to a executable" do
     begin
