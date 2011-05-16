@@ -26,4 +26,5 @@ module Launchy
     end
 
   end
+
 end
