@@ -37,3 +37,4 @@ end
 require 'launchy/version'
 require 'launchy/error'
 require 'launchy/application'
+require 'launchy/detect_host_os'
