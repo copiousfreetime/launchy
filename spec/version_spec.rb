@@ -1,7 +1,6 @@
-require File.join(File.dirname(__FILE__),"spec_helper.rb")
-require 'yaml'
+require 'spec_helper'
 
-describe "Launchy::VERSION" do
+describe 'Launchy::VERSION' do
   it "should have a #.#.# format" do
     Launchy::VERSION.must_match /\d+\.\d+\.\d+/
     Launchy::Version.to_a.each do |n|

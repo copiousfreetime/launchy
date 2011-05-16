@@ -50,4 +50,5 @@ _
   depend_on 'bones'   , "~> 3.6.5", :development => true
 
   test.files = FileList["spec/**/*_spec.rb"]
+  test.opts << "-Ilib:spec"
 }

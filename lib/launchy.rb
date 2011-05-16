@@ -1,15 +1,17 @@
+
 module Launchy
+
   class << self
     #
     # Convenience method to launch an item
     #
-    def open(*params)
+    def open(uri, options = {} )
       begin
-        klass = Launchy::Application.find_application_class_for(*params)
-        if klass then
-          klass.run(*params)
+        uri = URI.parse( uri )
+        if app = Launchy::Application.for_scheme( uri ) then
+          app.new.open( uri, options )
         else
-          msg = "Unable to launch #{params.join(' ')}"
+          msg = "Unable to launch #{uri} with options #{options.inspect}"
           Launchy.log "#{self.name} : #{msg}"
           $stderr.puts msg
         end
@@ -20,24 +22,18 @@ module Launchy
       end
     end
 
+    def debug?
+      ENV['LAUNCHY_DEBUG'] == 'true'
+    end
+
     # Setting the LAUNCHY_DEBUG environment variable to 'true' will spew
     # debug information to $stderr
     def log(msg)
-      if ENV['LAUNCHY_DEBUG'] == 'true' then
-        $stderr.puts "LAUNCHY_DEBUG: #{msg}"
-      end
-    end
-
-    # Create an instance of the commandline application of launchy
-    def command_line
-      Launchy::CommandLine.new
+      $stderr.puts "LAUNCHY_DEBUG: #{msg}" if debug?
     end
   end
 end
 
-require 'launchy/application'
-require 'launchy/browser'
-require 'launchy/command_line'
 require 'launchy/version'
-
-require 'spoon' if Launchy::Application.is_jruby?
+require 'launchy/error'
+require 'launchy/application'

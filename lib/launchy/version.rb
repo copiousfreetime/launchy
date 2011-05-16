@@ -1,17 +1,18 @@
 module Launchy
+  VERSION = "2.0.0"
+
   module Version
-    MAJOR   = 1
-    MINOR   = 0
-    BUILD   = 0
+
+    MAJOR   = Integer(VERSION.split('.')[0])
+    MINOR   = Integer(VERSION.split('.')[1])
+    PATCH   = Integer(VERSION.split('.')[2])
 
     def self.to_a
-      [MAJOR, MINOR, BUILD]
+      [MAJOR, MINOR, PATCH]
     end
 
     def self.to_s
-      to_a.join(".")
+      VERSION
     end
-    STRING = Version.to_s
   end
-  VERSION = Version.to_s
 end
