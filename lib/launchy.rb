@@ -35,6 +35,7 @@ module Launchy
 end
 
 require 'launchy/version'
+require 'launchy/descendant_tracker'
 require 'launchy/error'
 require 'launchy/application'
 require 'launchy/detect_host_os'
