@@ -14,12 +14,12 @@ describe Launchy::Application do
         %w[ junk2 ]
       end
     end
-    Launchy::Application.application_list.must_include( Junk2App )
-    Launchy::Application.application_list.delete( Junk2App )
+    Launchy::Application.children.must_include( Junk2App )
+    Launchy::Application.children.delete( Junk2App )
   end
 
   it "can find an app" do
-    Launchy::Application.application_list.must_include( JunkApp )
+    Launchy::Application.children.must_include( JunkApp )
     Launchy::Application.scheme_list.size.must_equal 3
     Launchy::Application.for_scheme( "junk" ).must_equal( JunkApp  )
   end

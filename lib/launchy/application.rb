@@ -12,30 +12,14 @@ module Launchy
   # 3. A class method 'schemes' that returns an array of Strings containing the
   #    schemes that the Application will handle
   class Application
+    extend DescendantTracker
+
     class << self
-      #
-      # track child classes as they are created
-      #
-      def inherited( klass )
-        return unless klass.instance_of?( Class )
-        self.application_list << klass
-      end
-
-      #
-      # The list of applications that are registered
-      #
-      def application_list
-        unless defined? @application_list
-          @application_list = Set.new
-        end
-        return @application_list
-      end
-
       #
       # The list of all the schems all the applications now
       #
       def scheme_list
-        application_list.collect { |a| a.schemes }.flatten.sort
+        children.collect { |a| a.schemes }.flatten.sort
       end
 
       #
@@ -54,7 +38,7 @@ module Launchy
           scheme = scheme.scheme
         end
 
-        klass = application_list.find { |klass| klass.handles?( scheme ) }
+        klass = children.find { |klass| klass.handles?( scheme ) }
 
         return klass if klass
         raise SchemeNotFoundError, "No application found to handle scheme '#{scheme}'. Known schemes: #{scheme_list.join(", ")}"
