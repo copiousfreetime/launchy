@@ -1,0 +1,17 @@
+Reworking:
+    URI will determine launcher
+    calculate host_os
+    calculate ruby_engine
+
+    spawner, determined by host_os and ruby engine:
+
+    lookup host_application, which will be by host_os and have a cascading order
+    of:
+        ENV['LAUNCHY_BROWSER'] - these are all just commandlines
+        ENV['BROWSER']
+        built in list based upon host_os
+
+    for all of these:
+        have open in tab/window
+        sub '%s' out
+
