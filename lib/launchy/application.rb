@@ -176,6 +176,9 @@ module Launchy
         #       run, the shell interprets it as two commands:
         #       (1) "start" opens a new terminal, and (2)
         #       "filename" causes the file to be launched.
+        if (cmd == "start")
+          args[0].gsub!("&", "^&")
+        end
         system 'cmd', '/c', cmd, *args
       elsif is_jruby?
         Spoon.spawnp *shell_commands(cmd, args)
