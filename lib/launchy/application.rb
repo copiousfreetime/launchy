@@ -47,7 +47,7 @@ module Launchy
           Launchy.log "#{self.name} : Using LAUNCHY_HOST_OS override of '#{ENV['LAUNCHY_HOST_OS']}'"
           return ENV['LAUNCHY_HOST_OS']
         else
-          ::Config::CONFIG['host_os']
+          ::RbConfig::CONFIG['host_os']
         end
       end
 
