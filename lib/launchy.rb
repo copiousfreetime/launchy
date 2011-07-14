@@ -40,4 +40,5 @@ require 'launchy/browser'
 require 'launchy/command_line'
 require 'launchy/version'
 
-require 'spoon' if Launchy::Application.is_jruby?
+require 'spoon' if Launchy::Application.my_os_family != :windows and
+                   Launchy::Application.is_jruby?
