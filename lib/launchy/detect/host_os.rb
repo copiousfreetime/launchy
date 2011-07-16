@@ -1,18 +1,18 @@
 require 'rbconfig'
 
-module Launchy
-  class DetectHostOs
+module Launchy::Detect
+  class HostOs
 
-    attr_reader :raw_host_os
+    attr_reader :host_os
 
     def initialize( host_os = nil )
-      @raw_host_os = host_os
+      @host_os = host_os
 
-      if not @raw_host_os then
-        if @raw_host_os = override_host_os then
+      if not @host_os then
+        if @host_os = override_host_os then
           Launchy.log "Using LAUNCHY_HOST_OS override value of '#{Launchy.host_os}'"
         else
-          @raw_host_os = default_host_os
+          @host_os = default_host_os
         end
       end
     end
