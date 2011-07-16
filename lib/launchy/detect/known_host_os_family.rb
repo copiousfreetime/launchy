@@ -7,7 +7,7 @@ module Launchy::Detect
     #    those host_os strings that are in the family
     #
  
-    class Known
+    class Known < HostOsFamily
       extend ::Launchy::DescendantTracker
 
       class << self
@@ -15,7 +15,7 @@ module Launchy::Detect
           matching_regex.match( host_os.to_s )
         end
 
-        def detect( host_os )
+        def detect( host_os = Launchy.host_os )
           klass = children.find do |klass|
             Launchy.log( "Seeing if #{klass.name} matches host_os '#{host_os}'" )
             klass.matches?( host_os )
@@ -25,7 +25,7 @@ module Launchy::Detect
             Launchy.log( "#{klass.name} matches '#{host_os}'" )
             return klass
           end
-          $stderr.puts "Unknown OS family for '#{host_os}'.  Please report this bug to <jeremy at hinegardner dot org>"
+          $stderr.puts "Unknown OS family for '#{host_os}'. #{Launchy.bug_report_message}"
           return HostOsFamily::Unknown
         end
       end
