@@ -11,6 +11,7 @@ require 'uri'
 #   :debug        Turn on debugging output
 #   :application  Explicitly state what application class is going to be used
 #   :host_os      Explicitly state what host operating system to pretend to be
+#   :ruby_engine  Explicitly state what ruby engine to pretend to be under
 #
 # Other options may be used, and those will be passed directly to the
 # application class
@@ -49,6 +50,7 @@ module Launchy
       Launchy.debug        = options.delete( :debug       ) || ENV['LAUNCHY_DEBUG']
       Launchy.application  = options.delete( :application ) || ENV['LAUNCHY_APPLICATION']
       Launchy.host_os      = options.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
+      Launchy.ruby_engine  = options.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
     end
 
     def debug=( d )
@@ -76,6 +78,15 @@ module Launchy
     def host_os
       @host_os || ENV['LAUNCHY_HOST_OS']
     end
+
+    def ruby_engine=( ruby_engine )
+      @ruby_engine = ruby_engine
+    end
+
+    def ruby_engine
+      @ruby_engine || ENV['LAUNCHY_RUBY_ENGINE']
+    end
+
 
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?

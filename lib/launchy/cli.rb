@@ -25,6 +25,10 @@ module Launchy
           options[:debug] = 'true'
         end
 
+        op.on( "-e", "--engine RUBY_ENGINE",
+               "Force launchy to behave as if it was on a particular ruby engine.") do |e|
+          options[:ruby_engine] = e
+        end
 
         op.on( "-o", "--host-os HOST_OS", 
                "Force launchy to behave as if it was on a particular host os.") do |os|

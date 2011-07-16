@@ -34,4 +34,9 @@ describe Launchy do
     Launchy.extract_global_options(  { :host_os => "my-special-os-v2" } )
     Launchy.host_os.must_equal 'my-special-os-v2'
   end
+
+  it "has the global option :ruby_engine" do
+    Launchy.extract_global_options(  { :ruby_engine => "myruby" } )
+    Launchy.ruby_engine.must_equal 'myruby'
+  end
 end
