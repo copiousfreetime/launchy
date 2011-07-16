@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Launchy do
-  #it "instantiates an instance of Launchy::CommandLine for commandline" do
-    #Launchy.command_line.class.must_equal Launchy::CommandLine
-  #end
 
   it "logs to stderr when LAUNCHY_DEBUG environment variable is set" do
     ENV["LAUNCHY_DEBUG"] = 'true'
