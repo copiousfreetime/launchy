@@ -1,4 +1,3 @@
-
 module Launchy
 
   class << self
