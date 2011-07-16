@@ -43,6 +43,21 @@ module Launchy
 
         raise SchemeNotFoundError, "No application found to handle scheme '#{scheme}'. Known schemes: #{scheme_list.join(", ")}"
       end
+
+      #
+      # Find the given executable in the available paths
+      def find_executable( bin, *paths )
+        paths = ENV['PATH'].split( File::PATH_SEPARATOR ) if paths.empty?
+        paths.each do |path|
+          file = File.join( path, bin )
+          if File.executable?( file ) then
+            Launchy.log "#{self.name} : found executable #{file}"
+            return file
+          end
+        end
+        Launchy.log "#{self.name} : Unable to find `#{bin}' in #{paths.join(", ")}"
+        return nil
+      end
     end
 
   end

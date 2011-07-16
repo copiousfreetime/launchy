@@ -27,4 +27,15 @@ describe Launchy::Application do
   it "raises an error if an application cannot be found for the given scheme" do
     lambda { Launchy::Application.for_scheme( "foo" ) }.must_raise( Launchy::SchemeNotFoundError )
   end
+
+  it "can find open or curl" do
+    found = %w[ open curl ].any? do |app|
+      Launchy::Application.find_executable( app )
+    end
+    found.must_equal true
+  end
+
+  it "does not find xyzzy" do
+    Launchy::Application.find_executable( "xyzzy" ).must_equal  nil
+  end
 end
