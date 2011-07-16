@@ -44,6 +44,7 @@ module Launchy
       Launchy.debug       = false
       Launchy.application = nil
       Launchy.host_os     = nil
+      Launchy.ruby_engine = nil
     end
 
     def extract_global_options( options )
@@ -86,7 +87,6 @@ module Launchy
     def ruby_engine
       @ruby_engine || ENV['LAUNCHY_RUBY_ENGINE']
     end
-
 
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?
