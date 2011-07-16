@@ -88,6 +88,10 @@ module Launchy
       @ruby_engine || ENV['LAUNCHY_RUBY_ENGINE']
     end
 
+    def bug_report_message
+      "Please file a bug at https://github.com/copiousfreetime/launchy/issues/new"
+    end
+
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?
     end

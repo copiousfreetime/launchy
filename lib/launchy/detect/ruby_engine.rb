@@ -9,11 +9,11 @@ module Launchy::Detect
       return found if found
 
       if ruby_engine then
-        $stderr.puts "Unknown RUBY_ENGINE '#{ruby_engine}'. Please report this bug to <jeremy at hinegardner dot org>"
+        $stderr.puts "Unknown RUBY_ENGINE '#{ruby_engine}'. #{Launchy.bug_report_message}"
       elsif defined?( RUBY_ENGINE ) then
-        $stderr.puts "Unknown RUBY_ENGINE '#{RUBY_ENGINE}'. Please report this bug to <jeremy at hinegardner dot org>"
+        $stderr.puts "Unknown RUBY_ENGINE '#{RUBY_ENGINE}'. #{Launchy.bug_report_message}"
       else
-        $stderr.puts "RUBY_ENGINE not defined for #{RUBY_DESCRIPTION}. Please report this bug to <jeremy at hinegardner dot org>"
+        $stderr.puts "RUBY_ENGINE not defined for #{RUBY_DESCRIPTION}. #{Launchy.bug_report_message}"
       end
       return RubyEngine::Unknown
     end
