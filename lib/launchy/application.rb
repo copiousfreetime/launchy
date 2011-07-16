@@ -16,7 +16,7 @@ module Launchy
 
     class << self
       #
-      # The list of all the schems all the applications now
+      # The list of all the schemes all the applications know
       #
       def scheme_list
         children.collect { |a| a.schemes }.flatten.sort
