@@ -1,5 +1,20 @@
 require 'uri'
 
+#
+# Top level entry point into Launchy. Almost everyone will just use the single
+# call:
+#
+#   Launchy.open( uri, options = {} )
+#
+# The currently defined global options are:
+#
+#   :debug        Turn on debugging output
+#   :application  Explicitly state what application class is going to be used
+#   :host_os      Explicitly state what host operating system to pretend to be
+#
+# Other options may be used, and those will be passed directly to the
+# application class
+#
 module Launchy
 
   class << self
@@ -62,8 +77,6 @@ module Launchy
       @host_os
     end
 
-    # Setting the LAUNCHY_DEBUG environment variable to 'true' will spew
-    # debug information to $stderr
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?
     end
