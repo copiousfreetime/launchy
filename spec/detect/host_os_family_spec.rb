@@ -3,10 +3,17 @@ require 'yaml'
 
 describe Launchy::Detect::HostOsFamily do
 
+  before do
+    Launchy.reset_global_options
+  end
+
+  after do
+    Launchy.reset_global_options
+  end
+
   YAML::load( IO.read( File.expand_path( "../../tattle-host-os.yaml", __FILE__ ) ) )['host_os'].keys.sort.each do |os|
     it "OS family of #{os} is detected" do
       Launchy::Detect::HostOsFamily.new( os ).host_os_family.wont_equal Launchy::Detect::HostOsFamily::Unknown
-      #Launchy::Detect::HostOsFamily.new( os ).host_os_family.must_equal Launchy::Detect::HostOsFamily::Unknown
     end
   end
 

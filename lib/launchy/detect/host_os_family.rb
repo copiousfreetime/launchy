@@ -1,4 +1,3 @@
-
 module Launchy::Detect
   class HostOsFamily
     class Unknown; end
