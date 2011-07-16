@@ -45,9 +45,9 @@ _
     gem.extras = { :platform => Gem::Platform.new( "java" ) }
   end
 
-  depend_on "rake"    , "~> 0.8.7", :development => true
-  depend_on "minitest", "~> 2.0.2", :development => true
-  depend_on 'bones'   , "~> 3.6.5", :development => true
+  depend_on "rake"    , "~> 0.9.2", :development => true
+  depend_on "minitest", "~> 2.3.1", :development => true
+  depend_on 'bones'   , "~> 3.7.0", :development => true
 
   test.files = FileList["spec/**/*_spec.rb"]
   test.opts << "-Ilib:spec"
