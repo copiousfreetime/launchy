@@ -13,7 +13,7 @@ describe Launchy::Detect::RubyEngine do
 
   %w[ ruby jruby rbx macruby ].each do |ruby|
     it "detects the #{ruby} RUBY_ENGINE" do
-      Launchy::Detect::RubyEngine.detect( ruby ).wont_equal Launchy::Detect::RubyEngine::Unknown
+      Launchy::Detect::RubyEngine.detect( ruby ).ancestors.must_include Launchy::Detect::RubyEngine
     end
   end
 
@@ -24,7 +24,7 @@ describe Launchy::Detect::RubyEngine do
   end
 
   it "does not find a ruby engine of 'foo'" do
-    Launchy::Detect::RubyEngine.detect( 'foo' ).must_equal Launchy::Detect::RubyEngine::Unknown
+    lambda { Launchy::Detect::RubyEngine.detect( 'foo' ) }.must_raise Launchy::Detect::RubyEngine::NotFoundError
   end
 
 end
