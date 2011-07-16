@@ -39,7 +39,7 @@ module Launchy
         end
 
         klass = children.find do |klass|
-          Launchy.log( "Seeing if #{klass.name} handles scheme #{scheme}"
+          Launchy.log( "Seeing if #{klass.name} handles scheme #{scheme}" )
           klass.handles?( scheme )
         end
 
