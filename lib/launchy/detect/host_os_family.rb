@@ -4,16 +4,60 @@ module Launchy::Detect
   # If the current host familiy cannot be detected then return
   # HostOsFamily::Unknown
   class HostOsFamily
+    class NotFoundError < Launchy::Error; end
+    extend ::Launchy::DescendantTracker
 
     def self.detect( host_os = Launchy.host_os )
-      found = HostOsFamily::Known.detect( host_os )
+      found = find_child_class_for( host_os )
       return found if found
-      $stderr.puts "Unknown OS family for host os '#{host_os}'. #{Launchy.bug_report_message}"
+      raise NotFoundError, "Unknown OS family for host os '#{host_os}'. #{Launchy.bug_report_message}"
     end
 
-    class Unknown < HostOsFamily
-      def self.family_name() " unknown"; end
+    def self.matches?( host_os )
+      matching_regex.match( host_os.to_s )
     end
+
+    def self.find_child_class_for( host_os )
+      klass = children.find do |klass|
+        Launchy.log( "Seeing if #{klass.name} matches host_os '#{host_os}'" )
+        klass.matches?( host_os )
+      end
+
+      if klass then
+        Launchy.log( "#{klass.name} matches '#{host_os}'" )
+        return klass
+      end
+
+      return nil
+    end
+
+    #---------------------------
+    # All known host os families
+    #---------------------------
+    #
+    class Windows < HostOsFamily
+      def self.matching_regex
+        /(mingw|mswin|windows)/i
+      end
+    end
+
+    class Darwin < HostOsFamily
+      def self.matching_regex
+        /(darwin|mac os)/i
+      end
+    end
+
+    class Nix < HostOsFamily
+      def self.matching_regex
+        /(linux|bsd|aix|solaris)/i
+      end
+    end
+
+    class Cygwin < HostOsFamily
+      def self.matching_regex
+        /cygwin/i
+      end
+    end
+
   end
-
 end
