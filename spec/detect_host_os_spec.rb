@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Launchy::DetectHostOs do
   it "uses the defult host os from ruby's config" do
-    Launchy::DetectHostOs.new.raw_host_os.must_equal Config::CONFIG['host_os']
+    Launchy::DetectHostOs.new.raw_host_os.must_equal RbConfig::CONFIG['host_os']
   end
 
   it "uses the passed in value as the host os" do

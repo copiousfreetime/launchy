@@ -18,7 +18,7 @@ module Launchy
     end
 
     def default_host_os
-      ::Config::CONFIG['host_os']
+      ::RbConfig::CONFIG['host_os']
     end
 
     def override_host_os
