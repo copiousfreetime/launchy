@@ -66,7 +66,7 @@ module Launchy
     end
 
     def application
-      @application
+      @application || ENV['LAUNCHY_APPLICATION']
     end
 
     def host_os=( host_os )
@@ -74,7 +74,7 @@ module Launchy
     end
 
     def host_os
-      @host_os
+      @host_os || ENV['LAUNCHY_HOST_OS']
     end
 
     def log(msg)

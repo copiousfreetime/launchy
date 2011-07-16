@@ -10,7 +10,7 @@ module Launchy
 
       if not @raw_host_os then
         if @raw_host_os = override_host_os then
-          Launchy.log "Using LAUNCHY_HOST_OS override value of '#{ENV['LAUNCHY_HOST_OS']}'"
+          Launchy.log "Using LAUNCHY_HOST_OS override value of '#{Launchy.host_os}'"
         else
           @raw_host_os = default_host_os
         end
@@ -22,7 +22,7 @@ module Launchy
     end
 
     def override_host_os
-      ENV['LAUNCHY_HOST_OS']
+      Launchy.host_os
     end
 
   end
