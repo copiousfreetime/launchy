@@ -9,9 +9,12 @@ module Launchy::Detect
     # If the current ruby engine cannot be detected, the return
     # RubyEngine::Unknown
     def self.detect( ruby_engine = Launchy.ruby_engine )
-      found = find_child_class_for( ruby_engine )
+      found = find_child( :is_current_engine?, ruby_engine )
       return found if found
+      raise NotFoundError, "#{ruby_engine_error_message( ruby_engine )} #{Launchy.bug_report_message}"
+    end
 
+    def self.ruby_engine_error_message( ruby_engine )
       msg = "Unkonwn RUBY_ENGINE "
       if ruby_engine then
         msg += " '#{ruby_engine}'."
@@ -20,30 +23,14 @@ module Launchy::Detect
       else
         msg = "RUBY_ENGINE not defined for #{RUBY_DESCRIPTION}."
       end
-
-      raise NotFoundError, "#{msg} #{Launchy.bug_report_message}"
+      return msg
     end
+
 
     def self.is_current_engine?( ruby_engine )
       return ruby_engine == self.engine_name
     end
 
-
-    # search through the descendent classes looking for the one that says it
-    # is the current ruby engine
-    def self.find_child_class_for( ruby_engine )
-      klass = children.find do |klass|
-        Launchy.log( "Seeing if #{klass.name} is the current ruby engine" )
-        klass.is_current_engine?( ruby_engine )
-      end
-
-      if klass then
-        Launchy.log( "#{klass.name} is the current ruby engine" )
-        return klass
-      end
-
-      return nil
-    end
 
     #-------------------------------
     # The list of known ruby engines

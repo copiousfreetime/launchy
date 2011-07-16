@@ -34,5 +34,15 @@ module Launchy
       end
       return @children
     end
+
+    #
+    # Find one of the child classes by calling the given method
+    # and passing all the rest of the parameters to that method in 
+    # each child
+    def find_child( method, *args )
+      klass = children.find do |klass|
+        klass.send( method, *args )
+      end
+    end
   end
 end

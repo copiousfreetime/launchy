@@ -8,27 +8,13 @@ module Launchy::Detect
     extend ::Launchy::DescendantTracker
 
     def self.detect( host_os = Launchy.host_os )
-      found = find_child_class_for( host_os )
+      found = find_child( :matches?, host_os )
       return found if found
       raise NotFoundError, "Unknown OS family for host os '#{host_os}'. #{Launchy.bug_report_message}"
     end
 
     def self.matches?( host_os )
       matching_regex.match( host_os.to_s )
-    end
-
-    def self.find_child_class_for( host_os )
-      klass = children.find do |klass|
-        Launchy.log( "Seeing if #{klass.name} matches host_os '#{host_os}'" )
-        klass.matches?( host_os )
-      end
-
-      if klass then
-        Launchy.log( "#{klass.name} matches '#{host_os}'" )
-        return klass
-      end
-
-      return nil
     end
 
     #---------------------------

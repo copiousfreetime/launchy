@@ -38,15 +38,8 @@ module Launchy
           scheme = scheme.scheme
         end
 
-        klass = children.find do |klass|
-          Launchy.log( "Seeing if #{klass.name} handles scheme #{scheme}" )
-          klass.handles?( scheme )
-        end
-
-        if klass then
-          Launchy.log( "#{klass.name} handles #{scheme}" )
-          return klass
-        end
+        klass = find_child( :handles?, scheme )
+        return klass if klass
 
         raise SchemeNotFoundError, "No application found to handle scheme '#{scheme}'. Known schemes: #{scheme_list.join(", ")}"
       end
