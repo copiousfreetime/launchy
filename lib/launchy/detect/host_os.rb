@@ -4,6 +4,7 @@ module Launchy::Detect
   class HostOs
 
     attr_reader :host_os
+    alias to_s host_os
 
     def initialize( host_os = nil )
       @host_os = host_os
