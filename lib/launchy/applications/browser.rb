@@ -58,9 +58,9 @@ class Launchy::Application
     # http://www.catb.org/~esr/BROWSER/index.html
     def open( uri, options = {} )
       b = browser
-      args = [ uri ]
+      args = [ uri.to_s ]
       if b =~ /%s/ then
-        b.gsub!( /%s/, args.shift.to_s )
+        b.gsub!( /%s/, args.shift )
       end
       run( b, args )
     end
