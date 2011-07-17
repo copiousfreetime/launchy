@@ -60,7 +60,7 @@ class Launchy::Application
       b = browser
       args = [ uri ]
       if b =~ /%s/ then
-        b.gsub!( /%s/, args.shift )
+        b.gsub!( /%s/, args.shift.to_s )
       end
       run( b, args )
     end
