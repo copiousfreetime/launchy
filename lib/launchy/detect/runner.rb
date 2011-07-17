@@ -8,7 +8,17 @@ module Launchy::Detect
 
     # Detect the current command runner
     #
+    # This will return an instance of the Runner to be used to do the
+    # application launching.
+    #
     # If a runner cannot be detected then raise Runner::NotFoundError
+    #
+    # The runner rules are, in order:
+    #
+    # 1) If you are on windows, you use the Windows Runner no matter what
+    # 2) If you are using the jruby engine, use the Jruby Runner. Unless rule
+    #    (1) took effect
+    # 3) Use Forkable (barring rules (1) and (2))
     def self.detect
       host_os_family = Launchy::Detect::HostOsFamily.detect
       ruby_engine    = Launchy::Detect::RubyEngine.detect
@@ -39,9 +49,13 @@ module Launchy::Detect
       return c
     end
 
+    def dry_run( cmd, *args )
+      shell_commands(cmd, args).join(" ")
+    end
+
     def run( cmd, *args )
       if Launchy.dry_run? then
-        puts dry_run( cmd, *args )
+        $stdout.puts dry_run( cmd, *args )
       else
         wet_run( cmd, *args )
       end
@@ -53,8 +67,13 @@ module Launchy::Detect
     #---------------------------------------
 
     class Windows < Runner
+
+      def all_args( cmd, *args )
+        [ 'cmd', '/c', *shell_commands( cmd, *args ) ]
+      end
+
       def dry_run( cmd, *args )
-        "cmd /c #{shell_commands( cmd, args).join(" " )}"
+        all_args( cmd, *args ).join(" ")
       end
 
       def shell_commands( cmd, args )
@@ -64,26 +83,17 @@ module Launchy::Detect
       end
 
       def wet_run( cmd, *args )
-        system( 'cmd', '/c', *shell_commands( cmd, *args ) )
+        system( *all_args( cmd, *args ) )
       end
     end
 
     class Jruby < Runner
-
-      def dry_run( cmd, *args )
-        shell_commands(cmd, args).join(" ")
-      end
-
       def wet_run( cmd, *args )
         Spoon.spawnp( *shell_commands( cmd, args ) )
       end
     end
 
     class Forkable < Runner
-      def dry_run( cmd, *args )
-        shell_commands(cmd, args).join(" ")
-      end
-
       def wet_run( cmd, *args )
         child_pid = fork do
           exec( *shell_commands( cmd, args ))
