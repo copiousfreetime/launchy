@@ -45,6 +45,7 @@ module Launchy
       Launchy.application = nil
       Launchy.host_os     = nil
       Launchy.ruby_engine = nil
+      Launchy.dry_run     = false
     end
 
     def extract_global_options( options )
@@ -52,6 +53,7 @@ module Launchy
       Launchy.application  = options.delete( :application ) || ENV['LAUNCHY_APPLICATION']
       Launchy.host_os      = options.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
       Launchy.ruby_engine  = options.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
+      Launcny.dry_run      = options.delete( :dry_run     )
     end
 
     def debug=( d )
@@ -86,6 +88,14 @@ module Launchy
 
     def ruby_engine
       @ruby_engine || ENV['LAUNCHY_RUBY_ENGINE']
+    end
+
+    def dry_run=( dry_run )
+      @dry_run = dry_run
+    end
+
+    def dry_run?
+      @dry_run
     end
 
     def bug_report_message

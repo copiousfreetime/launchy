@@ -30,6 +30,10 @@ module Launchy
           options[:ruby_engine] = e
         end
 
+        op.on( "-n", "--dry-run", "Don't launchy, print the command to be executed on stdout" ) do |x|
+          options[:dry_run] = true
+        end
+
         op.on( "-o", "--host-os HOST_OS", 
                "Force launchy to behave as if it was on a particular host os.") do |os|
           options[:host_os] = os
