@@ -8,11 +8,11 @@ class Launchy::Application
     end
 
     def windows_app_list
-      %w[ start ]
+      [  'start "Launchy" /d']
     end
 
     def cygwin_app_list
-      [ "cmd /C start" ]
+      [ "cmd /C start 'launchy' /d" ]
     end
 
     def darwin_app_list
