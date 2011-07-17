@@ -20,7 +20,7 @@ class Launchy::Application
     end
 
     def nix_app_list
-      nix_de = Launchy::Detect::NixDekstopEnvironment.browser
+      nix_de = Launchy::Detect::NixDesktopEnvironment.detect
       app_list = %w[ xdg-open ]
       app_list << nix_de.browser
       app_list << nix_de.fallback_browsers

@@ -29,7 +29,7 @@ module Launchy::Detect
     def shell_commands( cmd, args )
       cmdline = [ cmd.shellsplit ]
       cmdline << args.collect{ |a| a.to_s.shellescape }
-      return commanddline_normalize( cmdline )
+      return commandline_normalize( cmdline )
     end
 
     def commandline_normalize( cmdline )
