@@ -36,6 +36,9 @@ module Launchy
       rescue Exception => e
         msg = "Failure in opening #{uri} with options #{options.inspect}: #{e}"
         Launchy.log "#{self.name} : #{msg}"
+        e.backtrace.each do |bt|
+          Launcy.log bt
+        end
         $stderr.puts msg
       end
     end
