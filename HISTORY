@@ -1,11 +1,19 @@
 = Launchy Changlog
 
+== Version 2.0.0 - 2011-07-16
+
+* Almost a complete rewrite
+* JRuby Support
+* Organization is such that it will be easier to add additional applications
+* Windows behavior possibly fixed, again
+
 == Version 1.0.0 - 2011-03-17
 
 * Add JRuby support (Stephen Judkins)
 * Remove unused Paths module
 * Switch to using bones
 * Switch to use minitest
+* NOTE, this version was never released.
 
 == Version 0.4.0 - 2011-01-27
 
