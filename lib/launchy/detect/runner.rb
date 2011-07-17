@@ -23,11 +23,16 @@ module Launchy::Detect
 
     #
     # cut it down to just the shell commands that will be passed to exec or
-    # posix_spawn.
+    # posix_spawn. The cmd argument is split according to shell rules and the
+    # args are escaped according to shell rules.
+    #
     def shell_commands( cmd, args )
-      cmds = [ cmd.shellsplit, args.collect{ |a| a.to_s } ].flatten.find_all { |a| not a.nil? and a.size > 0 }
-      Launchy.log "ARGV => #{cmds.inspect}"
-      return cmds
+      cmdline = [ cmd.shellsplit ]
+      cmdline << args.collect{ |a| a.to_s.shellescape }
+      cmdline.flatten!
+      cmdline = cmdline.find_all { |a| (not a.nil?) and ( a.size > 0 ) }
+      Launchy.log "ARGV => #{cmdline.inspect}"
+      return cmdline
     end
 
     def run( cmd, *args )
