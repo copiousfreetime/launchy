@@ -12,7 +12,7 @@ class Launchy::Application
     end
 
     def cygwin_app_list
-      [ "cmd /C start 'launchy' /d" ]
+      [ 'cmd /C start "Launchy" /d' ]
     end
 
     def darwin_app_list
@@ -44,25 +44,30 @@ class Launchy::Application
     end
 
     # Get the full commandline of what we are going to add the uri to
-    def browser
+    def browser_cmdline
       possibilities = (browser_env + app_list).flatten
       possibilities.each do |p|
         Launchy.log "#{self.class.name} : possibility : #{p}"
       end
-      b = possibilities.shift
-      Launchy.log "#{self.class.name} : Using browser value '#{b}'"
-      return b
+      browser = possibilities.shift
+      Launchy.log "#{self.class.name} : Using browser value '#{browser}'"
+      return browser
+    end
+
+    def cmd_and_args( uri, options = {} )
+      cmd = browser_cmdline
+      args = [ uri.to_s ]
+      if cmd =~ /%s/ then
+        cmd.gsub!( /%s/, args.shift )
+      end
+      return [cmd, args]
     end
 
     # final assembly of the command and do %s substitution 
     # http://www.catb.org/~esr/BROWSER/index.html
     def open( uri, options = {} )
-      b = browser
-      args = [ uri.to_s ]
-      if b =~ /%s/ then
-        b.gsub!( /%s/, args.shift )
-      end
-      run( b, args )
+      cmd, args = cmd_and_args( uri, options )
+      run( cmd, args )
     end
   end
 end
