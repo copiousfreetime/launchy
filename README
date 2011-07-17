@@ -20,17 +20,32 @@ Currently only launching a browser is supported.
 
 == SYNOPSIS
 
-From within your ruby code you can trust launchy to do the right thing:
+You can use launchy on the commandline, or via its API.
 
-    Launchy.open("http://www.ruby-lang.org/")
+=== Commandline
 
-Or, if you want to launch the application yourself:
+    % launchy http://www.ruby-lang.org/
 
-    Launchy::Browser.open("http://www.ruby-lang.org/")
+There are additional commandline options, use 'launchy --help' to see them.
 
-OR
+=== Public API
 
-    Launchy::Browser.new.open("http://www.ruby-lang.org/")
+In the vein of {Semantic Versioning}[http://semver.org], starting with version 2.0.0, this is the
+sole supported public API.
+
+    Launchy.open( uri, options = {} )
+
+At the moment, the only available options are:
+
+    :debug        Turn on debugging output
+    :application  Explicitly state what application class is going to be used
+    :host_os      Explicitly state what host operating system to pretend to be
+    :ruby_engine  Explicitly state what ruby engine to pretend to be under
+    :dry_run      Do nothing and print the command that would be executed on $stdout
+
+An example of using the public API:
+
+    Launchy.open( "http://www.ruby-lang.org" )
 
 == ISC LICENSE
 

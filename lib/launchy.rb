@@ -1,8 +1,7 @@
 require 'uri'
 
 #
-# Top level entry point into Launchy. Almost everyone will just use the single
-# call:
+# The entry point into Launchy. This is the sole supported public API.
 #
 #   Launchy.open( uri, options = {} )
 #
@@ -12,6 +11,7 @@ require 'uri'
 #   :application  Explicitly state what application class is going to be used
 #   :host_os      Explicitly state what host operating system to pretend to be
 #   :ruby_engine  Explicitly state what ruby engine to pretend to be under
+#   :dry_run      Do nothing and print the command that would be executed on $stdout
 #
 # Other options may be used, and those will be passed directly to the
 # application class
