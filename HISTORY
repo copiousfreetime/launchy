@@ -1,5 +1,11 @@
 = Launchy Changlog
 
+== Version 2.0.2 - 2011-07-17
+
+* Typo fixes from @mtorrent
+* Documentation updates explicitly stating the Public API
+* Increase test coverage
+
 == Version 2.0.1 - 2011-07-16
 
 * Almost a complete rewrite
