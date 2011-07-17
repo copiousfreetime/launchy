@@ -26,11 +26,14 @@ module Launchy::Detect
       return msg
     end
 
-
     def self.is_current_engine?( ruby_engine )
       return ruby_engine == self.engine_name
     end
 
+    def self.mri?()     self == Mri;     end
+    def self.jruby?()   self == Jruby;   end
+    def self.rbx?()     self == Rbx;     end
+    def self.macruby?() self == MacRuby; end
 
     #-------------------------------
     # The list of known ruby engines

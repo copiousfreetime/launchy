@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'yaml'
 
 describe Launchy::Detect::RubyEngine do
 
@@ -27,4 +26,12 @@ describe Launchy::Detect::RubyEngine do
     lambda { Launchy::Detect::RubyEngine.detect( 'foo' ) }.must_raise Launchy::Detect::RubyEngine::NotFoundError
   end
 
+  { 'rbx'     => :rbx?,
+    'ruby'    => :mri?,
+    'macruby' => :macruby?,
+    'jruby'   => :jruby? }.each_pair do |engine, method|
+    it "#{method} returns true for #{engine} " do
+      Launchy::Detect::RubyEngine.detect( engine ).send( method ).must_equal true
+    end
+ end
 end
