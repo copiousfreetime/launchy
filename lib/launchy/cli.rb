@@ -59,7 +59,7 @@ module Launchy
     def run( argv = ARGV, env = ENV )
       begin
         parser.parse!( argv )
-        Launchy.open( *argv )
+        Launchy.open( argv.shift, options )
       rescue ::OptionParser::ParseError => pe
         $stderr.puts "#{parser.program_name}: #{pe}"
         $stderr.puts "Try `#{parser.program_name} --help for more information."
