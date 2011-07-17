@@ -11,7 +11,7 @@ fire and forget manner.
 
 There are application concepts (browser, email client, etc) that are
 common across all platforms, and they may be launched differently on
-each platform.  Launchy is here to make a common approach to launching
+each platform. Launchy is here to make a common approach to launching
 external application from within ruby programs.
 
 == FEATURES
@@ -26,11 +26,11 @@ From within your ruby code you can trust launchy to do the right thing:
 
 Or, if you want to launch the application yourself:
 
-    Launchy::Browser.run("http://www.ruby-lang.org/")
+    Launchy::Browser.open("http://www.ruby-lang.org/")
 
 OR
 
-    Launchy::Browser.new.visit("http://www.ruby-lang.org/")
+    Launchy::Browser.new.open("http://www.ruby-lang.org/")
 
 == ISC LICENSE
 

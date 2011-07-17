@@ -1,0 +1,28 @@
+# vim: ft=ruby
+
+require 'autotest/growl'
+
+Autotest.add_hook :initialize do |at|
+
+  at.libs = "lib:spec"
+  at.testlib = 'minitest/autorun'
+
+  at.add_exception 'coverage.info'
+  at.add_exception 'coverage'
+  at.add_exception '.git'
+
+  at.clear_mappings
+
+  at.add_mapping(%r|^spec/.*_spec\.rb$|) do |filename, _|
+    filename
+  end
+
+  at.add_mapping(%r|^lib/(.*)\.rb$|) do |_, match|
+    [ "test/#{match[1]}_spec.rb" ]
+  end
+
+  at.add_mapping(%r|^spec/spec_helper\.rb|) do
+    at.files_matching( %r|^spec/.*_spec\.rb| )
+  end
+end
+
