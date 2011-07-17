@@ -60,5 +60,22 @@ module Launchy
       end
     end
 
+    attr_reader :host_os_family
+    attr_reader :ruby_engine
+    attr_reader :runner
+    def initialize
+      @host_os_family = Launchy::Detect::HostOsFamily.detect
+      @ruby_engine    = Launchy::Detect::RubyEngine.detect
+      @runner         = Launchy::Detect::Runner.detect
+    end
+
+    def find_executable( bin, *paths )
+      Application.find_executable( bin, *paths )
+    end
+
+    def run( cmd, *args )
+      runner.run( cmd, *args )
+    end
   end
 end
+require 'launchy/applications/browser'
