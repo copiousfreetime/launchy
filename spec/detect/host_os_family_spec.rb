@@ -17,6 +17,15 @@ describe Launchy::Detect::HostOsFamily do
     end
   end
 
+  { 'mswin'  => :windows?,
+    'darwin' => :darwin?,
+    'linux'  => :nix?,
+    'cygwin' => :cygwin? }.each_pair do |os, method|
+    it "#{method} returns true for #{os} " do
+      Launchy::Detect::HostOsFamily.detect( os ).send( method ).must_equal true
+    end
+  end
+
   it "uses the global host_os overrides" do
     ENV['LAUNCHY_HOST_OS'] = "fake-os-2"
     lambda { Launchy::Detect::HostOsFamily.detect }.must_raise Launchy::Detect::HostOsFamily::NotFoundError

@@ -17,6 +17,11 @@ module Launchy::Detect
       matching_regex.match( host_os.to_s )
     end
 
+    def self.windows?() self == Windows; end
+    def self.darwin?()  self == Darwin;  end
+    def self.nix?()     self == Nix;     end
+    def self.cygwin?()  self == Cygwin;  end
+
     #---------------------------
     # All known host os families
     #---------------------------
