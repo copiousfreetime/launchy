@@ -17,7 +17,7 @@ require 'launchy/version'
 
 Bones {
   name      "launchy"
-  author    "Jeremy Hinegardner"
+  authors   "Jeremy Hinegardner"
   email     "jeremy@copiousfreetime.org"
   url       'http://www.copiousfreetime.org/projects/launchy'
   version   Launchy::VERSION
