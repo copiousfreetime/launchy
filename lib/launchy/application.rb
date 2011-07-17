@@ -63,6 +63,7 @@ module Launchy
     attr_reader :host_os_family
     attr_reader :ruby_engine
     attr_reader :runner
+
     def initialize
       @host_os_family = Launchy::Detect::HostOsFamily.detect
       @ruby_engine    = Launchy::Detect::RubyEngine.detect
