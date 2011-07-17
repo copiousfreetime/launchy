@@ -20,7 +20,7 @@ describe Launchy::Application do
 
   it "can find an app" do
     Launchy::Application.children.must_include( JunkApp )
-    Launchy::Application.scheme_list.size.must_equal 3
+    Launchy::Application.scheme_list.size.must_equal 7
     Launchy::Application.for_scheme( "junk" ).must_equal( JunkApp  )
   end
 
