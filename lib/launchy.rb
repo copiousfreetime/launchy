@@ -26,13 +26,8 @@ module Launchy
       begin
         extract_global_options( options )
         uri = URI.parse( uri )
-        if app = Launchy::Application.for_scheme( uri ) then
-          app.new.open( uri, options )
-        else
-          msg = "Unable to launch #{uri} with options #{options.inspect}"
-          Launchy.log "#{self.name} : #{msg}"
-          $stderr.puts msg
-        end
+        app = Launchy::Application.for_scheme( uri )
+        app.new.open( uri, options )
       rescue Exception => e
         msg = "Failure in opening #{uri} with options #{options.inspect}: #{e}"
         Launchy.log "#{self.name} : #{msg}"

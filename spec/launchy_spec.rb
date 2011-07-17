@@ -4,10 +4,13 @@ describe Launchy do
 
   before do
     Launchy.reset_global_options
+    @stderr  = $stderr
+    $stderr = StringIO.new
   end
 
   after do
     Launchy.reset_global_options
+    $stderr = @stderr
   end
 
   it "logs to stderr when LAUNCHY_DEBUG environment variable is set" do
@@ -39,4 +42,10 @@ describe Launchy do
     Launchy.extract_global_options(  { :ruby_engine => "myruby" } )
     Launchy.ruby_engine.must_equal 'myruby'
   end
+
+  it "prints an error on stderr when no scheme is found for the given uri" do
+    Launchy.open( "blah://something/invalid" )
+    $stderr.string.must_match( /Failure in opening/ )
+  end
+
 end
