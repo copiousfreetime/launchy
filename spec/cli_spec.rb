@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'stringio'
 
 describe Launchy::Cli do
 
