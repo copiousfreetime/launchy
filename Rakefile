@@ -45,10 +45,15 @@ _
     gem.extras = { :platform => Gem::Platform.new( "java" ) }
   end
 
-  depend_on "rake"    , "~> 0.9.2", :development => true
-  depend_on "minitest", "~> 2.3.1", :development => true
-  depend_on 'bones'   , "~> 3.7.0", :development => true
+  depend_on "rake"      , "~> 0.9.2", :development => true
+  depend_on "minitest"  , "~> 2.3.1", :development => true
+  depend_on 'bones'     , "~> 3.7.0", :development => true
+  depend_on 'bones-rcov', "~> 1.0.1", :development => true
+  depend_on 'rcov'      , "~> 0.9.9", :development => true
+  depend_on "spoon"     , "~> 0.0.1", :development => true
 
   test.files = FileList["spec/**/*_spec.rb"]
   test.opts << "-w -Ilib:spec"
+
+  rcov.opts << "--exclude gems"
 }
