@@ -8,8 +8,8 @@ module Launchy::Detect
     #
     # If the current ruby engine cannot be detected, the return
     # RubyEngine::Unknown
-    def self.detect( ruby_engine = Launchy.ruby_engine )
-      found = find_child( :is_current_engine?, ruby_engine )
+    def self.detect( ruby_engine = RubyEngine.new )
+      found = find_child( :is_current_engine?, ruby_engine.to_s )
       return found if found
       raise NotFoundError, "#{ruby_engine_error_message( ruby_engine )} #{Launchy.bug_report_message}"
     end
@@ -34,6 +34,17 @@ module Launchy::Detect
     def self.jruby?()   self == Jruby;   end
     def self.rbx?()     self == Rbx;     end
     def self.macruby?() self == MacRuby; end
+
+    attr_reader :ruby_engine
+    alias to_s ruby_engine
+    def initialize( ruby_engine = Launchy.ruby_engine )
+      if ruby_engine then
+        @ruby_engine = ruby_engine
+      else
+        @ruby_engine = defined?( RUBY_ENGINE ) ? RUBY_ENGINE : "ruby"
+      end
+    end
+
 
     #-------------------------------
     # The list of known ruby engines
