@@ -1,4 +1,4 @@
-require 'yaml'
+require 'spec'
 
 describe Launchy::Detect::NixDesktopEnvironment do
 
