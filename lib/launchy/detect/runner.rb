@@ -38,7 +38,7 @@ module Launchy::Detect
     #
     def shell_commands( cmd, args )
       cmdline = [ cmd.shellsplit ]
-      cmdline << args.collect{ |a| a.to_s.shellescape }
+      cmdline << args.flatten.collect{ |a| a.to_s.shellescape }
       return commandline_normalize( cmdline )
     end
 
@@ -76,9 +76,9 @@ module Launchy::Detect
         all_args( cmd, *args ).join(" ")
       end
 
-      def shell_commands( cmd, args )
+      def shell_commands( cmd, *args )
         cmdline = [ cmd ]
-        cmdline << args.collect { |a| a.to_s.gsub("&", "^&") }
+        cmdline << args.flatten.collect { |a| a.to_s.gsub("&", "^&") }
         return commandline_normalize( cmdline )
       end
 
@@ -89,14 +89,14 @@ module Launchy::Detect
 
     class Jruby < Runner
       def wet_run( cmd, *args )
-        Spoon.spawnp( *shell_commands( cmd, args ) )
+        Spoon.spawnp( *shell_commands( cmd, *args ) )
       end
     end
 
     class Forkable < Runner
       def wet_run( cmd, *args )
         child_pid = fork do
-          exec( *shell_commands( cmd, args ))
+          exec( *shell_commands( cmd, *args ))
           exit!
         end
         Process.detach( child_pid )
