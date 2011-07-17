@@ -29,10 +29,14 @@ module Launchy::Detect
     def shell_commands( cmd, args )
       cmdline = [ cmd.shellsplit ]
       cmdline << args.collect{ |a| a.to_s.shellescape }
-      cmdline.flatten!
-      cmdline = cmdline.find_all { |a| (not a.nil?) and ( a.size > 0 ) }
-      Launchy.log "ARGV => #{cmdline.inspect}"
-      return cmdline
+      return commanddline_normalize( cmdline )
+    end
+
+    def commandline_normalize( cmdline )
+      c = cmdline.flatten!
+      c = c.find_all { |a| (not a.nil?) and ( a.size > 0 ) }
+      Launchy.log "ARGV => #{c.inspect}"
+      return c
     end
 
     def run( cmd, *args )
@@ -50,11 +54,17 @@ module Launchy::Detect
 
     class Windows < Runner
       def dry_run( cmd, *args )
-        "cmd /c #{cmd} #{args.join(' ')}"
+        "cmd /c #{shell_commands( cmd, args).join(" " )}"
+      end
+
+      def shell_commands( cmd, args )
+        cmdline = [ cmd ]
+        cmdline << args.collect { |a| a.to_s.gsub("&", "^&") }
+        return commandline_normalize( cmdline )
       end
 
       def wet_run( cmd, *args )
-        system 'cmd', '/c', cmd, *args
+        system( 'cmd', '/c', *shell_commands( cmd, *args ) )
       end
     end
 
@@ -65,7 +75,7 @@ module Launchy::Detect
       end
 
       def wet_run( cmd, *args )
-        Spoon.spawnp( *shell_commands( cmd, args ))
+        Spoon.spawnp( *shell_commands( cmd, args ) )
       end
     end
 
