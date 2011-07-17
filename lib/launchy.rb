@@ -37,7 +37,7 @@ module Launchy
         msg = "Failure in opening #{uri} with options #{options.inspect}: #{e}"
         Launchy.log "#{self.name} : #{msg}"
         e.backtrace.each do |bt|
-          Launcy.log bt
+          Launchy.log bt
         end
         $stderr.puts msg
       end
