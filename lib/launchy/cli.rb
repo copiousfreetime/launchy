@@ -17,26 +17,26 @@ module Launchy
 
         op.on( "-a", "--application APPLICATION", 
                "Explicitly specify the application class to use in the launch") do |app|
-          options[:application] = app
+          @options[:application] = app
         end
 
         op.on( "-d", "--debug", 
                "Force debug. Output lots of information.") do |d|
-          options[:debug] = 'true'
+          @options[:debug] = 'true'
         end
 
         op.on( "-e", "--engine RUBY_ENGINE",
                "Force launchy to behave as if it was on a particular ruby engine.") do |e|
-          options[:ruby_engine] = e
+          @options[:ruby_engine] = e
         end
 
         op.on( "-n", "--dry-run", "Don't launchy, print the command to be executed on stdout" ) do |x|
-          options[:dry_run] = true
+          @options[:dry_run] = true
         end
 
         op.on( "-o", "--host-os HOST_OS", 
                "Force launchy to behave as if it was on a particular host os.") do |os|
-          options[:host_os] = os
+          @options[:host_os] = os
         end
 
 
@@ -56,15 +56,28 @@ module Launchy
       end
     end
 
-    def run( argv = ARGV, env = ENV )
+    def parse( argv, env )
       begin
         parser.parse!( argv )
-        Launchy.open( argv.shift, options )
+        return true
       rescue ::OptionParser::ParseError => pe
         $stderr.puts "#{parser.program_name}: #{pe}"
         $stderr.puts "Try `#{parser.program_name} --help for more information."
-        exit 1
+        return false
       end
+    end
+
+    def good_run( argv, env )
+      if parse( argv, env ) then
+        Launchy.open( argv.shift, options )
+        return true
+      else
+        return false
+      end
+    end
+
+    def run( argv = ARGV, env = ENV )
+      exit 1 unless good_run( argv, env )
     end
   end
 end
