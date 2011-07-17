@@ -1,3 +1,5 @@
+require 'shellwords'
+
 module Launchy::Detect
   class Runner
     class NotFoundError < Launchy::Error; end
@@ -19,14 +21,13 @@ module Launchy::Detect
       return Forkable.new 
     end
 
+    #
+    # cut it down to just the shell commands that will be passed to exec or
+    # posix_spawn.
     def shell_commands( cmd, args )
-      # NOTE: we pass a dummy argument *before*
-      #       the actual command to prevent sh
-      #       from silently consuming our actual
-      #       command and assigning it to $0!
-      dummy = ''
-      args = args.collect { |a| a.to_s }
-      [ 'sh', '-c', '"$@" >/dev/null 2>&1', dummy, cmd, args ].flatten
+      cmds = [ cmd.shellsplit, args.collect{ |a| a.to_s } ].flatten.find_all { |a| not a.nil? and a.size > 0 }
+      Launchy.log "ARGV => #{cmds.inspect}"
+      return cmds
     end
 
     def run( cmd, *args )
@@ -70,7 +71,7 @@ module Launchy::Detect
 
       def wet_run( cmd, *args )
         child_pid = fork do
-          system( *shell_commands( cmd, args ))
+          exec( *shell_commands( cmd, args ))
           exit!
         end
         Process.detach( child_pid )
