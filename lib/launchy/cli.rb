@@ -44,12 +44,12 @@ module Launchy
         op.separator "Standard Options:"
 
         op.on( "-h", "--help", "Print this message.") do |h|
-          puts op.to_s
+          $stdout.puts op.to_s
           exit 0
         end
 
         op.on( "-v", "--version", "Output the version of Launchy") do |v|
-          puts "Launchy version #{Launchy::VERSION}"
+          $stdout.puts "Launchy version #{Launchy::VERSION}"
           exit 0
         end
 
