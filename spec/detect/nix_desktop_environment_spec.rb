@@ -1,4 +1,4 @@
-require 'spec'
+require 'spec_helper'
 
 describe Launchy::Detect::NixDesktopEnvironment do
 
