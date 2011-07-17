@@ -49,6 +49,10 @@ _
   depend_on "minitest", "~> 2.3.1", :development => true
   depend_on 'bones'   , "~> 3.7.0", :development => true
 
+  if defined?( RUBY_ENGINE ) and RUBY_ENGINE == "jruby" then
+    depend_on 'spoon'   , "~> 0.0.1"
+  end
+
   test.files = FileList["spec/**/*_spec.rb"]
   test.opts << "-w -Ilib:spec"
 }

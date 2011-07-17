@@ -12,7 +12,10 @@ module Launchy::Detect
       ruby_engine    = Launchy::Detect::RubyEngine.detect
 
       return Windows.new if host_os_family.windows?
-      return Jruby.new   if ruby_engine.jruby?
+      if ruby_engine.jruby? then
+        require 'spoon'
+        return Jruby.new
+      end
       return Forkable.new 
     end
 
