@@ -1,5 +1,9 @@
 = Launchy Changlog
 
+== Version 2.0.3 - 2011-07-17
+
+* Add in Deprecated API wrappers that warn the user
+
 == Version 2.0.2 - 2011-07-17
 
 * Typo fixes from @mtorrent
