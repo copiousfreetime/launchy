@@ -8,7 +8,7 @@ module Launchy
     end
 
     def visit( url )
-      _warn "You made a call to a deprecated Launchy API. This call should be changed ot 'Launchy.open( uri )'"
+      _warn "You made a call to a deprecated Launchy API. This call should be changed to 'Launchy.open( uri )'"
       report_caller_context( caller )
 
       ::Launchy.open( url )
