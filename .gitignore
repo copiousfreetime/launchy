@@ -4,3 +4,5 @@
 doc/
 coverage/
 pkg/
+*.gemspec
+Gemfile*
