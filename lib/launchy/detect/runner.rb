@@ -34,11 +34,12 @@ module Launchy::Detect
     #
     # cut it down to just the shell commands that will be passed to exec or
     # posix_spawn. The cmd argument is split according to shell rules and the
-    # args are escaped according to shell rules.
+    # args are not escaped because they whole set is passed to system as *args
+    # and in that case system shell escaping rules are not done.
     #
     def shell_commands( cmd, args )
       cmdline = [ cmd.shellsplit ]
-      cmdline << args.flatten.collect{ |a| a.to_s.shellescape }
+      cmdline << args.flatten.collect{ |a| a.to_s }
       return commandline_normalize( cmdline )
     end
 
@@ -78,9 +79,11 @@ module Launchy::Detect
         all_args( cmd, *args ).join(" ")
       end
 
+      # escape the reserved shell characters in windows command shell
+      # http://technet.microsoft.com/en-us/library/cc723564.aspx
       def shell_commands( cmd, *args )
         cmdline = [ cmd.shellsplit ]
-        cmdline << args.flatten.collect { |a| a.to_s.gsub("&", "^&") }
+        cmdline << args.flatten.collect { |a| a.to_s.gsub(/([&|()<>^])/, "^\\1") }
         return commandline_normalize( cmdline )
       end
 

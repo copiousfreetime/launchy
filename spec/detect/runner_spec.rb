@@ -62,18 +62,30 @@ describe Launchy::Detect::Runner do
     cmd.must_equal 'cmd /c not-really http://example.com'
   end
 
-  it "Windows escapes '&' in urls" do
-    win = Launchy::Detect::Runner::Windows.new
-    win.all_args( "not-really", [ @test_url ] ).must_equal [ 'cmd', '/c', 'not-really', 'http://example.com/?foo=bar^&baz=wibble' ]
+  %w[ & | ( ) < > ^ ].each do |reserved_char|
+    it "Windows escapes '#{reserved_char}' in urls" do
+      win = Launchy::Detect::Runner::Windows.new
+      parts = [ 'http://example.com/?foo=bar', 'baz=wibble' ]
+      url = parts.join( reserved_char )
+      output_url = parts.join( "^#{reserved_char}" )
 
-    cmd = win.dry_run( "not-really", [ @test_url ] )
-    cmd.must_equal 'cmd /c not-really http://example.com/?foo=bar^&baz=wibble'
+      win.all_args( "not-really", [ url ] ).must_equal [ 'cmd', '/c', 'not-really', output_url ]
+
+      cmd = win.dry_run( "not-really", [ url ] )
+      cmd.must_equal "cmd /c not-really #{output_url}"
+    end
   end
 
-  it "Jruby escapes '&' in urls" do
+  it "Jruby doesnot escapes '&' in urls" do
     jruby = Launchy::Detect::Runner::Jruby.new
     cmd = jruby.dry_run( "not-really", [ @test_url ])
-    cmd.must_equal 'not-really http://example.com/\\?foo\\=bar\\&baz\\=wibble'
+    cmd.must_equal 'not-really http://example.com/?foo=bar&baz=wibble'
+  end
+
+  it "does not escape %38 items in urls" do
+    l = Launchy::Detect::Runner::Forkable.new
+    cmd = l.dry_run( "not-really", [ "http://ja.wikipedia.org/wiki/%E3%81%82" ] )
+    cmd.must_equal( 'not-really http://ja.wikipedia.org/wiki/%E3%81%82'  )
   end
 
 end
