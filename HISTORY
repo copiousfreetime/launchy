@@ -1,4 +1,11 @@
 = Launchy Changlog
+== Version 2.0.4 - 2011-07-23
+
+* Fix windows 'start' commandline (copiousfreetime/launchy#5)
+* Add capability to open local files with no file: scheme present (copiousfreetime/launchy#29)
+* Added 'rake how_to_contribute' task (copiousfreetime/launchy#30)
+* Make better decisions on when to do shell escaping (copiousfreetime/launchy#31)
+* Switch to Addressable::URI so UTF-8 urls may be parsed. (copiousfreetime/launchy#32)
 
 == Version 2.0.3 - 2011-07-17
 
