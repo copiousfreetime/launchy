@@ -6,3 +6,4 @@ coverage/
 pkg/
 *.gemspec
 Gemfile*
+.rvmrc
