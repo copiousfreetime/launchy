@@ -21,12 +21,12 @@ describe Launchy::Application do
   it "can find an app" do
     Launchy::Application.children.must_include( JunkApp )
     Launchy::Application.children.size.must_equal 3
-    uri = URI.parse( "junk:///foo" )
+    uri = Addressable::URI.parse( "junk:///foo" )
     Launchy::Application.handling( uri ).must_equal( JunkApp  )
   end
 
   it "raises an error if an application cannot be found for the given scheme" do
-    uri = URI.parse( "foo:///bar" )
+    uri = Addressable::URI.parse( "foo:///bar" )
     lambda { Launchy::Application.handling( uri ) }.must_raise( Launchy::ApplicationNotFoundError )
   end
 

@@ -1,4 +1,4 @@
-require 'uri'
+require 'addressable/uri'
 
 #
 # The entry point into Launchy. This is the sole supported public API.
@@ -25,7 +25,7 @@ module Launchy
     def open(uri, options = {} )
       begin
         extract_global_options( options )
-        uri = URI.parse( uri )
+        uri = Addressable::URI.parse(  uri )
         app = Launchy::Application.handling( uri )
         app.new.open( uri, options )
       rescue Exception => e

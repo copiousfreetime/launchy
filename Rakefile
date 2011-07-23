@@ -48,6 +48,8 @@ _
     gem.extras = { :platform => Gem::Platform.new( "java" ) }
   end
 
+  depend_on "addressable", "~> 2.2.6"
+
   depend_on "rake"      , "~> 0.9.2", :development => true
   depend_on "minitest"  , "~> 2.3.1", :development => true
   depend_on 'bones'     , "~> #{USING_BONES_VERSION}", :development => true
