@@ -12,9 +12,9 @@ describe Launchy::Application::Browser do
     ENV.delete( 'KDE_FULL_SESSION' )
   end
 
-  { 'windows' => 'start "Launchy" /d' ,
+  { 'windows' => 'start "Launchy" /b' ,
     'darwin'  => '/usr/bin/open',
-    'cygwin'  => 'cmd /C start "Launchy" /d',
+    'cygwin'  => 'cmd /C start "Launchy" /b',
 
     # when running these tests on a linux box, this test will fail
     'linux'   => nil                 }.each  do |host_os, cmdline|

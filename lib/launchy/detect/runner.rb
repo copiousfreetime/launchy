@@ -45,7 +45,7 @@ module Launchy::Detect
     def commandline_normalize( cmdline )
       c = cmdline.flatten!
       c = c.find_all { |a| (not a.nil?) and ( a.size > 0 ) }
-      Launchy.log "ARGV => #{c.inspect}"
+      Launchy.log "commandline_normalized => #{c.join(' ')}"
       return c
     end
 
@@ -69,7 +69,9 @@ module Launchy::Detect
     class Windows < Runner
 
       def all_args( cmd, *args )
-        [ 'cmd', '/c', *shell_commands( cmd, *args ) ]
+        args = [ 'cmd', '/c', *shell_commands( cmd, *args ) ]
+        Launchy.log "Windows: all_args => #{args.inspect}"
+        return args
       end
 
       def dry_run( cmd, *args )
@@ -77,7 +79,7 @@ module Launchy::Detect
       end
 
       def shell_commands( cmd, *args )
-        cmdline = [ cmd ]
+        cmdline = [ cmd.shellsplit ]
         cmdline << args.flatten.collect { |a| a.to_s.gsub("&", "^&") }
         return commandline_normalize( cmdline )
       end
