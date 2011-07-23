@@ -1,4 +1,4 @@
 module Launchy
   class Error < ::StandardError; end
-  class SchemeNotFoundError < Error; end
+  class ApplicationNotFoundError < Error; end
 end

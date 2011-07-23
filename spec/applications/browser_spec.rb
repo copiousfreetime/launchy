@@ -35,5 +35,10 @@ describe Launchy::Application::Browser do
       args.must_equal []
     end
   end
+
+  it "handles a file on the file system when there is no file:// scheme" do
+    uri = URI.parse( __FILE__ )
+    Launchy::Application::Browser.handles?( uri ).must_equal true
+  end
 end
 

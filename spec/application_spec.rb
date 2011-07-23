@@ -1,17 +1,17 @@
 require 'spec_helper'
-require 'mock_scheme'
+require 'mock_application'
 
 class JunkApp < Launchy::Application
-  def self.schemes
-    %w[ junk ]
+  def self.handles?( uri )
+    uri.scheme == "junk"
   end
 end
 
 describe Launchy::Application do
   it 'registers inherited classes' do
     class Junk2App < Launchy::Application
-      def self.schemes
-        %w[ junk2 ]
+      def self.handles?( uri )
+        uri.scheme == "junk2"
       end
     end
     Launchy::Application.children.must_include( Junk2App )
@@ -20,12 +20,14 @@ describe Launchy::Application do
 
   it "can find an app" do
     Launchy::Application.children.must_include( JunkApp )
-    Launchy::Application.scheme_list.size.must_equal 7
-    Launchy::Application.for_scheme( "junk" ).must_equal( JunkApp  )
+    Launchy::Application.children.size.must_equal 3
+    uri = URI.parse( "junk:///foo" )
+    Launchy::Application.handling( uri ).must_equal( JunkApp  )
   end
 
   it "raises an error if an application cannot be found for the given scheme" do
-    lambda { Launchy::Application.for_scheme( "foo" ) }.must_raise( Launchy::SchemeNotFoundError )
+    uri = URI.parse( "foo:///bar" )
+    lambda { Launchy::Application.handling( uri ) }.must_raise( Launchy::ApplicationNotFoundError )
   end
 
   it "can find open or curl" do

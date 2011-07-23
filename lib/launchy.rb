@@ -26,7 +26,7 @@ module Launchy
       begin
         extract_global_options( options )
         uri = URI.parse( uri )
-        app = Launchy::Application.for_scheme( uri )
+        app = Launchy::Application.handling( uri )
         app.new.open( uri, options )
       rescue Exception => e
         msg = "Failure in opening #{uri} with options #{options.inspect}: #{e}"

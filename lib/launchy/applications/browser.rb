@@ -7,6 +7,11 @@ class Launchy::Application
       %w[ http https ftp file ]
     end
 
+    def self.handles?( uri )
+      return true if schemes.include?( uri.scheme )
+      return true if File.exist?( uri.path )
+    end
+
     def windows_app_list
       [  'start "Launchy" /d']
     end

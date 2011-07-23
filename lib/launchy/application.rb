@@ -9,39 +9,19 @@ module Launchy
   # 1. A constructor taking no parameters
   # 2. An instance method 'open' taking a string or URI as the first parameter and a
   #    hash as the second
-  # 3. A class method 'schemes' that returns an array of Strings containing the
-  #    schemes that the Application will handle
+  # 3. A class method 'handles?' that takes a String and returns true if that
+  #    class can handle the input.
   class Application
     extend DescendantTracker
 
     class << self
+      # Find the application that handles the given uri.
       #
-      # The list of all the schemes all the applications know
-      #
-      def scheme_list
-        children.collect { |a| a.schemes }.flatten.sort
-      end
-
-      #
-      # if this application handles the given scheme
-      #
-      def handles?( scheme )
-        schemes.include?( scheme )
-      end
-
-      #
-      # Find the application that handles the given scheme.  May take either a
-      # String or something that responds_to?( :scheme )
-      #
-      def for_scheme( scheme )
-        if scheme.respond_to?( :scheme ) then
-          scheme = scheme.scheme
-        end
-
-        klass = find_child( :handles?, scheme )
+      # returns the Class that can handle the uri
+      def handling( uri )
+        klass = find_child( :handles?, uri )
         return klass if klass
-
-        raise SchemeNotFoundError, "No application found to handle scheme '#{scheme}'. Known schemes: #{scheme_list.join(", ")}"
+        raise ApplicationNotFoundError, "No application found to handle '#{uri}'"
       end
 
       #
