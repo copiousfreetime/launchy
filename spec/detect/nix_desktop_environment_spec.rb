@@ -23,10 +23,11 @@ describe Launchy::Detect::NixDesktopEnvironment do
    end
 
 
-  it "raises an error if it cannot determine the *nix desktop environment" do
+  it "returns nil if it cannot determine the *nix desktop environment" do
     Launchy.host_os = "linux"
     ENV.delete( "KDE_FULL_SESSION" )
     ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
-    lambda { Launchy::Detect::NixDesktopEnvironment.detect }.must_raise Launchy::Detect::NixDesktopEnvironment::NotFoundError
+    Launchy::Detect::NixDesktopEnvironment.detect.must_equal( nil )
   end
+
 end

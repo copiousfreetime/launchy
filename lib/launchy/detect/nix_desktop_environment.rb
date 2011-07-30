@@ -14,8 +14,8 @@ module Launchy::Detect
     # NixDekstopEnvironment::Unknown
     def self.detect
       found = find_child( :is_current_desktop_environment? )
-      return found if found
-      raise NotFoundError, "Current Desktop environment not found. #{Launchy.bug_report_message}"
+      Launchy.log("Current Desktop environment not flound. #{Launchy.bug_report_message}") unless found
+      return found
     end
 
     def self.fallback_browsers

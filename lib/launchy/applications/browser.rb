@@ -25,10 +25,11 @@ class Launchy::Application
     end
 
     def nix_app_list
-      nix_de = Launchy::Detect::NixDesktopEnvironment.detect
       app_list = %w[ xdg-open ]
-      app_list << nix_de.browser
-      app_list << nix_de.fallback_browsers
+      if nix_de = Launchy::Detect::NixDesktopEnvironment.detect then
+        app_list << nix_de.browser
+        app_list << nix_de.fallback_browsers
+      end
       app_list.flatten!
       app_list.delete_if { |b| b.nil? || (b.strip.size == 0) }
       app_list.collect { |bin| find_executable( bin ) }.find_all { |x| not x.nil? }

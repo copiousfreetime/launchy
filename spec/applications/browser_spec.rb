@@ -40,5 +40,15 @@ describe Launchy::Application::Browser do
     uri = Addressable::URI.parse( __FILE__ )
     Launchy::Application::Browser.handles?( uri ).must_equal true
   end
+
+  it "handles the case where $BROWSER is set and no *nix desktop environment is found" do
+    ENV.delete( "KDE_FULL_SESSION" )
+    ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
+    ENV['BROWSER'] = "do-this-instead"
+    Launchy.host_os = 'linux'
+    browser = Launchy::Application::Browser.new
+    browser.browser_cmdline.must_equal "do-this-instead"
+  end
+
 end
 
