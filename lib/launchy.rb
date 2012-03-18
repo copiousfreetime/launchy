@@ -51,7 +51,7 @@ module Launchy
       Launchy.application  = options.delete( :application ) || ENV['LAUNCHY_APPLICATION']
       Launchy.host_os      = options.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
       Launchy.ruby_engine  = options.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
-      Launchy.dry_run      = options.delete( :dry_run     )
+      Launchy.dry_run      = options.delete( :dry_run     ) || ENV['LAUNCHY_DRY_RUN']
     end
 
     def debug=( d )
