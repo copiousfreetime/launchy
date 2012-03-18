@@ -28,7 +28,7 @@ module Launchy::Detect
         require 'spoon'
         return Jruby.new
       end
-      return Forkable.new 
+      return Forkable.new
     end
 
     #
@@ -55,6 +55,7 @@ module Launchy::Detect
     end
 
     def run( cmd, *args )
+      raise Launchy::CommandNotFoundError, "No command found to run with args '#{args.join(' ')}'. If this is unexpected, #{Launchy.bug_report_message}" unless cmd
       if Launchy.dry_run? then
         $stdout.puts dry_run( cmd, *args )
       else

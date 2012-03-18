@@ -97,7 +97,7 @@ module Launchy
     end
 
     def bug_report_message
-      "Please file a bug at https://github.com/copiousfreetime/launchy/issues/new"
+      "Please rerun with environment variable LAUNCHY_DEBUG=true or the '-d' commandline option and file a bug at https://github.com/copiousfreetime/launchy/issues/new"
     end
 
     def log(msg)

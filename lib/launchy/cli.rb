@@ -7,7 +7,7 @@ module Launchy
     def initialize
       @options = {}
     end
-  
+
     def parser
       @parser ||= OptionParser.new do |op|
         op.banner = "Usage: launchy [options] thing-to-launch"

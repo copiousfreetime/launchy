@@ -20,6 +20,11 @@ describe Launchy::Detect::Runner do
     lambda{ Launchy::Detect::Runner.detect }.must_raise Launchy::Detect::RubyEngine::NotFoundError
   end
 
+  it "raises and error when there is no command found" do
+    runner = Launchy::Detect::Runner.detect
+    lambda{ runner.run( nil, *%w[ arg1 arg2 arg 3] ) }.must_raise Launchy::CommandNotFoundError
+  end
+
   # On anything that has fork, use Forkable
   %w[ linux darwin cygwin ].each do |host_os|
     %w[ ruby rbx macruby ].each do |engine_name|

@@ -14,7 +14,7 @@ module Launchy::Detect
     # NixDekstopEnvironment::Unknown
     def self.detect
       found = find_child( :is_current_desktop_environment? )
-      Launchy.log("Current Desktop environment not flound. #{Launchy.bug_report_message}") unless found
+      Launchy.log("Current Desktop environment not found. #{Launchy.bug_report_message}") unless found
       return found
     end
 
@@ -48,7 +48,11 @@ module Launchy::Detect
 
     class Xfce < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        %x[ xprop -root _DT_SAVE_MODE | grep ' = \"xfce\"$' ].strip.size > 0
+        if Launchy::Application.find_executable( 'xprop' ) then
+          %x[ xprop -root _DT_SAVE_MODE | grep ' = \"xfce\"$' ].strip.size > 0
+        else
+          false
+        end
       end
 
       def self.browser

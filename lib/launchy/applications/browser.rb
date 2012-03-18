@@ -55,9 +55,11 @@ class Launchy::Application
       possibilities.each do |p|
         Launchy.log "#{self.class.name} : possibility : #{p}"
       end
-      browser = possibilities.shift
-      Launchy.log "#{self.class.name} : Using browser value '#{browser}'"
-      return browser
+      if browser = possibilities.shift then
+        Launchy.log "#{self.class.name} : Using browser value '#{browser}'"
+        return browser
+      end
+      raise Launchy::CommandNotFoundError, "Unable to find a browser command. If this is unexpected, #{Launchy.bug_report_message}"
     end
 
     def cmd_and_args( uri, options = {} )
