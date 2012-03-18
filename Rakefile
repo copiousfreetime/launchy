@@ -58,7 +58,7 @@ begin
   Rake::TestTask.new( :test ) do |t|
     t.ruby_opts    = %w[ -w -rubygems ]
     t.libs         = %w[ lib spec ]
-    t.pattern      = "spec/*_spec.rb"
+    t.pattern      = "spec/**/*_spec.rb"
   end
   task :default => :test
 rescue LoadError
