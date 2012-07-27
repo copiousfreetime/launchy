@@ -1,10 +1,13 @@
 = Launchy Changlog
+== Version 2.1.1 - 2012-07-27
+
+* Update dependencies (copiousfreetime/launchy#47)
+
 == Version 2.1.0 - 2012-03-18
 
 * Fix raising exception when no browser program found (copiousfreetime/launchy#42)
 * Add LAUNCHY_DRY_RUN environment variable (thanks Mariusz Pietrzyk / wijet)
 * Update dependencies
-
 
 == Version 2.0.5 - 2011-07-24
 
