@@ -1,4 +1,8 @@
 = Launchy Changlog
+== Version 2.1.1 - 2012-07-27
+
+* Update addressable dependency (copiousfreetime/launchy#47)
+
 == Version 2.1.0 - 2012-03-18
 
 * Fix raising exception when no browser program found (copiousfreetime/launchy#42)
