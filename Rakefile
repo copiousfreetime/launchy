@@ -155,7 +155,7 @@ This.gemspec['ruby'] = Gem::Specification.new do |spec|
   spec.rdoc_options = [ "--main"  , 'README.rdoc', ]
 
   # The Runtime Dependencies
-  spec.add_runtime_dependency( 'addressable', '~> 2.2.6' )
+  spec.add_runtime_dependency( 'addressable', '~> 2.3' )
 
   # The Development Dependencies
   spec.add_development_dependency( 'rake'     , '~> 0.9.2.2')
