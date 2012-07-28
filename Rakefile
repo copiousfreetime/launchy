@@ -159,10 +159,10 @@ This.gemspec['ruby'] = Gem::Specification.new do |spec|
 
   # The Development Dependencies
   spec.add_development_dependency( 'rake'     , '~> 0.9.2.2')
-  spec.add_development_dependency( 'minitest' , '~> 2.11.3' )
+  spec.add_development_dependency( 'minitest' , '~> 3.3.0' )
   spec.add_development_dependency( 'rdoc'     , '~> 3.12'   )
   spec.add_development_dependency( 'spoon'    , '~> 0.0.1'  )
-  spec.add_development_dependency( 'ffi'      , '~> 1.0.9'  )
+  spec.add_development_dependency( 'ffi'      , '~> 1.1.1'  )
 
 end
 
@@ -171,7 +171,7 @@ end
 #----------------------------------------------
 jruby_gemspec = This.gemspec['ruby'].dup
 jruby_gemspec.add_runtime_dependency( 'spoon', '~> 0.0.1' )
-jruby_gemspec.add_runtime_dependency( 'ffi'  , '~> 1.0.9' )
+jruby_gemspec.add_runtime_dependency( 'ffi'  , '~> 1.1.1' )
 jruby_gemspec.platform = 'java'
 This.gemspec['java']  = jruby_gemspec
 
