@@ -1,7 +1,8 @@
 = Launchy Changlog
-== Version 2.1.1 - 2012-07-27
+== Version 2.1.1 - 2012-07-28
 
-* Update addressable dependency (copiousfreetime/launchy#47)
+* Update addressable runtime dependency (copiousfreetime/launchy#47)
+* Bring minitest and ffi development dependencies up to date
 
 == Version 2.1.0 - 2012-03-18
 
