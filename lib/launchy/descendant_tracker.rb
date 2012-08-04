@@ -40,7 +40,7 @@ module Launchy
     # and passing all the rest of the parameters to that method in 
     # each child
     def find_child( method, *args )
-      klass = children.find do |child|
+      children.find do |child|
         Launchy.log "Checking if class #{child} is the one for #{method}(#{args.join(', ')})}"
         child.send( method, *args )
       end
