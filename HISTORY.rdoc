@@ -1,4 +1,8 @@
 = Launchy Changlog
+== Version 2.1.2 - 2012-08-06
+
+* Fix where HostOS would fail to convert to string on JRuby in 1.9 mode (copiousfreetime/launchy#45)
+
 == Version 2.1.1 - 2012-07-28
 
 * Update addressable runtime dependency (copiousfreetime/launchy#47)
