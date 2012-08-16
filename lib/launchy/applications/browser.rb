@@ -8,8 +8,7 @@ class Launchy::Application
     end
 
     def self.handles?( uri )
-      return true if schemes.include?( uri.scheme )
-      return true if File.exist?( uri.path )
+      schemes.include?( uri.scheme ) || File.exist?( uri.path )
     end
 
     def windows_app_list
