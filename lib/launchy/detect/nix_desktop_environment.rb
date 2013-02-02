@@ -49,7 +49,7 @@ module Launchy::Detect
     class Xfce < NixDesktopEnvironment
       def self.is_current_desktop_environment?
         if Launchy::Application.find_executable( 'xprop' ) then
-          %x[ xprop -root _DT_SAVE_MODE | grep ' = \"xfce\"$' ].strip.size > 0
+          %x[ xprop -root _DT_SAVE_MODE].include?("xfce")
         else
           false
         end
