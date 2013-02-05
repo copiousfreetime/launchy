@@ -2,7 +2,7 @@ module Launchy::Detect
   #
   # Detect the current desktop environment for *nix machines
   # Currently this is Linux centric. The detection is based upon the detection
-  # used by xdg-open from http://portland.freedesktop.org/wiki/XdgUtils
+  # used by xdg-open from http://portland.freedesktop.org/
   class NixDesktopEnvironment
     class NotFoundError < Launchy::Error; end
 
@@ -57,6 +57,16 @@ module Launchy::Detect
 
       def self.browser
         'exo-open'
+      end
+    end
+
+    class Fluxbox < NixDesktopEnvironment
+      def self.is_current_desktop_environment?
+        ENV['DESKTOP_SESSION'] == 'fluxbox'
+      end
+
+      def self.browser
+        'xdg-open'
       end
     end
   end

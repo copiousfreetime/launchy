@@ -22,6 +22,14 @@ describe Launchy::Detect::NixDesktopEnvironment do
     end
    end
 
+  it "detects the fluxbox desktop environment" do
+    ENV['DESKTOP_SESSION'] = 'fluxbox'
+    fluxbox_env = Launchy::Detect::NixDesktopEnvironment.detect
+    fluxbox_env.must_equal( Launchy::Detect::NixDesktopEnvironment::Fluxbox )
+    fluxbox_env.browser.must_equal( Launchy::Detect::NixDesktopEnvironment::Fluxbox.browser )
+    ENV.delete( 'DESKTOP_SESSION' )
+  end
+
   it "returns false for XFCE if xprop is not found" do
     Launchy.host_os = "linux"
     Launchy::Detect::NixDesktopEnvironment::Xfce.is_current_desktop_environment?.must_equal( false )
