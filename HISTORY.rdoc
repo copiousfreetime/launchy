@@ -1,10 +1,11 @@
 = Launchy Changlog
-== Version 2.2.0 - 2013-XX-XX
+== Version 2.2.0 - 2013-02-XX
 
 * Change XFCE detection to not depend on grep (copiousfreetime/launchy#52 - thanks bogdan)
 * Suppress forked process output (copiousfreetime/launchy#51)
 * Display help/usage if no url is given (copiousfreetime/launchy#54)
 * Detect the fluxbox environment (copiousfreetime/launchy#53)
+* Automatically detect 'http' url's if they are missing the 'http://' (copiousfreetime/launchy#55)
 
 == Version 2.1.2 - 2012-08-06
 

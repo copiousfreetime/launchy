@@ -54,4 +54,10 @@ describe Launchy do
     lambda { Launchy.open( "blah://something/invalid" ) }.must_raise Launchy::ApplicationNotFoundError
   end
 
+  [ 'www.example.com', 'www.example.com/foo/bar' ].each do |x|
+    it "picks a Browser for #{x}" do
+      app = Launchy.app_for_uri_string( x )
+      app.must_equal( Launchy::Application::Browser )
+    end
+  end
 end

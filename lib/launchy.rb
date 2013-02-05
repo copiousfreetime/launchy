@@ -24,18 +24,28 @@ module Launchy
     #
     def open(uri_s, options = {} )
       extract_global_options( options )
-      uri = convert_to_uri( uri_s )
-      app = Launchy::Application.handling( uri )
+      uri = string_to_uri( uri_s )
+      app = app_for_uri( uri )
       app.new.open( uri, options )
     rescue Launchy::Error => le
       raise le
     rescue Exception => e
-      msg = "Failure in opening uri #{uri.inspect} with options #{options.inspect}: #{e}"
+      msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg
     end
 
-    def convert_to_uri( s )
+    def app_for_uri( uri )
+      Launchy::Application.handling( uri )
+    end
+
+    def app_for_uri_string( s )
+      app_for_uri(  string_to_uri( s ) )
+
+    end
+
+    def string_to_uri( s )
       uri = Addressable::URI.parse( s )
+      uri = Addressable::URI.heuristic_parse( s ) unless uri.scheme
       raise Launchy::ArgumentError, "Invalid URI given: #{s.inspect}" unless uri
       return uri
     end
