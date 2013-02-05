@@ -1,7 +1,7 @@
+CONTRIBUTING.md
 HISTORY.rdoc
 LICENSE
 Manifest.txt
-NOTES
 README.rdoc
 Rakefile
 bin/launchy
@@ -33,3 +33,5 @@ spec/mock_application.rb
 spec/spec_helper.rb
 spec/tattle-host-os.yaml
 spec/version_spec.rb
+tasks/default.rake
+tasks/this.rb
