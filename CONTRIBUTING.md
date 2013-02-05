@@ -36,6 +36,13 @@ easiest way to contribute.
 # Contributors
 
 * [Jeremy Hinegardner][https://github.com/copiousfreetime]
+* [Mike Farmer][https://github.com/mikefarmer]
+* [Suraj N. Kurapati][https://github.com/sunaku]
+* [Postmodern][https://github.com/postmodern]
+* [Stephen Judkins][https://github.com/stephenjudkins]
+* [Mariusz Pietrzyk][https://github.com/wijet]
+* [Bogdan Gusiev][https://github.com/bogdan]
+* [Miquel Rodríguez Telep][https://github.com/mrtorrent]j
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
