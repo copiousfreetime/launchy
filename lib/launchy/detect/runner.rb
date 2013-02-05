@@ -25,7 +25,6 @@ module Launchy::Detect
 
       return Windows.new if host_os_family.windows?
       if ruby_engine.jruby? then
-        require 'spoon'
         return Jruby.new
       end
       return Forkable.new
@@ -95,6 +94,7 @@ module Launchy::Detect
 
     class Jruby < Runner
       def wet_run( cmd, *args )
+        require 'spoon'
         Spoon.spawnp( *shell_commands( cmd, *args ) )
       end
     end
