@@ -1,4 +1,9 @@
 = Launchy Changlog
+== Version 2.2.0 - 2013-XX-XX
+
+* Chagne XFCE detection to not depend on grep (copiousfreetime/launchy#52 - thanks bogdan)
+
+
 == Version 2.1.2 - 2012-08-06
 
 * Fix where HostOS would fail to convert to string on JRuby in 1.9 mode (copiousfreetime/launchy#45)
