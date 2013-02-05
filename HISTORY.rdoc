@@ -2,7 +2,7 @@
 == Version 2.2.0 - 2013-XX-XX
 
 * Chagne XFCE detection to not depend on grep (copiousfreetime/launchy#52 - thanks bogdan)
-
+* Suppress forked process output (copiousfreetime/launchy#51)
 
 == Version 2.1.2 - 2012-08-06
 
