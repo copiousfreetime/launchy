@@ -25,16 +25,16 @@ module Launchy
     def open(uri, options = {} )
       begin
         extract_global_options( options )
-        uri = Addressable::URI.parse(  uri )
-        app = Launchy::Application.handling( uri )
-        app.new.open( uri, options )
+        a_uri = Addressable::URI.parse(  uri )
+        raise Launchy::ArgumentError, "Invalid URI given: #{uri.inspect}" unless a_uri
+
+        app = Launchy::Application.handling( a_uri )
+        app.new.open( a_uri, options )
+      rescue Launchy::Error => le
+        raise le
       rescue Exception => e
-        msg = "Failure in opening #{uri} with options #{options.inspect}: #{e}"
-        Launchy.log "#{self.name} : #{msg}"
-        e.backtrace.each do |bt|
-          Launchy.log bt
-        end
-        $stderr.puts msg
+        msg = "Failure in opening uri #{uri.inspect} with options #{options.inspect}: #{e}"
+        raise Launchy::Error, msg
       end
     end
 

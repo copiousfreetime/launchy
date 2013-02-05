@@ -57,14 +57,10 @@ module Launchy
     end
 
     def parse( argv, env )
-      begin
-        parser.parse!( argv )
-        return true
-      rescue ::OptionParser::ParseError => pe
-        $stderr.puts "#{parser.program_name}: #{pe}"
-        $stderr.puts "Try `#{parser.program_name} --help for more information."
-        return false
-      end
+      parser.parse!( argv )
+      return true
+    rescue ::OptionParser::ParseError => pe
+      error_output( pe )
     end
 
     def good_run( argv, env )
@@ -74,6 +70,18 @@ module Launchy
       else
         return false
       end
+    rescue StandardError => e
+      error_output( e )
+    end
+
+    def error_output( error )
+      $stderr.puts "ERROR: #{error}"
+      Launchy.log "ERROR: #{error}"
+      error.backtrace.each do |bt|
+        Launchy.log bt
+      end
+      $stderr.puts "Try `#{parser.program_name} --help' for more information."
+      return false
     end
 
     def run( argv = ARGV, env = ENV )

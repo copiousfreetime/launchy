@@ -50,9 +50,8 @@ describe Launchy do
     Launchy.ruby_engine.must_equal 'myruby'
   end
 
-  it "prints an error on stderr when no scheme is found for the given uri" do
-    Launchy.open( "blah://something/invalid" )
-    $stderr.string.must_match( /Failure in opening/ )
+  it "raises an exception if no scheme is found for the given uri" do
+    lambda { Launchy.open( "blah://something/invalid" ) }.must_raise Launchy::ApplicationNotFoundError
   end
 
 end
