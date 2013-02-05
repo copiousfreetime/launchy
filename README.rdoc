@@ -83,7 +83,7 @@ in the github gem if it was updated to use 2.0.x but not use the supported API.
 
 http://opensource.org/licenses/isc-license.txt
 
-Copyright (c) 2007-2011 Jeremy Hinegardner
+Copyright (c) 2007-2013 Jeremy Hinegardner
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
