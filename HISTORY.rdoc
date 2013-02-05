@@ -20,7 +20,6 @@
 * Add LAUNCHY_DRY_RUN environment variable (thanks Mariusz Pietrzyk / wijet)
 * Update dependencies
 
-
 == Version 2.0.5 - 2011-07-24
 
 * Fix the case where $BROWSER is set and no *nix desktop was found (copiousfreetime/launchy#33)
