@@ -146,8 +146,9 @@ end
 #------------------------------------------------------------------------------
 # Fixme - look for fixmes and report them
 #------------------------------------------------------------------------------
+desc "Look for fixmes and report them"
 task :fixme => 'manifest:check' do
-  This.read_manifest.each do |file|
+  This.manifest.each do |file|
     next if file == File.basename( __FILE__ )
 
     puts "FIXME: Rename #{file}" if file =~ /fixme/i
