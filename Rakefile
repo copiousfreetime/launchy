@@ -158,8 +158,8 @@ This.gemspec['ruby'] = Gem::Specification.new do |spec|
   spec.add_runtime_dependency( 'addressable', '~> 2.3' )
 
   # The Development Dependencies
-  spec.add_development_dependency( 'rake'     , '~> 0.9.2.2')
-  spec.add_development_dependency( 'minitest' , '~> 3.3.0' )
+  spec.add_development_dependency( 'rake'     , '~> 10.0.3')
+  spec.add_development_dependency( 'minitest' , '~> 4.5.0' )
   spec.add_development_dependency( 'rdoc'     , '~> 3.12'   )
   spec.add_development_dependency( 'spoon'    , '~> 0.0.1'  )
   spec.add_development_dependency( 'ffi'      , '~> 1.1.1'  )
