@@ -146,8 +146,15 @@ class ThisProject
     yielding_gemspec( 'java', core, &block )
   end
 
+  # Internal: give an initial spec and a key, create a new gemspec based off of
+  # it.
+  #
+  # This will force the new gemspecs 'platform' to be that of the key, since the
+  # only reason you would have multiple gemspecs at this point is to deal with
+  # different platforms.
   def yielding_gemspec( key, core )
     spec = gemspecs[key] ||= core.dup
+    spec.platform = key
     yield spec if block_given?
     return spec
   end
