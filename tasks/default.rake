@@ -149,10 +149,9 @@ end
 desc "Look for fixmes and report them"
 task :fixme => 'manifest:check' do
   This.manifest.each do |file|
-    next if file == File.basename( __FILE__ )
-
+    next if file == __FILE__
+    next unless file =~ %r/(txt|rb|md|rdoc|css|html|xml|css)\Z/
     puts "FIXME: Rename #{file}" if file =~ /fixme/i
-
     IO.readlines( file ).each_with_index do |line, idx|
       prefix = "FIXME: #{file}:#{idx+1}".ljust(42)
       puts "#{prefix} => #{line.strip}" if line =~ /fixme/i
