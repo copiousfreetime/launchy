@@ -146,18 +146,70 @@ end
 #------------------------------------------------------------------------------
 # Fixme - look for fixmes and report them
 #------------------------------------------------------------------------------
-desc "Look for fixmes and report them"
-task :fixme => 'manifest:check' do
-  This.manifest.each do |file|
-    next if file == __FILE__
-    next unless file =~ %r/(txt|rb|md|rdoc|css|html|xml|css)\Z/
-    puts "FIXME: Rename #{file}" if file =~ /fixme/i
-    IO.readlines( file ).each_with_index do |line, idx|
-      prefix = "FIXME: #{file}:#{idx+1}".ljust(42)
-      puts "#{prefix} => #{line.strip}" if line =~ /fixme/i
+namespace :fixme do
+  task :default => 'manifest:check' do
+    This.manifest.each do |file|
+      next if file == __FILE__
+      next unless file =~ %r/(txt|rb|md|rdoc|css|html|xml|css)\Z/
+      puts "FIXME: Rename #{file}" if file =~ /fixme/i
+      IO.readlines( file ).each_with_index do |line, idx|
+        prefix = "FIXME: #{file}:#{idx+1}".ljust(42)
+        puts "#{prefix} => #{line.strip}" if line =~ /fixme/i
+      end
+    end
+  end
+
+  def fixme_project_root
+    This.project_path( '../fixme' )
+  end
+
+  def fixme_project_path( subtree )
+    fixme_project_root.join( subtree )
+  end
+
+  def local_fixme_files
+    This.manifest.select { |p| p =~ %r|^tasks/| }
+  end
+
+  def outdated_fixme_files
+    local_fixme_files.reject do |local|
+      upstream     = fixme_project_path( local )
+      Digest::SHA256.file( local ) == Digest::SHA256.file( upstream )
+    end
+  end
+
+  def fixme_up_to_date?
+    outdated_fixme_files.empty?
+  end
+
+  desc "See if the fixme tools are outdated"
+  task :outdated => :release_check do
+    if fixme_up_to_date? then
+      puts "Fixme files are up to date."
+    else
+      outdated_fixme_files.each do |f|
+        puts "#{f} is outdated"
+      end
+    end
+  end
+
+  desc "Update outdated fixme files"
+  task :update => :release_check do
+    if fixme_up_to_date? then
+      puts "Fixme files are already up to date."
+    else
+      puts "Updating fixme files:"
+      outdated_fixme_files.each do |local|
+        upstream = fixme_project_path( local )
+        puts "  * #{local}"
+        FileUtils.cp( upstream, local )
+      end
+      puts "Use your git commands as appropriate."
     end
   end
 end
+desc "Look for fixmes and report them"
+task :fixme => "fixme:default"
 
 #------------------------------------------------------------------------------
 # Gem Specification
