@@ -56,6 +56,9 @@ begin
     t.libs         = %w[ lib spec ]
     t.pattern      = "spec/**/*_spec.rb"
   end
+
+  task :test_requirements
+  task :test => :test_requirements
   task :default => :test
 rescue LoadError
   This.task_warning( 'test' )
@@ -71,9 +74,10 @@ begin
   RDoc::Task.new do |t|
     t.markup   = 'tomdoc'
     t.rdoc_dir = 'doc'
-    t.main     = 'README.rdoc'
+    t.main     = 'README.md'
     t.title    = "#{This.name} #{This.version}"
-    t.rdoc_files.include( '*.rdoc', 'lib/**/*.rb' )
+    t.rdoc_files.include( FileList['*.{rdoc,md,txt}'], FileList['ext/**/*.c'],
+                          FileList['lib/**/*.rb'] )
   end
 rescue LoadError => le
   This.task_warning( 'rdoc' )
@@ -223,7 +227,10 @@ task :gemspec do
 end
 
 # the gemspec is also a dev artifact and should not be kept around.
-CLOBBER << This.gemspec_file
+CLOBBER << This.gemspec_file.to_s
+
+# .rbc files from ruby 2.0
+CLOBBER << FileList["**/*.rbc"]
 
 # The standard gem packaging task, everyone has it.
 require 'rubygems/package_task'

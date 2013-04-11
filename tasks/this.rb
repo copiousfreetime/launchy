@@ -25,7 +25,7 @@ class ThisProject
   #
   # Yields self
   def initialize(&block)
-    @exclude_from_manifest = %r/tmp$|\.(git|DS_Store)|^(doc|coverage|pkg)|Gemfile*|\.gemspec$|\.swp$|\.jar|\.rvmrc$|~$/
+    @exclude_from_manifest = %r/\.(git|DS_Store)|^(doc|coverage|pkg|tmp)|Gemfile*|\.(gemspec|swp|jar|bundle|so|rvmrc)$|~$/
     @gemspecs              = Hash.new
     yield self if block_given?
   end
@@ -54,7 +54,7 @@ class ThisProject
   #
   # Retuns the text of the section as an array of paragrphs.
   def section_of( file, section_name )
-    re    = /^=+ (.*)$/
+    re    = /^[=#]+ (.*)$/
     sectional = project_path( file )
     parts = sectional.read.split( re )[1..-1]
     parts.map! { |p| p.strip }
@@ -77,8 +77,8 @@ class ThisProject
   # path - the relative path of the file from the project root
   #
   # Returns the Pathname of the file
-  def project_path( relative_path )
-    project_root.join( relative_path )
+  def project_path( *relative_path )
+    project_root.join( *relative_path )
   end
 
   # Internal: The absolute path of this file
@@ -110,6 +110,13 @@ class ThisProject
     manifest_file.readlines.map { |l| l.strip }
   end
 
+  # Internal: Return the files that define the extensions
+  #
+  # Returns an Array
+  def extension_conf_files
+    manifest.grep( /extconf.rb\Z/ )
+  end
+
   # Internal: Returns the gemspace associated with the current ruby platform
   def platform_gemspec
     gemspecs[platform]
@@ -130,8 +137,8 @@ class ThisProject
       spec.executables = spec.files.grep(/^bin/) { |f| File.basename(f) }
       spec.test_files  = spec.files.grep(/^spec/)
 
-      spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc)$/)
-      spec.rdoc_options = [ "--main"  , 'README.rdoc',
+      spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc|md)$/)
+      spec.rdoc_options = [ "--main"  , 'README.md',
                             "--markup", "tomdoc" ]
     end
   end
@@ -180,7 +187,7 @@ class ThisProject
 
   # Internal: Return the DESCRIPTION section of the README.rdoc file
   def description_section
-    section_of( 'README.rdoc', 'DESCRIPTION')
+    section_of( 'README.md', 'DESCRIPTION')
   end
  
  # Internal: Return the summary text from the README 
