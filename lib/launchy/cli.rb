@@ -65,13 +65,11 @@ module Launchy
 
     def good_run( argv, env )
       if parse( argv, env ) then
-        Launchy.open( argv.shift, options )
+        Launchy.open( argv.shift, options ) { |u, o, e| error_output( e ) }
         return true
       else
         return false
       end
-    rescue StandardError => e
-      error_output( e )
     end
 
     def error_output( error )
