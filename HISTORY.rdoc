@@ -1,4 +1,8 @@
 = Launchy Changlog
+== Version 2.3.0 - 2013-04-11
+
+* Add the option to call a block on error instead of raising an exception
+
 == Version 2.2.0 - 2013-02-06
 
 * Change XFCE detection to not depend on grep (copiousfreetime/launchy#52 - thanks bogdan)
