@@ -22,7 +22,7 @@ module Launchy
     #
     # Launch an application for the given uri string
     #
-    def open(uri_s, options = {} )
+    def open(uri_s, options = {}, &error_block )
       extract_global_options( options )
       uri = string_to_uri( uri_s )
       app = app_for_uri( uri )
@@ -32,6 +32,11 @@ module Launchy
     rescue Exception => e
       msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg
+    ensure
+      if $! and block_given? then
+        yield uri_s, options, $!
+        return # explicitly swallow the errors
+      end
     end
 
     def app_for_uri( uri )

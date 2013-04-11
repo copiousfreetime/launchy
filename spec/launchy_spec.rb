@@ -6,6 +6,7 @@ describe Launchy do
     Launchy.reset_global_options
     @stderr  = $stderr
     $stderr = StringIO.new
+    @invalid_url = 'blah://something/invalid'
   end
 
   after do
@@ -51,7 +52,22 @@ describe Launchy do
   end
 
   it "raises an exception if no scheme is found for the given uri" do
-    lambda { Launchy.open( "blah://something/invalid" ) }.must_raise Launchy::ApplicationNotFoundError
+    lambda { Launchy.open( @invalid_url ) }.must_raise Launchy::ApplicationNotFoundError
+  end
+
+  it "calls the block if instead of raising an exception if there is an error" do
+    Launchy.open( @invalid_url ) { $stderr.puts "oops had an error opening #{@invalid_url}" }
+    $stderr.string.strip.must_equal "oops had an error opening #{@invalid_url}"
+  end
+
+  it "calls the block with the values passed to launchy and the error" do
+    options = { :dry_run => true }
+    Launchy.open( @invalid_url, :dry_run => true ) { |u, o, e| $stderr.puts "had an error opening #{u} with options #{o}: #{e}" }
+    $stderr.string.strip.must_equal "had an error opening #{@invalid_url} with options #{options}: No application found to handle '#{@invalid_url}'"
+  end
+
+  it "raises the error in the called block" do
+    lambda { Launchy.open( @invalid_url ) { raise StandardError, "KABOOM!" } }.must_raise StandardError
   end
 
   [ 'www.example.com', 'www.example.com/foo/bar' ].each do |x|
