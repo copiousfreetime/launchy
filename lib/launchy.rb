@@ -23,10 +23,10 @@ module Launchy
     # Launch an application for the given uri string
     #
     def open(uri_s, options = {}, &error_block )
-      extract_global_options( options )
+      leftover = extract_global_options( options )
       uri = string_to_uri( uri_s )
       app = app_for_uri( uri )
-      app.new.open( uri, options )
+      app.new.open( uri, leftover )
     rescue Launchy::Error => le
       raise le
     rescue Exception => e
