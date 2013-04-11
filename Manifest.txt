@@ -1,8 +1,8 @@
 CONTRIBUTING.md
-HISTORY.rdoc
+HISTORY.md
 LICENSE
 Manifest.txt
-README.rdoc
+README.md
 Rakefile
 bin/launchy
 lib/launchy.rb
