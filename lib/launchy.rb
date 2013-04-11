@@ -49,7 +49,11 @@ module Launchy
 
     def string_to_uri( s )
       uri = Addressable::URI.parse( s )
-      uri = Addressable::URI.heuristic_parse( s ) unless uri.scheme
+      Launchy.log "URI parsing pass 1 : #{s} -> #{uri.to_hash}"
+      if not uri.scheme then
+        uri = Addressable::URI.heuristic_parse( s )
+        Launchy.log "URI parsing pass 2 : #{s} -> #{uri.to_hash}"
+      end
       raise Launchy::ArgumentError, "Invalid URI given: #{s.inspect}" unless uri
       return uri
     end
