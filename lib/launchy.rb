@@ -58,11 +58,12 @@ module Launchy
     end
 
     def extract_global_options( options )
-      Launchy.debug        = options.delete( :debug       ) || ENV['LAUNCHY_DEBUG']
-      Launchy.application  = options.delete( :application ) || ENV['LAUNCHY_APPLICATION']
-      Launchy.host_os      = options.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
-      Launchy.ruby_engine  = options.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
-      Launchy.dry_run      = options.delete( :dry_run     ) || ENV['LAUNCHY_DRY_RUN']
+      leftover = options.dup
+      Launchy.debug        = leftover.delete( :debug       ) || ENV['LAUNCHY_DEBUG']
+      Launchy.application  = leftover.delete( :application ) || ENV['LAUNCHY_APPLICATION']
+      Launchy.host_os      = leftover.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
+      Launchy.ruby_engine  = leftover.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
+      Launchy.dry_run      = leftover.delete( :dry_run     ) || ENV['LAUNCHY_DRY_RUN']
     end
 
     def debug=( d )
