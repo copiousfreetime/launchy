@@ -1,37 +1,38 @@
-= Launchy Changlog
-== Version 2.3.0 - 2013-04-11
+# Launchy Changelog
+
+## Version 2.3.0 - 2013-04-11
 
 * Add the option to call a block on error instead of raising an exception
 
-== Version 2.2.0 - 2013-02-06
+## Version 2.2.0 - 2013-02-06
 
 * Change XFCE detection to not depend on grep (copiousfreetime/launchy#52 - thanks bogdan)
 * Suppress forked process output (copiousfreetime/launchy#51)
 * Display help/usage if no url is given (copiousfreetime/launchy#54)
 * Detect the fluxbox environment (copiousfreetime/launchy#53)
-* Automatically detect 'http' url's if they are missing the 'http://' (copiousfreetime/launchy#55)
+* Automatically detect `http` url's if they are missing the `http://` (copiousfreetime/launchy#55)
 * Update to latest project management rake tasks
 
-== Version 2.1.2 - 2012-08-06
+## Version 2.1.2 - 2012-08-06
 
 * Fix where HostOS would fail to convert to string on JRuby in 1.9 mode (copiousfreetime/launchy#45)
 
-== Version 2.1.1 - 2012-07-28
+## Version 2.1.1 - 2012-07-28
 
 * Update addressable runtime dependency (copiousfreetime/launchy#47)
 * Bring minitest and ffi development dependencies up to date
 
-== Version 2.1.0 - 2012-03-18
+## Version 2.1.0 - 2012-03-18
 
 * Fix raising exception when no browser program found (copiousfreetime/launchy#42)
 * Add LAUNCHY_DRY_RUN environment variable (thanks Mariusz Pietrzyk / wijet)
 * Update dependencies
 
-== Version 2.0.5 - 2011-07-24
+## Version 2.0.5 - 2011-07-24
 
 * Fix the case where $BROWSER is set and no *nix desktop was found (copiousfreetime/launchy#33)
 
-== Version 2.0.4 - 2011-07-23
+## Version 2.0.4 - 2011-07-23
 
 * Fix windows 'start' commandline (copiousfreetime/launchy#5)
 * Add capability to open local files with no file: scheme present (copiousfreetime/launchy#29)
@@ -39,24 +40,24 @@
 * Make better decisions on when to do shell escaping (copiousfreetime/launchy#31)
 * Switch to Addressable::URI so UTF-8 urls may be parsed. (copiousfreetime/launchy#32)
 
-== Version 2.0.3 - 2011-07-17
+## Version 2.0.3 - 2011-07-17
 
 * Add in Deprecated API wrappers that warn the user
 
-== Version 2.0.2 - 2011-07-17
+## Version 2.0.2 - 2011-07-17
 
 * Typo fixes from @mtorrent
 * Documentation updates explicitly stating the Public API
 * Increase test coverage
 
-== Version 2.0.1 - 2011-07-16
+## Version 2.0.1 - 2011-07-16
 
 * Almost a complete rewrite
 * JRuby Support
 * Organization is such that it will be easier to add additional applications
 * Windows behavior possibly fixed, again
 
-== Version 1.0.0 - 2011-03-17
+## Version 1.0.0 - 2011-03-17
 
 * Add JRuby support (Stephen Judkins)
 * Remove unused Paths module
@@ -64,51 +65,51 @@
 * Switch to use minitest
 * NOTE, this version was never released.
 
-== Version 0.4.0 - 2011-01-27
+## Version 0.4.0 - 2011-01-27
 
-* Add support for file:/// schema (postmodern)
+* Add support for `file:///` schema (postmodern)
 
-== Version 0.3.7 - 2010-07-19
+## Version 0.3.7 - 2010-07-19
 
 * Fix launchy on windows (mikefarmer)
 
-== Version 0.3.6 - 2010-02-22
+## Version 0.3.6 - 2010-02-22
 
 * add a test:spec task to run tests without rcov support
-* added 'testing' os family for running tests
+* added `testing` os family for running tests
 
-== Version 0.3.5 - 2009-12-17
+## Version 0.3.5 - 2009-12-17
 
 * clarify that launchy is under ISC license
 * fix missing data file in released gem needed for running specs
 
-== Version 0.3.3 - 2009-02-19
+## Version 0.3.3 - 2009-02-19
 
 * pass command line as discrete items to system() to avoid string
   interpretation by the system shell. (Suraj N. Kurapati)
 * rework project layout and tasks
 
-== Version 0.3.2 - 2008-05-21
+## Version 0.3.2 - 2008-05-21
 
 * detect aix and mingw as known operating systems.
 
-== Version 0.3.1 - 2007-09-08
+## Version 0.3.1 - 2007-09-08
 
 * finalize the command line wrapper around the launchy library.
 * added more tests
 
-== Version 0.3.0 - 2007-08-30
+## Version 0.3.0 - 2007-08-30
 
 * reorganize the code structure, removing Spawnable namespace
 * removed 'do_magic' method, changed it to 'open'
 * added override environment variable LAUNCHY_HOST_OS for testing
 * fix broken cygwin support [Bug #13472]
 
-== Version 0.2.1 - 2007-08-18
+## Version 0.2.1 - 2007-08-18
 
 * fix inability to find windows executables [Bug #13132]
 
-== Version 0.2.0 - 2007-08-11
+## Version 0.2.0 - 2007-08-11
 
 * rework browser finding
 * manual override with LAUNCHY_BROWSER environment variable
@@ -117,23 +118,23 @@
 * removed win32 gem
 * Add debug output by setting LAUNCHY_DEBUG environment variable to 'true'
 
-== Version 0.1.2 - 2007-08-11
+## Version 0.1.2 - 2007-08-11
 
 * forked child exits without calling at_exit handlers
 
-== Version 0.1.1
+## Version 0.1.1
 
 * fixed rubyforge task to release mswin32 gem also
 
-== Version 0.1.0 
+## Version 0.1.0
 
 * Initial public release
 * switched to using fork to spawn process and require 'win32/process' if on windows
 
-== Version 0.0.2
+## Version 0.0.2
 
 * First attempt at using systemu to spawn processes
 
-== Version 0.0.1
+## Version 0.0.1
 
 * Initially working release

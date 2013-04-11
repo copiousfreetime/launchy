@@ -1,39 +1,39 @@
-== launchy
+# launchy
 
-* Homepage[http://www.copiousfreetime.org/projects/launchy/]
-* {Github Project}[http://github.com/copiousfreetime/launchy]
+* [Homepage](https://github.com/copiousfreetime/launchy)
+* [Github Project](https://github.com/copiousfreetime/launchy)
 * email jeremy at hinegardner dot org
 
-== DESCRIPTION
+## DESCRIPTION
 
-Launchy is helper class for launching cross-platform applications in a
-fire and forget manner.
+Launchy is helper class for launching cross-platform applications in a fire and
+forget manner.
 
-There are application concepts (browser, email client, etc) that are
-common across all platforms, and they may be launched differently on
-each platform. Launchy is here to make a common approach to launching
-external application from within ruby programs.
+There are application concepts (browser, email client, etc) that are common
+across all platforms, and they may be launched differently on each platform.
+Launchy is here to make a common approach to launching external application from
+within ruby programs.
 
-== FEATURES
+## FEATURES
 
 Currently only launching a browser is supported.
 
-== SYNOPSIS
+## SYNOPSIS
 
 You can use launchy on the commandline, or via its API.
 
-=== Commandline
+### Commandline
 
     % launchy http://www.ruby-lang.org/
 
-There are additional commandline options, use 'launchy --help' to see them.
+There are additional commandline options, use `launchy --help` to see them.
 
-=== Public API
+### Public API
 
-In the vein of {Semantic Versioning}[http://semver.org], starting with version 2.0.0, this is the
-sole supported public API.
+In the vein of [Semantic Versioning](http://semver.org), this is the sole
+supported public API.
 
-    Launchy.open( uri, options = {} )
+    Launchy.open( uri, options = {} ) { |uri, options, exception| }
 
 At the moment, the only available options are:
 
@@ -43,15 +43,25 @@ At the moment, the only available options are:
     :ruby_engine  Explicitly state what ruby engine to pretend to be under
     :dry_run      Do nothing and print the command that would be executed on $stdout
 
-An example of using the public API:
+If `Launchy.open` is invoked with a block, then no exception will be thrown, and
+the block will be called with the parameters passed to `#open` along with the
+exception that was raised.
+
+### An example of using the public API:
 
     Launchy.open( "http://www.ruby-lang.org" )
 
-== UPGRADING
+### An example of using the public API and using the error block:
 
-The previously published version of Launchy was 0.4.0. There have been so many
-changes, and a mistaken tag at 1.0.0, that I have decided to bump all the way
-to 2.0.x.
+    Launchy.open( "http://www.ruby-lang.org" ) do |uri, options, exception|
+      puts "Attempted to open #{uri} and failed because #{exception}"
+    end
+
+## UPGRADING from versions before 2.0.0
+
+The previously published versino of Launchy before the 2.0.0 series was 0.4.0.
+There have been so many changes, and a mistaken tag at 1.0.0, that I have
+decided to bump all the way to 2.x.y.
 
 I have attempted to keep backward compatibility with the previous examples. The
 previous API examples of:
@@ -79,7 +89,10 @@ in the github gem if it was updated to use 2.0.x but not use the supported API.
     WARNING:
     WARNING: If this is not the case, please file a bug. Please file a bug at https://github.com/copiousfreetime/launchy/issues/new
 
-== ISC LICENSE
+These deprecation notices will go away with version 3.0 and the only availabel
+API will be the documented one.
+
+## ISC LICENSE
 
 http://opensource.org/licenses/isc-license.txt
 
