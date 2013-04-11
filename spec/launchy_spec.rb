@@ -6,7 +6,7 @@ describe Launchy do
     Launchy.reset_global_options
     @stderr  = $stderr
     $stderr = StringIO.new
-    @invalid_url = 'blah://something/invalid'
+    @invalid_url = 'blah://example.com/invalid'
   end
 
   after do
@@ -53,6 +53,10 @@ describe Launchy do
 
   it "raises an exception if no scheme is found for the given uri" do
     lambda { Launchy.open( @invalid_url ) }.must_raise Launchy::ApplicationNotFoundError
+  end
+
+  it "raises an exception if we have an invalid scheme and a valid path" do
+    lambda { Launchy.open( "blah://example.com/" ) }.must_raise Launchy::ApplicationNotFoundError
   end
 
   it "calls the block if instead of raising an exception if there is an error" do
