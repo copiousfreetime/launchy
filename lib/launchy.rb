@@ -39,7 +39,7 @@ module Launchy
     end
 
     def app_for_uri_string( s )
-      app_for_uri(  string_to_uri( s ) )
+      app_for_uri( string_to_uri( s ) )
     end
 
     def string_to_uri( s )
