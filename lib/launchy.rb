@@ -34,7 +34,7 @@ module Launchy
       raise Launchy::Error, msg
     ensure
       if $! and block_given? then
-        yield uri_s, options, $!
+        yield $!
         return # explicitly swallow the errors
       end
     end

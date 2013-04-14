@@ -33,7 +33,7 @@ There are additional commandline options, use `launchy --help` to see them.
 In the vein of [Semantic Versioning](http://semver.org), this is the sole
 supported public API.
 
-    Launchy.open( uri, options = {} ) { |uri, options, exception| }
+    Launchy.open( uri, options = {} ) { |exception| }
 
 At the moment, the only available options are:
 
@@ -53,7 +53,8 @@ exception that was raised.
 
 ### An example of using the public API and using the error block:
 
-    Launchy.open( "http://www.ruby-lang.org" ) do |uri, options, exception|
+    uri = "http://www.ruby-lang.org"
+    Launchy.open( uri ) do |exception|
       puts "Attempted to open #{uri} and failed because #{exception}"
     end
 

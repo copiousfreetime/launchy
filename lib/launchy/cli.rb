@@ -65,7 +65,7 @@ module Launchy
 
     def good_run( argv, env )
       if parse( argv, env ) then
-        Launchy.open( argv.shift, options ) { |u, o, e| error_output( e ) }
+        Launchy.open( argv.shift, options ) { |e| error_output( e ) }
         return true
       else
         return false
