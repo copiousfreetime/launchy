@@ -60,7 +60,7 @@ exception that was raised.
 
 ## UPGRADING from versions before 2.0.0
 
-The previously published versino of Launchy before the 2.0.0 series was 0.4.0.
+The previously published version of Launchy before the 2.0.0 series was 0.4.0.
 There have been so many changes, and a mistaken tag at 1.0.0, that I have
 decided to bump all the way to 2.x.y.
 
