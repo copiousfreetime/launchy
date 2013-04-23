@@ -22,7 +22,7 @@ module Launchy
 
         op.on( "-d", "--debug", 
                "Force debug. Output lots of information.") do |d|
-          @options[:debug] = 'true'
+          @options[:debug] = true
         end
 
         op.on( "-e", "--engine RUBY_ENGINE",
