@@ -24,16 +24,32 @@ describe Launchy do
     ENV["LAUNCHY_DEBUG"] = nil
   end
 
-  it "sets the global option :dry_run to value of LAUNCHY_DRY_RUN environment variable" do
+  it "sets the global option :dry_run to true if LAUNCHY_DRY_RUN environment variable is 'true'" do
     ENV['LAUNCHY_DRY_RUN'] = 'true'
     Launchy.extract_global_options({})
-    Launchy.dry_run?.must_equal 'true'
+    Launchy.dry_run?.must_equal true
     ENV['LAUNCHY_DRY_RUN'] = nil
+  end
+
+  it "sets the global option :debug to true if LAUNCHY_DEBUG environment variable is 'true'" do
+    ENV['LAUNCHY_DEBUG'] = 'true'
+    Launchy.extract_global_options({})
+    Launchy.debug?.must_equal true
+    ENV['LAUNCHY_DEBUG'] = nil
   end
 
   it "has the global option :debug" do
     Launchy.extract_global_options( { :debug => 'true' } )
     Launchy.debug?.must_equal true
+    Launchy.extract_global_options( { :debug => true } )
+    Launchy.debug?.must_equal true
+  end
+
+  it "has the global option :dry_run" do
+    Launchy.extract_global_options( { :dry_run => 'true' } )
+    Launchy.dry_run?.must_equal true
+    Launchy.extract_global_options( { :dry_run => true } )
+    Launchy.dry_run?.must_equal true
   end
 
   it "has the global option :application" do

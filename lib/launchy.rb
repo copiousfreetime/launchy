@@ -76,13 +76,13 @@ module Launchy
     end
 
     def debug=( d )
-      @debug = (d == "true")
+      @debug = to_bool( d )
     end
 
     # we may do logging before a call to 'open', hence the need to check
     # LAUNCHY_DEBUG here
     def debug?
-      @debug || (ENV['LAUNCHY_DEBUG'] == 'true')
+      @debug || to_bool( ENV['LAUNCHY_DEBUG'] )
     end
 
     def application=( app )
@@ -110,11 +110,11 @@ module Launchy
     end
 
     def dry_run=( dry_run )
-      @dry_run = dry_run
+      @dry_run = to_bool( dry_run )
     end
 
     def dry_run?
-      @dry_run
+      @dry_run || to_bool( ENV['LAUNCHY_DRY_RUN'] )
     end
 
     def bug_report_message
@@ -123,6 +123,18 @@ module Launchy
 
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?
+    end
+
+  private
+    def to_bool( arg )
+      if arg.is_a? String
+        arg == 'true'
+      elsif arg.is_a? TrueClass
+        true
+      else
+        # All other values mapped to false.
+        false
+      end
     end
   end
 end

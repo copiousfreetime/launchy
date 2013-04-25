@@ -43,6 +43,7 @@ easiest way to contribute.
 * [Mariusz Pietrzyk](https://github.com/wijet)
 * [Bogdan Gusiev](https://github.com/bogdan)
 * [Miquel Rodríguez Telep](https://github.com/mrtorrent)
+* [Chris Schmich](https://github.com/schmich)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
