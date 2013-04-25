@@ -1,5 +1,9 @@
 # Launchy Changelog
 
+## Version Next
+* Support Launchy.open( url, :debug => true ) - copiousfreetime/launchy#63 - @schmich
+* Fix inconsistencies in debug? and dry_run? methods - copiousfreetime/launchy#63 - @schmich
+
 ## Version 2.3.0 - 2013-04-11
 
 * Add the option to call a block on error instead of raising an exception
