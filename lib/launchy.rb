@@ -137,6 +137,9 @@ module Launchy
       end
     end
   end
+
+  # Iniitialize the global options to sane defaults during parse time.
+  Launchy.reset_global_options
 end
 
 require 'launchy/version'
