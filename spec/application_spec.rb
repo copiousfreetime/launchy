@@ -30,8 +30,8 @@ describe Launchy::Application do
     lambda { Launchy::Application.handling( uri ) }.must_raise( Launchy::ApplicationNotFoundError )
   end
 
-  it "can find open or curl" do
-    found = %w[ open curl ].any? do |app|
+  it "can find open or curl or xdg-open" do
+    found = %w[ open curl xdg-open ].any? do |app|
       Launchy::Application.find_executable( app )
     end
     found.must_equal true
