@@ -44,6 +44,7 @@ easiest way to contribute.
 * [Bogdan Gusiev](https://github.com/bogdan)
 * [Miquel Rodríguez Telep](https://github.com/mrtorrent)
 * [Chris Schmich](https://github.com/schmich)
+* [Gioele Barabucci](https://github.com/gioele)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
