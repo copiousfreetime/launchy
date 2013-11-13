@@ -30,7 +30,7 @@ module Launchy
     #
     def children
       unless defined? @children
-        @children = Set.new
+        @children = Array.new
       end
       return @children
     end
