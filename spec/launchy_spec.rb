@@ -6,12 +6,15 @@ describe Launchy do
     Launchy.reset_global_options
     @stderr  = $stderr
     $stderr = StringIO.new
+    @stdout = $stdout
+    $stdout = StringIO.new
     @invalid_url = 'blah://example.com/invalid'
   end
 
   after do
     Launchy.reset_global_options
     $stderr = @stderr
+    $stdout = @stdout
   end
 
   it "logs to stderr when LAUNCHY_DEBUG environment variable is set" do
@@ -71,8 +74,16 @@ describe Launchy do
     lambda { Launchy.open( @invalid_url ) }.must_raise Launchy::ApplicationNotFoundError
   end
 
-  it "raises an exception if we have an invalid scheme and a valid path" do
-    lambda { Launchy.open( "blah://example.com/" ) }.must_raise Launchy::ApplicationNotFoundError
+  it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
+    uri = "blah://example.com/#{__FILE__}"
+    Launchy.open( uri , :dry_run => true )
+    $stdout.string.strip.must_equal "/usr/bin/open #{uri}"
+  end
+
+  it "opens a local file if we have a drive letter and a valid path on windows" do
+    uri = "C:#{__FILE__}"
+    Launchy.open( uri, :dry_run => true, :host_os => 'windows'  )
+    $stdout.string.strip.must_equal "cmd /c start /b #{uri}"
   end
 
   it "calls the block if instead of raising an exception if there is an error" do
@@ -90,7 +101,7 @@ describe Launchy do
     lambda { Launchy.open( @invalid_url ) { raise StandardError, "KABOOM!" } }.must_raise StandardError
   end
 
-  [ 'www.example.com', 'www.example.com/foo/bar' ].each do |x|
+  [ 'www.example.com', 'www.example.com/foo/bar', "C:#{__FILE__}" ].each do |x|
     it "picks a Browser for #{x}" do
       app = Launchy.app_for_uri_string( x )
       app.must_equal( Launchy::Application::Browser )
