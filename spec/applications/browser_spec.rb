@@ -13,9 +13,9 @@ describe Launchy::Application::Browser do
     ENV.delete( 'BROWSER' )
   end
 
-  { 'windows' => 'start /b' ,
+  { 'windows' => 'start "launchy" /b' ,
     'darwin'  => '/usr/bin/open',
-    'cygwin'  => 'cmd /C start /b',
+    'cygwin'  => 'cmd /C start "launchy" /b',
 
     # when running these tests on a linux box, this test will fail
     'linux'   => nil                 }.each  do |host_os, cmdline|

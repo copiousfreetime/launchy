@@ -83,7 +83,7 @@ describe Launchy do
   it "opens a local file if we have a drive letter and a valid path on windows" do
     uri = "C:#{__FILE__}"
     Launchy.open( uri, :dry_run => true, :host_os => 'windows'  )
-    $stdout.string.strip.must_equal "cmd /c start /b #{uri}"
+    $stdout.string.strip.must_equal 'cmd /c start "launchy" /b ' + uri
   end
 
   it "calls the block if instead of raising an exception if there is an error" do

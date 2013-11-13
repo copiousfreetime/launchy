@@ -81,8 +81,21 @@ module Launchy::Detect
 
       # escape the reserved shell characters in windows command shell
       # http://technet.microsoft.com/en-us/library/cc723564.aspx
+      #
+      # Also make sure that the item after 'start' is guaranteed to be quoted.
+      # https://github.com/copiousfreetime/launchy/issues/62
       def shell_commands( cmd, *args )
-        cmdline = [ cmd.shellsplit ]
+        parts = cmd.shellsplit
+
+        if start_idx = parts.index('start') then
+          title_idx = start_idx + 1
+          title     = parts[title_idx]
+          title     = title.sub(/^/,'"') unless title[0] == '"'
+          title     = title.sub(/$/,'"') unless title[-1] == '"'
+          parts[title_idx] = title
+        end
+
+        cmdline = [ parts ]
         cmdline << args.flatten.collect { |a| a.to_s.gsub(/([&|()<>^])/, "^\\1") }
         return commandline_normalize( cmdline )
       end

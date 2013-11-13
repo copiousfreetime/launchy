@@ -13,11 +13,11 @@ class Launchy::Application
     end
 
     def windows_app_list
-      [ 'start /b' ]
+      [ 'start "launchy" /b' ]
     end
 
     def cygwin_app_list
-      [ 'cmd /C start /b' ]
+      [ 'cmd /C start "launchy" /b' ]
     end
 
     # hardcode this to open?
