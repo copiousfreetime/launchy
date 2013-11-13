@@ -6,7 +6,7 @@
 * Fix detection of missing *nix desktops - <http://github.com/copiousfreetime/launchy/issues/70>
 * Fix running tests in bare Linux environment - <http://github.com/copiousfreetime/launchy/issues/67> - gioele
 * Fix mistaking windows drive as uri schema - <http://github.com/copiousfreetime/launchy/issues/65>
-* Attempt fixing windows start command oddities, again - <http://github.com/copiousfreetime/launchy/issues/62>
+* Attempt fixing windows `start` command oddities, again - <http://github.com/copiousfreetime/launchy/issues/62>
 
 ## Version 2.3.0 - 2013-04-11
 
@@ -33,18 +33,18 @@
 ## Version 2.1.0 - 2012-03-18
 
 * Fix raising exception when no browser program found <http://github.com/copiousfreetime/launchy/issues/42>
-* Add LAUNCHY_DRY_RUN environment variable (Mariusz Pietrzyk / wijet)
+* Add `LAUNCHY_DRY_RUN` environment variable (Mariusz Pietrzyk / wijet)
 * Update dependencies
 
 ## Version 2.0.5 - 2011-07-24
 
-* Fix the case where $BROWSER is set and no *nix desktop was found <http://github.com/copiousfreetime/launchy/issues/33>
+* Fix the case where `$BROWSER` is set and no *nix desktop was found <http://github.com/copiousfreetime/launchy/issues/33>
 
 ## Version 2.0.4 - 2011-07-23
 
-* Fix windows 'start' commandline <http://github.com/copiousfreetime/launchy/issues/5>
+* Fix windows `start` commandline <http://github.com/copiousfreetime/launchy/issues/5>
 * Add capability to open local files with no file: scheme present <http://github.com/copiousfreetime/launchy/issues/29>
-* Added 'rake how_to_contribute' task <http://github.com/copiousfreetime/launchy/issues/30>
+* Added `rake how_to_contribute` task <http://github.com/copiousfreetime/launchy/issues/30>
 * Make better decisions on when to do shell escaping <http://github.com/copiousfreetime/launchy/issues/31>
 * Switch to Addressable::URI so UTF-8 urls may be parsed. <http://github.com/copiousfreetime/launchy/issues/32>
 
@@ -109,7 +109,7 @@
 ## Version 0.3.0 - 2007-08-30
 
 * reorganize the code structure, removing Spawnable namespace
-* removed 'do_magic' method, changed it to 'open'
+* removed `do_magic` method, changed it to `open`
 * added override environment variable LAUNCHY_HOST_OS for testing
 * fix broken cygwin support [Bug #13472]
 
@@ -120,15 +120,15 @@
 ## Version 0.2.0 - 2007-08-11
 
 * rework browser finding
-* manual override with LAUNCHY_BROWSER environment variable
+* manual override with `LAUNCHY_BROWSER` environment variable
 * on *nix use desktop application launcher with fallback to list of browsers
 * On windows, switch to 'start' command and remove dependency on win32-process
 * removed win32 gem
-* Add debug output by setting LAUNCHY_DEBUG environment variable to 'true'
+* Add debug output by setting `LAUNCHY_DEBUG` environment variable to `true`
 
 ## Version 0.1.2 - 2007-08-11
 
-* forked child exits without calling at_exit handlers
+* forked child exits without calling `at_exit` handlers
 
 ## Version 0.1.1
 
@@ -137,7 +137,7 @@
 ## Version 0.1.0
 
 * Initial public release
-* switched to using fork to spawn process and require 'win32/process' if on windows
+* switched to using fork to spawn process and `require 'win32/process'` if on windows
 
 ## Version 0.0.2
 
