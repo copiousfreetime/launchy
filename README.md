@@ -90,7 +90,7 @@ in the github gem if it was updated to use 2.0.x but not use the supported API.
     WARNING:
     WARNING: If this is not the case, please file a bug. Please file a bug at https://github.com/copiousfreetime/launchy/issues/new
 
-These deprecation notices will go away with version 3.0 and the only availabel
+These deprecation notices will go away with version 3.0 and the only available
 API will be the documented one.
 
 ## ISC LICENSE
