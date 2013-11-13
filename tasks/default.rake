@@ -1,5 +1,6 @@
 # vim: syntax=ruby
 require 'rake/clean'
+require 'digest'
 #------------------------------------------------------------------------------
 # If you want to Develop on this project just run 'rake develop' and you'll
 # have all you need to get going. If you want to use bundler for development,
@@ -11,7 +12,7 @@ namespace :develop do
   # gemspec.
   task :default do
     require 'rubygems/dependency_installer'
-    installer = Gem::DependencyInstaller.new
+    installer = ::Gem::DependencyInstaller.new
 
     This.set_coverage_gem
 
@@ -30,7 +31,7 @@ namespace :develop do
   # Create a Gemfile that just references the gemspec
   file 'Gemfile' => :gemspec do
     File.open( "Gemfile", "w+" ) do |f|
-      f.puts 'source :rubygems'
+      f.puts 'source "https://rubygems.org/"'
       f.puts 'gemspec'
     end
   end
@@ -53,8 +54,8 @@ begin
   require 'rake/testtask'
   Rake::TestTask.new( :test ) do |t|
     t.ruby_opts    = %w[ -w -rubygems ]
-    t.libs         = %w[ lib spec ]
-    t.pattern      = "spec/**/*_spec.rb"
+    t.libs         = %w[ lib spec test ]
+    t.pattern      = "{test,spec}/**/{test_*,*_spec}.rb"
   end
 
   task :test_requirements
@@ -79,7 +80,7 @@ begin
     t.rdoc_files.include( FileList['*.{rdoc,md,txt}'], FileList['ext/**/*.c'],
                           FileList['lib/**/*.rb'] )
   end
-rescue LoadError => le
+rescue StandardError, LoadError
   This.task_warning( 'rdoc' )
 end
 
@@ -234,7 +235,7 @@ CLOBBER << FileList["**/*.rbc"]
 
 # The standard gem packaging task, everyone has it.
 require 'rubygems/package_task'
-Gem::PackageTask.new( This.platform_gemspec ) do
+::Gem::PackageTask.new( This.platform_gemspec ) do
   # nothing
 end
 
