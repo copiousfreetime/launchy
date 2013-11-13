@@ -10,6 +10,7 @@ describe Launchy::Application::Browser do
   after do
     Launchy.reset_global_options
     ENV.delete( 'KDE_FULL_SESSION' )
+    ENV.delete( 'BROWSER' )
   end
 
   { 'windows' => 'start /b' ,
