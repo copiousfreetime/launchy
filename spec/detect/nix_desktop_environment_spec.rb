@@ -22,24 +22,15 @@ describe Launchy::Detect::NixDesktopEnvironment do
     end
    end
 
-  it "detects the fluxbox desktop environment" do
-    ENV['DESKTOP_SESSION'] = 'fluxbox'
-    fluxbox_env = Launchy::Detect::NixDesktopEnvironment.detect
-    fluxbox_env.must_equal( Launchy::Detect::NixDesktopEnvironment::Fluxbox )
-    fluxbox_env.browser.must_equal( Launchy::Detect::NixDesktopEnvironment::Fluxbox.browser )
-    ENV.delete( 'DESKTOP_SESSION' )
+  it "returns xdg as the default linux desktop environment" do
+    Launchy.host_os = "linux"
+    xdg_env = Launchy::Detect::NixDesktopEnvironment.detect
+    xdg_env.must_equal( Launchy::Detect::NixDesktopEnvironment::Xdg )
+    xdg_env.browser.must_equal( Launchy::Detect::NixDesktopEnvironment::Xdg.browser )
   end
 
   it "returns false for XFCE if xprop is not found" do
     Launchy.host_os = "linux"
     Launchy::Detect::NixDesktopEnvironment::Xfce.is_current_desktop_environment?.must_equal( false )
   end
-
-  it "returns nil if it cannot determine the *nix desktop environment" do
-    Launchy.host_os = "linux"
-    ENV.delete( "KDE_FULL_SESSION" )
-    ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
-    Launchy::Detect::NixDesktopEnvironment.detect.must_equal( nil )
-  end
-
 end

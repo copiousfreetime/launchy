@@ -22,6 +22,10 @@ module Launchy::Detect
       %w[ firefox seamonkey opera mozilla netscape galeon ]
     end
 
+    def self.browsers
+      [ browser, fallback_browsers ].flatten
+    end
+
     #---------------------------------------
     # The list of known desktop environments
     #---------------------------------------
@@ -60,9 +64,10 @@ module Launchy::Detect
       end
     end
 
-    class Fluxbox < NixDesktopEnvironment
+    # Fall back environment as the last case
+    class Xdg < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        ENV['DESKTOP_SESSION'] == 'fluxbox'
+        true
       end
 
       def self.browser
