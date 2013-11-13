@@ -67,13 +67,25 @@ module Launchy::Detect
     # Fall back environment as the last case
     class Xdg < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        true
+        Launchy::Application.find_executable( browser )
       end
 
       def self.browser
         'xdg-open'
       end
     end
+
+    # The one that is found when all else fails. And this must be declared last
+    class NotFound < NixDesktopEnvironment
+      def self.is_current_desktop_environment?
+        true
+      end
+
+      def self.browser
+        []
+      end
+    end
+
   end
 end
 
