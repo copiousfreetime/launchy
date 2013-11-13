@@ -1,9 +1,12 @@
 # Launchy Changelog
 
-## Version Next
-* Support Launchy.open( url, :debug => true ) - copiousfreetime/launchy#63 - @schmich
-* Fix inconsistencies in debug? and dry_run? methods - copiousfreetime/launchy#63 - @schmich
+## Version 2.4.0 - 2013-11-12
+* Support `Launchy.open( url, :debug => true )` - copiousfreetime/launchy#63 - @schmich
+* Fix inconsistencies in `debug?` and `dry_run?` methods - copiousfreetime/launchy#63 - @schmich
 * Fix detection of missing *nix desktops - copiousfreetime/launchy#70
+* Fix running tests in bare Linux environment - copiousfreetime/launchy#67 - @gioele
+* Fix mistaking windows drive as uri schema - copiousfreetime/launchy#65
+* Attempt fixing windows start command oddities, again - copiousfreetime/launchy#62
 
 ## Version 2.3.0 - 2013-04-11
 
