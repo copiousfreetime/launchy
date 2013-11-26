@@ -37,7 +37,7 @@ module Launchy::Detect
     # and in that case system shell escaping rules are not done.
     #
     def shell_commands( cmd, args )
-      cmdline = [ cmd.shellsplit ]
+      cmdline = [ cmd.to_s.shellsplit ]
       cmdline << args.flatten.collect{ |a| a.to_s }
       return commandline_normalize( cmdline )
     end
