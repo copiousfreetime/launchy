@@ -8,6 +8,7 @@ bin/launchy
 lib/launchy.rb
 lib/launchy/application.rb
 lib/launchy/applications/browser.rb
+lib/launchy/argv.rb
 lib/launchy/cli.rb
 lib/launchy/deprecated.rb
 lib/launchy/descendant_tracker.rb

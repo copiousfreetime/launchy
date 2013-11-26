@@ -1,5 +1,8 @@
 # Launchy Changelog
 
+## Version 2.4.1 - 2013-11-26
+* Abstract out the argv of the commandline - <https://github.com/copiousfreetime/launchy/issues/71>
+
 ## Version 2.4.0 - 2013-11-12
 * Support `Launchy.open( url, :debug => true )` - <http://github.com/copiousfreetime/launchy/issues/63> - schmich
 * Fix inconsistencies in `debug?` and `dry_run?` methods - <http://github.com/copiousfreetime/launchy/issues/63> - schmich
