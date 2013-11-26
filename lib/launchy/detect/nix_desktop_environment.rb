@@ -36,7 +36,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        ::Launchy::Argv.new( %w[ kvmclient openURL ] )
+        ::Launchy::Argv.new( %w[ kfmclient openURL ] )
       end
     end
 
