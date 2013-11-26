@@ -14,6 +14,8 @@ describe Launchy::Detect::NixDesktopEnvironment do
   { "KDE_FULL_SESSION"         => Launchy::Detect::NixDesktopEnvironment::Kde,
     "GNOME_DESKTOP_SESSION_ID" => Launchy::Detect::NixDesktopEnvironment::Gnome }.each_pair do |k,v|
     it "can detect the desktop environment of a *nix machine using ENV[#{k}]" do
+      ENV.delete( "KDE_FULL_SESSION" )
+      ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
       ENV[k] = "launchy-test"
       nix_env = Launchy::Detect::NixDesktopEnvironment.detect
       nix_env.must_equal( v )
@@ -33,6 +35,6 @@ describe Launchy::Detect::NixDesktopEnvironment do
     ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
     not_found = Launchy::Detect::NixDesktopEnvironment.detect
     not_found.must_equal( Launchy::Detect::NixDesktopEnvironment::NotFound )
-    not_found.browser.must_equal( [] )
+    not_found.browser.must_equal( Launchy::Argv.new )
   end
 end

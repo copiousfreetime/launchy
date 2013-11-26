@@ -28,9 +28,7 @@ class Launchy::Application
     def nix_app_list
       nix_de = Launchy::Detect::NixDesktopEnvironment.detect
       list   = nix_de.browsers
-
-      list.delete_if { |b| b.nil? || (b.strip.size == 0) }
-      list.collect { |bin| find_executable( bin ) }.find_all { |x| not x.nil? }
+      list.find_all { |argv| argv.valid? }
     end
 
     # use a call back mechanism to get the right app_list that is decided by the 

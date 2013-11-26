@@ -19,7 +19,7 @@ module Launchy::Detect
     end
 
     def self.fallback_browsers
-      %w[ firefox seamonkey opera mozilla netscape galeon ]
+      %w[ firefox seamonkey opera mozilla netscape galeon ].map { |x| ::Launchy::Argv.new( x ) }
     end
 
     def self.browsers
@@ -36,7 +36,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        'kfmclient'
+        ::Launchy::Argv.new( %w[ kvmclient openURL ] )
       end
     end
 
@@ -46,7 +46,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        'gnome-open'
+        ::Launchy::Argv.new( 'gnome-open' )
       end
     end
 
@@ -60,7 +60,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        'exo-open'
+        ::Launchy::Argv.new( 'exo-open' )
       end
     end
 
@@ -71,7 +71,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        'xdg-open'
+        ::Launchy::Argv.new( 'xdg-open' )
       end
     end
 
@@ -82,7 +82,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        []
+        ::Launchy::Argv.new
       end
     end
 

@@ -143,6 +143,7 @@ module Launchy
 end
 
 require 'launchy/version'
+require 'launchy/argv'
 require 'launchy/cli'
 require 'launchy/descendant_tracker'
 require 'launchy/error'
