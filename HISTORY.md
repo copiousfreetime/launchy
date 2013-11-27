@@ -1,5 +1,8 @@
 # Launchy Changelog
 
+## Version 2.4.2 - 2013-11-27
+* Fix kde issue - <https://github.com/copiousfreetime/launchy/issues/71> - colbell
+
 ## Version 2.4.1 - 2013-11-26
 * Abstract out the argv of the commandline - <https://github.com/copiousfreetime/launchy/issues/71>
 

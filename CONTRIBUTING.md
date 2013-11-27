@@ -45,6 +45,7 @@ easiest way to contribute.
 * [Miquel Rodríguez Telep](https://github.com/mrtorrent)
 * [Chris Schmich](https://github.com/schmich)
 * [Gioele Barabucci](https://github.com/gioele)
+* [Colin Noel Bell](https://github.com/colbell)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
