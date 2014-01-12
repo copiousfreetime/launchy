@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'stringio'
 
 module Launchy::Detect
   class Runner
@@ -117,7 +118,12 @@ module Launchy::Detect
         child_pid = fork do
           close_file_descriptors unless Launchy.debug?
           Launchy.log("wet_run: before exec in child process")
-          exec( *shell_commands( cmd, *args ))
+          begin
+            exec( *shell_commands( cmd, *args ))
+          rescue Exception
+            $stderr = STDERR # restore $stderr to output the backtrace
+            raise
+          end
           exit!
         end
         Process.detach( child_pid )
@@ -125,7 +131,7 @@ module Launchy::Detect
 
       def close_file_descriptors
         [$stdin, $stdout, $stderr].each do |io|
-          io.reopen( "/dev/null", "r+" )
+          io = StringIO.new
         end
       end
 
