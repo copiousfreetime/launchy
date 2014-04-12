@@ -20,7 +20,7 @@ Currently only launching a browser is supported.
 
 ## SYNOPSIS
 
-You can use launchy on the commandline, within a rails testing environment (i.e. capybara), or via its API.
+You can use launchy on the commandline, within the Capybara and Rspec-rails testing environment, or via its API.
 
 ### Commandline
 
@@ -28,13 +28,18 @@ You can use launchy on the commandline, within a rails testing environment (i.e.
 
 There are additional commandline options, use `launchy --help` to see them.
 
-### Testing
+### Capybara Testing
 
-Insert this line into your code at the place where you would like to open your program:
+First, install [Capybara](https://github.com/jnicklas/capybara) and [Rspec for Rails](https://github.com/rspec/rspec-rails). Capybara provides the following method:
 
     save_and_open_page
     
-This will launch an unstyled instance of the specific page. It can be especially useful when debugging errors in integration tests. For example:
+When inserted into your code at the place where you would like to open your program, and when rspec is run, Capybara displays this message:
+
+    Page saved to /home/code/my_app_name/tmp/capybara/capybara-current-date-and-time.html with save_and_open_page.
+    Please install the launchy gem to open page automatically. 
+
+With Launchy installed, when rspec is run again, it will launch an unstyled instance of the specific page. It can be especially useful when debugging errors in integration tests. For example:
 
     context "signin" do
       it "lets a user sign in" do
