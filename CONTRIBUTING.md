@@ -46,6 +46,7 @@ easiest way to contribute.
 * [Chris Schmich](https://github.com/schmich)
 * [Gioele Barabucci](https://github.com/gioele)
 * [Colin Noel Bell](https://github.com/colbell)
+* [Mark J. Lehman](https://github.com/supremebeing7)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
