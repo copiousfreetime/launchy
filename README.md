@@ -20,13 +20,30 @@ Currently only launching a browser is supported.
 
 ## SYNOPSIS
 
-You can use launchy on the commandline, or via its API.
+You can use launchy on the commandline, within a rails testing environment (i.e. capybara), or via its API.
 
 ### Commandline
 
     % launchy http://www.ruby-lang.org/
 
 There are additional commandline options, use `launchy --help` to see them.
+
+### Testing
+
+Insert this line into your code at the place where you would like to open your program:
+
+    save_and_open_page
+    
+This will launch an unstyled instance of the specific page. It can be especially useful when debugging errors in integration tests. For example:
+
+    context "signin" do
+      it "lets a user sign in" do
+        visit root_path
+        click_link signin_path
+        save_and_open_page
+        page.should have_content "Enter your login information"
+      end
+    end
 
 ### Public API
 
