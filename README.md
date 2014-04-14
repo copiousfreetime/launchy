@@ -33,11 +33,11 @@ There are additional commandline options, use `launchy --help` to see them.
 First, install [Capybara](https://github.com/jnicklas/capybara) and [Rspec for Rails](https://github.com/rspec/rspec-rails). Capybara provides the following method:
 
     save_and_open_page
-    
+
 When inserted into your code at the place where you would like to open your program, and when rspec is run, Capybara displays this message:
 
     Page saved to /home/code/my_app_name/tmp/capybara/capybara-current-date-and-time.html with save_and_open_page.
-    Please install the launchy gem to open page automatically. 
+    Please install the launchy gem to open page automatically.
 
 With Launchy installed, when rspec is run again, it will launch an unstyled instance of the specific page. It can be especially useful when debugging errors in integration tests. For example:
 
