@@ -176,7 +176,7 @@ class ThisProject
     if RUBY_VERSION < "1.9.0"
       platform_gemspec.add_development_dependency( 'rcov', '~> 1.0.0' )
     else
-      platform_gemspec.add_development_dependency( 'simplecov', '~> 0.7.1' )
+      platform_gemspec.add_development_dependency( 'simplecov', '~> 0.8' )
     end
   end
 
