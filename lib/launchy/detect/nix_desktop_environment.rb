@@ -60,7 +60,7 @@ module Launchy::Detect
       end
 
       def self.browser
-        ::Launchy::Argv.new( 'exo-open' )
+        ::Launchy::Argv.new( %w[ exo-open --launch WebBrowser ] )
       end
     end
 
