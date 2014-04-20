@@ -2,6 +2,7 @@
 
 ## Version 2.4.3 - 2014-04-14
 * Update documentation - <https://github.com/copiousfreetime/launchy/pull/81> - supremebeing7
+* Fix launching of `exo-open` for XFCE - <https://github.com/copiousfreetime/launchy/issues/82> - dsandstrom
 
 ## Version 2.4.2 - 2013-11-28
 * Fix kde issue - <https://github.com/copiousfreetime/launchy/issues/72> - colbell
