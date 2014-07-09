@@ -1,6 +1,6 @@
 # Launchy Changelog
 
-## Version 2.4.3 - 2014-04-14
+## Version 2.4.3 - 2014-04-XX
 * Update documentation - <https://github.com/copiousfreetime/launchy/pull/81> - supremebeing7
 * Fix launching of `exo-open` for XFCE - <https://github.com/copiousfreetime/launchy/issues/82> - dsandstrom
 

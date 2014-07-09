@@ -51,5 +51,13 @@ describe Launchy::Application::Browser do
     browser.browser_cmdline.must_equal "do-this-instead"
   end
 
+  it "When BROWSER is set to something that is not executable, this still appears on stderr" do
+    ENV['BROWSER'] = "not-an-app"
+    url = "http://example.com/"
+    out, err = capture_subprocess_io do 
+      Launchy.open( url )
+    end
+    err.must_match( /wibble/m )
+  end
 end
 

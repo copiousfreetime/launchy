@@ -113,23 +113,38 @@ module Launchy::Detect
     end
 
     class Forkable < Runner
+      attr_reader :child_pid
       def wet_run( cmd, *args )
-        child_pid = fork do
+        @child_pid = fork do
           close_file_descriptors unless Launchy.debug?
           Launchy.log("wet_run: before exec in child process")
-          exec( *shell_commands( cmd, *args ))
+          exec_or_raise( cmd, *args )
           exit!
         end
-        Process.detach( child_pid )
+        Process.detach( @child_pid )
       end
+
+      private
 
       def close_file_descriptors
-        [$stdin, $stdout, $stderr].each do |io|
-          io.reopen( "/dev/null", "r+" )
-        end
+        $stdin.reopen("/dev/null", "r+")
+
+        $stdout = $stdout.dup
+        $stdout.reopen("/dev/null", "r+")
+
+        $stderr = $stderr.dup
+        $stderr.reopen("/dev/null", "r+")
       end
 
-      private :close_file_descriptors
+      def exec_or_raise( cmd, *args )
+        exec( *shell_commands( cmd, *args ))
+      rescue Exception => e
+        # Reopen stderr in exceptional circumstances
+        $stderr.reopen(STDERR)
+        $stderr.puts( "I am #{stderr.inspect}")
+        raise e
+      end
+
     end
   end
 end

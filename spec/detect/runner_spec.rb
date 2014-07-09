@@ -100,5 +100,4 @@ describe Launchy::Detect::Runner do
     cmd = l.dry_run( "not-really", [ url ] )
     cmd.must_equal( "not-really #{url}" )
   end
-
 end
