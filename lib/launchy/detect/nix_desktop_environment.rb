@@ -42,7 +42,8 @@ module Launchy::Detect
 
     class Gnome < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        ENV['GNOME_DESKTOP_SESSION_ID']
+        ENV['GNOME_DESKTOP_SESSION_ID'] &&
+          Launchy::Application.find_executable( 'gnome-open' )
       end
 
       def self.browser
