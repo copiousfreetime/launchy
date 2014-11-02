@@ -19,7 +19,7 @@ module Launchy::Detect
     end
 
     def self.fallback_browsers
-      %w[ firefox seamonkey opera mozilla netscape galeon ].map { |x| ::Launchy::Argv.new( x ) }
+      %w[ firefox iceweasel seamonkey opera mozilla netscape galeon ].map { |x| ::Launchy::Argv.new( x ) }
     end
 
     def self.browsers
