@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'stringio'
 
 module Launchy::Detect
   class Runner
@@ -113,7 +114,8 @@ module Launchy::Detect
     end
 
     class Forkable < Runner
-      attr_reader :child_pid
+      attr_reader   :child_pid
+
       def wet_run( cmd, *args )
         @child_pid = fork do
           close_file_descriptors unless Launchy.debug?
@@ -126,25 +128,25 @@ module Launchy::Detect
 
       private
 
+      # attaching to a StringIO instead of reopening so we don't loose the
+      # STDERR, needed for exec_or_raise.
       def close_file_descriptors
-        $stdin.reopen("/dev/null", "r+")
+        $stdin.reopen( "/dev/null")
 
-        $stdout = $stdout.dup
-        $stdout.reopen("/dev/null", "r+")
+        @saved_stdout = $stdout
+        @saved_stderr = $stderr
 
-        $stderr = $stderr.dup
-        $stderr.reopen("/dev/null", "r+")
+        $stdout       = StringIO.new
+        $stderr       = StringIO.new
       end
 
       def exec_or_raise( cmd, *args )
         exec( *shell_commands( cmd, *args ))
       rescue Exception => e
-        # Reopen stderr in exceptional circumstances
-        $stderr.reopen(STDERR)
-        $stderr.puts( "I am #{stderr.inspect}")
+        $stderr = @saved_stderr
+        $stdout = @saved_stdout
         raise e
       end
-
     end
   end
 end
