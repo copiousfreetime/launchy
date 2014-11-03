@@ -47,6 +47,9 @@ easiest way to contribute.
 * [Gioele Barabucci](https://github.com/gioele)
 * [Colin Noel Bell](https://github.com/colbell)
 * [Mark J. Lehman](https://github.com/supremebeing7)
+* [Cédric Félizard](https://github.com/infertux)
+* [Daniel Farina](https://github.com/fdr)
+* [Jack Turnbull](https://github.com/jackturnbull)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"
