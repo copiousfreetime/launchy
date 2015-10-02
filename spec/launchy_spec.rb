@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pathname'
 
 describe Launchy do
 
@@ -106,5 +107,11 @@ describe Launchy do
       app = Launchy.app_for_uri_string( x )
       app.must_equal( Launchy::Application::Browser )
     end
+  end
+
+  it "can use a Pathname as the URI" do
+    path = Pathname.new( Dir.pwd )
+    app = Launchy.app_for_uri_string( path )
+    app.must_equal( Launchy::Application::Browser )
   end
 end

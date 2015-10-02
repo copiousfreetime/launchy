@@ -48,6 +48,7 @@ module Launchy
     end
 
     def string_to_uri( s )
+      s = s.to_s
       uri = Addressable::URI.parse( s )
       Launchy.log "URI parsing pass 1 : #{s} -> #{uri.to_hash}"
       if not uri.scheme then
