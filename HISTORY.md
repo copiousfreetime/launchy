@@ -1,5 +1,8 @@
 # Launchy Changelog
 
+## Version 2.4.5 - 2015-10-XX
+* Require the existence of `kfmclient` for KDE - <https://github.com/copiousfreetime/launchy/issues/102> - lexelby
+
 ## Version 2.4.3 - 2014-11-03
 * Update documentation - <https://github.com/copiousfreetime/launchy/pull/81> - supremebeing7
 * Fix launching of `exo-open` for XFCE - <https://github.com/copiousfreetime/launchy/issues/82> - dsandstrom

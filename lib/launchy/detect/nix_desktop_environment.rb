@@ -32,7 +32,8 @@ module Launchy::Detect
 
     class Kde < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        ENV['KDE_FULL_SESSION']
+        ENV['KDE_FULL_SESSION'] &&
+          Launchy::Application.find_executable( 'kfmclient' )
       end
 
       def self.browser
