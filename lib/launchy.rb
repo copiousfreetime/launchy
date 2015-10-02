@@ -8,7 +8,8 @@ require 'addressable/uri'
 # The currently defined global options are:
 #
 #   :debug        Turn on debugging output
-#   :application  Explicitly state what application class is going to be used
+#   :application  Explicitly state what application class is going to be used.
+#                 This must be a child class of Launchy::Application
 #   :host_os      Explicitly state what host operating system to pretend to be
 #   :ruby_engine  Explicitly state what ruby engine to pretend to be under
 #   :dry_run      Do nothing and print the command that would be executed on $stdout
