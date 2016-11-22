@@ -34,7 +34,7 @@ Launchy has a predefined set of common browsers on each platform that it attempt
 
 `BROWSER` works in a similar same way as `PATH`. It is a colon (`:`) separated list of commands to try. You can also put in a `%s` in the command and the URL you are attempting to open will be substituded there.
 
-As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab '%s':/usr/local/bin/google-chrome-stable` and you call `Launchy::Browser.run("http://www.ruby-lang.org/")` then Launchy will try, in order:
+As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab '%s':/usr/local/bin/google-chrome-stable` and you call `Launchy.open("http://www.ruby-lang.org/")` then Launchy will try, in order:
 
 * `/usr/local/bin/firefox-bin -new-tab 'http://www.ruby-lang.org'`
 * `/usr/local/bin/google-chrome-stable http://www.ruby-lang.org`
