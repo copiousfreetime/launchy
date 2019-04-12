@@ -4,7 +4,7 @@ class Launchy::Application
   #
   class Browser < Launchy::Application
     def self.schemes
-      %w[ http https ftp file ]
+      %w[ http https ftp file mailto]
     end
 
     def self.handles?( uri )
