@@ -38,7 +38,11 @@ task :develop => "develop:default"
 begin
   require 'rake/testtask'
   Rake::TestTask.new( :test ) do |t|
-    t.ruby_opts    = %w[ -w -rubygems ]
+    if RUBY_VERSION > "2.5"
+      t.ruby_opts    = %w[ -w ]
+    else
+      t.ruby_opts    = %w[ -w -rubygems ]
+    end
     t.libs         = %w[ lib spec test ]
     t.pattern      = "{test,spec}/**/{test_*,*_spec}.rb"
   end
