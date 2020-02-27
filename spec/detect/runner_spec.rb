@@ -13,17 +13,17 @@ describe Launchy::Detect::Runner do
 
   it "raises an error when there is an unknown host os" do
     Launchy.host_os = "foo"
-    lambda{ Launchy::Detect::Runner.detect }.must_raise Launchy::Detect::HostOsFamily::NotFoundError
+    _(lambda{ Launchy::Detect::Runner.detect }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
   end
 
   it "raises an error when there is an unknown ruby engine" do
     Launchy.ruby_engine = "wibble"
-    lambda{ Launchy::Detect::Runner.detect }.must_raise Launchy::Detect::RubyEngine::NotFoundError
+    _(lambda{ Launchy::Detect::Runner.detect }).must_raise Launchy::Detect::RubyEngine::NotFoundError
   end
 
   it "raises and error when there is no command found" do
     runner = Launchy::Detect::Runner.detect
-    lambda{ runner.run( nil, *%w[ arg1 arg2 arg 3] ) }.must_raise Launchy::CommandNotFoundError
+    _(lambda{ runner.run( nil, *%w[ arg1 arg2 arg 3] ) }).must_raise Launchy::CommandNotFoundError
   end
 
   # On anything that has fork, use Forkable
@@ -33,7 +33,7 @@ describe Launchy::Detect::Runner do
         Launchy.host_os = host_os
         Launchy.ruby_engine = engine_name
         engine = Launchy::Detect::Runner.detect
-        engine.must_be_instance_of Launchy::Detect::Runner::Forkable
+        _(engine).must_be_instance_of Launchy::Detect::Runner::Forkable
       end
     end
   end
@@ -48,7 +48,7 @@ describe Launchy::Detect::Runner do
       Launchy.host_os = host_os
       Launchy.ruby_engine = 'jruby'
       engine = Launchy::Detect::Runner.detect
-      engine.must_be_instance_of runner
+      _(engine).must_be_instance_of runner
     end
   end
 
@@ -58,14 +58,14 @@ describe Launchy::Detect::Runner do
       Launchy.host_os = "mingw"
       Launchy.ruby_engine = engine_name
       e = Launchy::Detect::Runner.detect
-      e.must_be_instance_of Launchy::Detect::Runner::Windows
+      _(e).must_be_instance_of Launchy::Detect::Runner::Windows
     end
   end
 
   it "Windows launches use the 'cmd' command" do
     win = Launchy::Detect::Runner::Windows.new
     cmd = win.dry_run( "not-really", [ "http://example.com" ] )
-    cmd.must_equal 'cmd /c not-really http://example.com'
+    _(cmd).must_equal 'cmd /c not-really http://example.com'
   end
 
   %w[ & | ( ) < > ^ ].each do |reserved_char|
@@ -75,29 +75,29 @@ describe Launchy::Detect::Runner do
       url = parts.join( reserved_char )
       output_url = parts.join( "^#{reserved_char}" )
 
-      win.all_args( "not-really", [ url ] ).must_equal [ 'cmd', '/c', 'not-really', output_url ]
+      _(win.all_args( "not-really", [ url ] )).must_equal [ 'cmd', '/c', 'not-really', output_url ]
 
       cmd = win.dry_run( "not-really", [ url ] )
-      cmd.must_equal "cmd /c not-really #{output_url}"
+      _(cmd).must_equal "cmd /c not-really #{output_url}"
     end
   end
 
   it "Jruby doesnot escapes '&' in urls" do
     jruby = Launchy::Detect::Runner::Jruby.new
     cmd = jruby.dry_run( "not-really", [ @test_url ])
-    cmd.must_equal 'not-really http://example.com/?foo=bar&baz=wibble'
+    _(cmd).must_equal 'not-really http://example.com/?foo=bar&baz=wibble'
   end
 
   it "does not escape %38 items in urls" do
     l = Launchy::Detect::Runner::Forkable.new
     cmd = l.dry_run( "not-really", [ "http://ja.wikipedia.org/wiki/%E3%81%82" ] )
-    cmd.must_equal( 'not-really http://ja.wikipedia.org/wiki/%E3%81%82'  )
+    _(cmd).must_equal( 'not-really http://ja.wikipedia.org/wiki/%E3%81%82'  )
   end
 
   it "can launch a utf8 url" do
     url = "http://ja.wikipedia.org/wiki/あ"
     l = Launchy::Detect::Runner::Forkable.new
     cmd = l.dry_run( "not-really", [ url ] )
-    cmd.must_equal( "not-really #{url}" )
+    _(cmd).must_equal( "not-really #{url}" )
   end
 end

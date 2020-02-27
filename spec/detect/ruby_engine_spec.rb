@@ -12,18 +12,18 @@ describe Launchy::Detect::RubyEngine do
 
   %w[ ruby jruby rbx macruby ].each do |ruby|
     it "detects the #{ruby} RUBY_ENGINE" do
-      Launchy::Detect::RubyEngine.detect( ruby ).ancestors.must_include Launchy::Detect::RubyEngine
+      _(Launchy::Detect::RubyEngine.detect( ruby ).ancestors).must_include Launchy::Detect::RubyEngine
     end
   end
 
   it "uses the global ruby_engine overrides" do
     ENV['LAUNCHY_RUBY_ENGINE'] = "rbx"
-    Launchy::Detect::RubyEngine.detect.must_equal Launchy::Detect::RubyEngine::Rbx
+    _(Launchy::Detect::RubyEngine.detect).must_equal Launchy::Detect::RubyEngine::Rbx
     ENV.delete('LAUNCHY_RUBY_ENGINE')
   end
 
   it "does not find a ruby engine of 'foo'" do
-    lambda { Launchy::Detect::RubyEngine.detect( 'foo' ) }.must_raise Launchy::Detect::RubyEngine::NotFoundError
+    _(lambda { Launchy::Detect::RubyEngine.detect( 'foo' ) }).must_raise Launchy::Detect::RubyEngine::NotFoundError
   end
 
   { 'rbx'     => :rbx?,
@@ -31,7 +31,7 @@ describe Launchy::Detect::RubyEngine do
     'macruby' => :macruby?,
     'jruby'   => :jruby? }.each_pair do |engine, method|
     it "#{method} returns true for #{engine} " do
-      Launchy::Detect::RubyEngine.detect( engine ).send( method ).must_equal true
+      _(Launchy::Detect::RubyEngine.detect( engine ).send( method )).must_equal true
     end
  end
 end

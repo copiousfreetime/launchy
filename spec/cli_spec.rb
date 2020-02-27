@@ -21,9 +21,9 @@ describe Launchy::Cli do
     begin
       Launchy::Cli.new.run( argv, env )
     rescue SystemExit => se
-      se.status.must_equal exit_val
-      $stderr.string.must_match stderr_regex if stderr_regex
-      $stdout.string.must_match stdout_regex if stdout_regex
+      _(se.status).must_equal exit_val
+      _($stderr.string).must_match stderr_regex if stderr_regex
+      _($stdout.string).must_match stdout_regex if stdout_regex
     end
   end
 
@@ -47,14 +47,14 @@ describe Launchy::Cli do
     l = Launchy::Cli.new
     argv = %w[ --debug --dry-run http://github.com/copiousfreetime/launchy ]
     l.parse( argv , {} )
-    argv.size.must_equal 1
-    argv[0].must_equal "http://github.com/copiousfreetime/launchy" 
+    _(argv.size).must_equal 1
+    _(argv[0]).must_equal "http://github.com/copiousfreetime/launchy" 
   end
 
   it "prints the command on stdout when using --dry-run" do
    argv = %w[ --debug --dry-run http://github.com/copiousfreetime/launchy ]
    Launchy::Cli.new.good_run( argv, {} )
-   $stdout.string.must_match %r[github.com]
+   _($stdout.string).must_match %r[github.com]
   end
 
   {
@@ -65,10 +65,10 @@ describe Launchy::Cli do
       argv = [ opt, val[1], "http://github.com/copiousfreetime/launchy" ]
       l = Launchy::Cli.new
       rc = l.parse( argv, {} )
-      rc.must_equal true
-      argv.size.must_equal 1
-      argv[0].must_equal "http://github.com/copiousfreetime/launchy"
-      l.options[val[0]].must_equal val[1]
+      _(rc).must_equal true
+      _(argv.size).must_equal 1
+      _(argv[0]).must_equal "http://github.com/copiousfreetime/launchy"
+      _(l.options[val[0]]).must_equal val[1]
     end
   end
 end

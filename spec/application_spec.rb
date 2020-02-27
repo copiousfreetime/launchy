@@ -14,30 +14,30 @@ describe Launchy::Application do
         uri.scheme == "junk2"
       end
     end
-    Launchy::Application.children.must_include( Junk2App )
+    _(Launchy::Application.children).must_include( Junk2App )
     Launchy::Application.children.delete( Junk2App )
   end
 
   it "can find an app" do
-    Launchy::Application.children.must_include( JunkApp )
-    Launchy::Application.children.size.must_equal 3
+    _(Launchy::Application.children).must_include( JunkApp )
+    _(Launchy::Application.children.size).must_equal 3
     uri = Addressable::URI.parse( "junk:///foo" )
-    Launchy::Application.handling( uri ).must_equal( JunkApp  )
+    _(Launchy::Application.handling( uri )).must_equal( JunkApp  )
   end
 
   it "raises an error if an application cannot be found for the given scheme" do
     uri = Addressable::URI.parse( "foo:///bar" )
-    lambda { Launchy::Application.handling( uri ) }.must_raise( Launchy::ApplicationNotFoundError )
+    _(lambda { Launchy::Application.handling( uri ) }).must_raise( Launchy::ApplicationNotFoundError )
   end
 
   it "can find open or curl or xdg-open" do
     found = %w[ open curl xdg-open ].any? do |app|
       Launchy::Application.find_executable( app )
     end
-    found.must_equal true
+    _(found).must_equal true
   end
 
   it "does not find xyzzy" do
-    Launchy::Application.find_executable( "xyzzy" ).must_equal  nil
+    _(Launchy::Application.find_executable( "xyzzy" )).must_be_nil
   end
 end
