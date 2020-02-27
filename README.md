@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/copiousfreetime/launchy.svg?branch=master)](https://travis-ci.org/copiousfreetime/launchy)
 
+
 * [Homepage](https://github.com/copiousfreetime/launchy)
 * [Github Project](https://github.com/copiousfreetime/launchy)
-* email jeremy at hinegardner dot org
 
 ## DESCRIPTION
 
@@ -22,7 +22,8 @@ Currently only launching a browser is supported.
 
 ## SYNOPSIS
 
-You can use launchy on the commandline, within the Capybara and Rspec-rails testing environment, or via its API.
+You can use launchy on the commandline, within the Capybara and Rspec-rails
+testing environment, or via its API.
 
 ### Commandline
 
@@ -32,11 +33,17 @@ There are additional command line options, use `launchy --help` to see them.
 
 ### Using the `BROWSER` environment variable
 
-Launchy has a predefined set of common browsers on each platform that it attempts to use, and of course it is not exhaustive. As a fallbabck you can make use of the somewhat standard `BROWSER` environment variable.
+Launchy has a predefined set of common browsers on each platform that it
+attempts to use, and of course it is not exhaustive. As a fallbabck you can make
+use of the somewhat standard `BROWSER` environment variable.
 
-`BROWSER` works in a similar same way to `PATH`. It is a colon (`:`) separated list of commands to try. You can also put in a `%s` in the command and the URL you are attempting to open will be substituted there.
+`BROWSER` works in a similar same way to `PATH`. It is a colon (`:`) separated
+list of commands to try. You can also put in a `%s` in the command and the URL
+you are attempting to open will be substituted there.
 
-As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab '%s':/usr/local/bin/google-chrome-stable` and you call `Launchy.open("http://www.ruby-lang.org/")` then Launchy will try, in order:
+As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab
+'%s':/usr/local/bin/google-chrome-stable` and you call
+`Launchy.open("http://www.ruby-lang.org/")` then Launchy will try, in order:
 
 * `/usr/local/bin/firefox-bin -new-tab 'http://www.ruby-lang.org'`
 * `/usr/local/bin/google-chrome-stable http://www.ruby-lang.org`
@@ -49,16 +56,21 @@ Additional links on the use of `BROWSER` as an environment variable.
 
 ### Capybara Testing
 
-First, install [Capybara](https://github.com/jnicklas/capybara) and [Rspec for Rails](https://github.com/rspec/rspec-rails). Capybara provides the following method:
+First, install [Capybara](https://github.com/jnicklas/capybara) and [Rspec for
+Rails](https://github.com/rspec/rspec-rails). Capybara provides the following
+method:
 
     save_and_open_page
 
-When inserted into your code at the place where you would like to open your program, and when rspec is run, Capybara displays this message:
+When inserted into your code at the place where you would like to open your
+program, and when rspec is run, Capybara displays this message:
 
     Page saved to /home/code/my_app_name/tmp/capybara/capybara-current-date-and-time.html with save_and_open_page.
     Please install the launchy gem to open page automatically.
 
-With Launchy installed, when rspec is run again, it will launch an unstyled instance of the specific page. It can be especially useful when debugging errors in integration tests. For example:
+With Launchy installed, when rspec is run again, it will launch an unstyled
+instance of the specific page. It can be especially useful when debugging errors
+in integration tests. For example:
 
     context "signin" do
       it "lets a user sign in" do
