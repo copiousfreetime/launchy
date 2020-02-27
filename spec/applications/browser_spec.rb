@@ -23,6 +23,7 @@ describe Launchy::Application::Browser do
       browser = Launchy::Application::Browser.new
 
       item = browser.app_list.first
+      item = item.to_s if item.kind_of?(::Launchy::Argv)
       case expected
       when Array
         _(expected).must_include item
