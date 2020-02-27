@@ -1,9 +1,17 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1
-  - 2.2
-  - jruby-18mode # JRuby in 1.8 mode
-  - jruby-19mode # JRuby in 1.9 mode
-  - rbx
+  - "2.4"
+  - "2.5"
+  - "2.6"
+  - "2.7"
+  - jruby-9.2.8.0
+  - jruby-9.1.17.0
+  - truffleruby
+
+before_script:
+  - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
+
+script:
+  - rake
+  - fossa init
+  - fossa analyze
