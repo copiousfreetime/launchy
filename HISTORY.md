@@ -1,9 +1,13 @@
 # Launchy Changelog
 
-## Version 2.4.5 - 2015-10-XX
+## Version 2.5.0 - 2020-02-27
+* Update depedencies
+* Update minimum ruby level
+* Move to `kde-open` on KDE - <https://github.com/copiousfreetime/launchy/pull/105> - wstephenson
+* Applied some grammer / spelling fixes - <https://github.com/copiousfreetime/launchy/pull/130> - jeremymoritz
 * Require the existence of `kfmclient` for KDE - <https://github.com/copiousfreetime/launchy/issues/102> - lexelby
 * `Pathname` instances do not raise exceptions when opening local files - <https://github.com/copiousfreetime/launchy/issues/101> - dmke
-* Add a fallback console browsers - <https://github.com/copiousfreetime/launchy/issues/93 - trejkaz
+* Add a fallback console browsers - <https://github.com/copiousfreetime/launchy/issues/93> - trejkaz
 
 ## Version 2.4.3 - 2014-11-03
 * Update documentation - <https://github.com/copiousfreetime/launchy/pull/81> - supremebeing7
