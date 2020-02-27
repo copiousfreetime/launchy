@@ -11,7 +11,7 @@ forget manner.
 
 There are application concepts (browser, email client, etc) that are common
 across all platforms, and they may be launched differently on each platform.
-Launchy is here to make a common approach to launching external application from
+Launchy is here to make a common approach to launching external applications from
 within ruby programs.
 
 ## FEATURES
@@ -26,13 +26,13 @@ You can use launchy on the commandline, within the Capybara and Rspec-rails test
 
     % launchy http://www.ruby-lang.org/
 
-There are additional commandline options, use `launchy --help` to see them.
+There are additional command line options, use `launchy --help` to see them.
 
 ### Using the `BROWSER` environment variable
 
 Launchy has a predefined set of common browsers on each platform that it attempts to use, and of course it is not exhaustive. As a fallbabck you can make use of the somewhat standard `BROWSER` environment variable.
 
-`BROWSER` works in a similar same way as `PATH`. It is a colon (`:`) separated list of commands to try. You can also put in a `%s` in the command and the URL you are attempting to open will be substituded there.
+`BROWSER` works in a similar same way to `PATH`. It is a colon (`:`) separated list of commands to try. You can also put in a `%s` in the command and the URL you are attempting to open will be substituted there.
 
 As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab '%s':/usr/local/bin/google-chrome-stable` and you call `Launchy.open("http://www.ruby-lang.org/")` then Launchy will try, in order:
 
