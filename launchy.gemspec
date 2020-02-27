@@ -20,26 +20,20 @@ Gem::Specification.new do |s|
   s.licenses = ["ISC".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.4.0".freeze)
-  s.rubygems_version = "3.0.3".freeze
+  s.rubygems_version = "3.1.2".freeze
   s.summary = "Launchy is helper class for launching cross-platform applications in a fire and forget manner.".freeze
   s.test_files = ["spec/application_spec.rb".freeze, "spec/applications/browser_spec.rb".freeze, "spec/cli_spec.rb".freeze, "spec/detect/host_os_family_spec.rb".freeze, "spec/detect/host_os_spec.rb".freeze, "spec/detect/nix_desktop_environment_spec.rb".freeze, "spec/detect/ruby_engine_spec.rb".freeze, "spec/detect/runner_spec.rb".freeze, "spec/launchy_spec.rb".freeze, "spec/mock_application.rb".freeze, "spec/spec_helper.rb".freeze, "spec/tattle-host-os.yaml".freeze, "spec/version_spec.rb".freeze]
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
+  end
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.3"])
-      s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
-      s.add_development_dependency(%q<minitest>.freeze, ["~> 5.14"])
-      s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.2"])
-      s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.18"])
-    else
-      s.add_dependency(%q<addressable>.freeze, ["~> 2.3"])
-      s.add_dependency(%q<rake>.freeze, ["~> 13.0"])
-      s.add_dependency(%q<minitest>.freeze, ["~> 5.14"])
-      s.add_dependency(%q<rdoc>.freeze, ["~> 6.2"])
-      s.add_dependency(%q<simplecov>.freeze, ["~> 0.18"])
-    end
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.3"])
+    s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
+    s.add_development_dependency(%q<minitest>.freeze, ["~> 5.14"])
+    s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.2"])
+    s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.18"])
   else
     s.add_dependency(%q<addressable>.freeze, ["~> 2.3"])
     s.add_dependency(%q<rake>.freeze, ["~> 13.0"])

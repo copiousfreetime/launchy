@@ -17,10 +17,4 @@ This.ruby_gemspec do |spec|
   spec.licenses = ['ISC']
 end
 
-This.java_gemspec( This.ruby_gemspec ) do |spec|
-  spec.add_dependency( 'spoon', '~> 0.0.1' )
-
-  spec.licenses = ['ISC']
-end
-
 load 'tasks/default.rake'
