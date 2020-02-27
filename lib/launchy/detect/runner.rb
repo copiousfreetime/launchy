@@ -108,8 +108,8 @@ module Launchy::Detect
 
     class Jruby < Runner
       def wet_run( cmd, *args )
-        require 'spoon'
-        Spoon.spawnp( *shell_commands( cmd, *args ) )
+        child_pid = spawn( *shell_commands( cmd, *args ) )
+        Process.detach( child_pid )
       end
     end
 

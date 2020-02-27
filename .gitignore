@@ -8,3 +8,4 @@ pkg/
 .DS_Store
 *.lock
 .gem
+.byebug_history
