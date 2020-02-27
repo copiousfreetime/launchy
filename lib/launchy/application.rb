@@ -27,7 +27,7 @@ module Launchy
       #
       # Find the given executable in the available paths
       def find_executable( bin, *paths )
-        paths = ENV['PATH'].split( File::PATH_SEPARATOR ) if paths.empty?
+        paths = Launchy.path.split( File::PATH_SEPARATOR ) if paths.empty?
         paths.each do |path|
           file = File.join( path, bin )
           if File.executable?( file ) then

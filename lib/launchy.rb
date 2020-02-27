@@ -66,6 +66,7 @@ module Launchy
       Launchy.host_os     = nil
       Launchy.ruby_engine = nil
       Launchy.dry_run     = false
+      Launchy.path        = ENV['PATH']
     end
 
     def extract_global_options( options )
@@ -125,6 +126,14 @@ module Launchy
 
     def log(msg)
       $stderr.puts "LAUNCHY_DEBUG: #{msg}" if Launchy.debug?
+    end
+
+    def path
+      @path
+    end
+
+    def path=(path)
+      @path = path
     end
 
   private
