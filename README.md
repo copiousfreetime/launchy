@@ -1,5 +1,7 @@
 # launchy
 
+[![Build Status](https://travis-ci.org/copiousfreetime/launchy.svg?branch=master)](https://travis-ci.org/copiousfreetime/launchy)
+
 * [Homepage](https://github.com/copiousfreetime/launchy)
 * [Github Project](https://github.com/copiousfreetime/launchy)
 * email jeremy at hinegardner dot org
