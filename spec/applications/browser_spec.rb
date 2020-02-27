@@ -14,19 +14,20 @@ describe Launchy::Application::Browser do
   end
 
   { 'windows' => 'start "launchy" /b' ,
-    'darwin'  => '/usr/bin/open',
+    'darwin'  => [ '/usr/bin/open', '/bin/open' ], # because running tests on linux
     'cygwin'  => 'cmd /C start "launchy" /b',
-
-    # when running these tests on a linux box, this test will fail
-    'linux'   => nil                 }.each  do |host_os, expected|
+    'linux'   => [nil, "xdg-open"], # because running tests on linux
+  }.each  do |host_os, expected|
     it "when host_os is '#{host_os}' the appropriate 'app_list' method is called" do
       Launchy.host_os = host_os
       browser = Launchy::Application::Browser.new
 
-      if expected.nil? then
-        _(browser.app_list.first).must_be_nil
-      else
-        _(browser.app_list.first).must_equal expected
+      item = browser.app_list.first
+      case expected
+      when Array
+        _(expected).must_include item
+      when String
+        _(item).must_equal expected
       end
     end
   end

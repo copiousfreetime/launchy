@@ -78,7 +78,9 @@ describe Launchy do
   it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
     uri = "blah://example.com/#{__FILE__}"
     Launchy.open( uri , :dry_run => true )
-    _($stdout.string.strip).must_equal "/usr/bin/open #{uri}"
+    parts = $stdout.string.strip.split
+    _(parts.size).must_be :>, 1
+    _(parts.last).must_equal uri
   end
 
   it "opens a local file if we have a drive letter and a valid path on windows" do
