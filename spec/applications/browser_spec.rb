@@ -61,15 +61,18 @@ describe Launchy::Application::Browser do
   # NOTE: Unable to figure out how capture the stderr from the child which has
   # moved it at least once. This test just serves the purpose of noting why
   # something happens, and the problem we are attempting to fix.
-  it "When BROWSER is set to something that is not executable, error still appears on stderr" do
-    ENV['BROWSER'] = "not-an-app"
-    url = "http://example.com/"
+  #it "When BROWSER is set to something that is not executable, error still appears on stderr" do
+  #  ENV['BROWSER'] = "not-an-app"
+  #  url = "http://example.com/"
 
-    _, err = capture_subprocess_io do 
-      Launchy.open( url )
-    end
-    #_(err).must_match( /wibble/m )
-    err # something
-  end
+  #  _, err = capture_subprocess_io do 
+  #    begin
+  #      Launchy.open( url )
+  #    rescue => nil
+  #    end
+  #  end
+  #  #_(err).must_match( /wibble/m )
+  #  err # something
+  #end
 end
 
