@@ -15,6 +15,13 @@ This.ruby_gemspec do |spec|
   spec.add_development_dependency( 'simplecov', '~> 0.18' )
 
   spec.licenses = ['ISC']
+
+  spec.metadata = {
+    "bug_tracker_uri" => "https://github.com/copiousfreetime/launchy/issues",
+    "changelog_uri"   => "https://github.com/copiousfreetime/launchy/blob/master/README.md",
+    "homepage_uri"    => "https://github.com/copiousfreetime/launchy",
+    "source_code_uri" => "https://github.com/copiousfreetime/launchy",
+  }
 end
 
 load 'tasks/default.rake'
