@@ -150,7 +150,7 @@ API will be the documented one.
 
 http://opensource.org/licenses/isc-license.txt
 
-Copyright (c) 2007-2013 Jeremy Hinegardner
+Copyright (c) 2007-2020 Jeremy Hinegardner
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
