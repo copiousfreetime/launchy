@@ -5,7 +5,6 @@
 * Update minimum ruby level
 * Move to `kde-open` on KDE - <https://github.com/copiousfreetime/launchy/pull/105> - wstephenson
 * Applied some grammer / spelling fixes - <https://github.com/copiousfreetime/launchy/pull/130> - jeremymoritz
-* Require the existence of `kfmclient` for KDE - <https://github.com/copiousfreetime/launchy/issues/102> - lexelby
 * `Pathname` instances do not raise exceptions when opening local files - <https://github.com/copiousfreetime/launchy/issues/101> - dmke
 * Add a fallback console browsers - <https://github.com/copiousfreetime/launchy/issues/93> - trejkaz
 
