@@ -34,7 +34,7 @@ There are additional command line options, use `launchy --help` to see them.
 ### Using the `BROWSER` environment variable
 
 Launchy has a predefined set of common browsers on each platform that it
-attempts to use, and of course it is not exhaustive. As a fallbabck you can make
+attempts to use, and of course it is not exhaustive. As a fallback you can make
 use of the somewhat standard `BROWSER` environment variable.
 
 `BROWSER` works in a similar same way to `PATH`. It is a colon (`:`) separated
