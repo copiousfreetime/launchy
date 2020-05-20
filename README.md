@@ -27,7 +27,7 @@ testing environment, or via its API.
 
 ### Commandline
 
-    % launchy http://www.ruby-lang.org/
+    % launchy https://www.ruby-lang.org/
 
 There are additional command line options, use `launchy --help` to see them.
 
@@ -43,10 +43,10 @@ you are attempting to open will be substituted there.
 
 As an example if you set `BROWSER=/usr/local/bin/firefox-bin -new-tab
 '%s':/usr/local/bin/google-chrome-stable` and you call
-`Launchy.open("http://www.ruby-lang.org/")` then Launchy will try, in order:
+`Launchy.open("https://www.ruby-lang.org/")` then Launchy will try, in order:
 
-* `/usr/local/bin/firefox-bin -new-tab 'http://www.ruby-lang.org'`
-* `/usr/local/bin/google-chrome-stable http://www.ruby-lang.org`
+* `/usr/local/bin/firefox-bin -new-tab 'https://www.ruby-lang.org'`
+* `/usr/local/bin/google-chrome-stable https://www.ruby-lang.org`
 
 Additional links on the use of `BROWSER` as an environment variable.
 
@@ -83,7 +83,7 @@ in integration tests. For example:
 
 ### Public API
 
-In the vein of [Semantic Versioning](http://semver.org), this is the sole
+In the vein of [Semantic Versioning](https://semver.org), this is the sole
 supported public API.
 
     Launchy.open( uri, options = {} ) { |exception| }
@@ -102,11 +102,11 @@ exception that was raised.
 
 ### An example of using the public API:
 
-    Launchy.open( "http://www.ruby-lang.org" )
+    Launchy.open( "https://www.ruby-lang.org" )
 
 ### An example of using the public API and using the error block:
 
-    uri = "http://www.ruby-lang.org"
+    uri = "https://www.ruby-lang.org"
     Launchy.open( uri ) do |exception|
       puts "Attempted to open #{uri} and failed because #{exception}"
     end
@@ -120,11 +120,11 @@ decided to bump all the way to 2.x.y.
 I have attempted to keep backward compatibility with the previous examples. The
 previous API examples of:
 
-    Launchy::Browser.run("http://www.ruby-lang.org/")
+    Launchy::Browser.run("https://www.ruby-lang.org/")
 
 and
 
-    Launchy::Browser.new.visit("http://www.ruby-lang.org/")
+    Launchy::Browser.new.visit("https://www.ruby-lang.org/")
 
 will still work, and you will get a deprecation notice, along with the line
 of code you should probably update. For example, this is what would print out
@@ -148,7 +148,7 @@ API will be the documented one.
 
 ## ISC LICENSE
 
-http://opensource.org/licenses/isc-license.txt
+https://opensource.org/licenses/isc-license.txt
 
 Copyright (c) 2007-2020 Jeremy Hinegardner
 

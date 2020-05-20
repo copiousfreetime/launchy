@@ -4,7 +4,7 @@ load 'tasks/this.rb'
 This.name     = "launchy"
 This.author   = "Jeremy Hinegardner"
 This.email    = "jeremy@copiousfreetime.org"
-This.homepage = "http://github.com/copiousfreetime/#{ This.name }"
+This.homepage = "https://github.com/copiousfreetime/#{ This.name }"
 
 This.ruby_gemspec do |spec|
   spec.add_dependency( 'addressable', '~> 2.7')

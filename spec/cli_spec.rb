@@ -45,14 +45,14 @@ describe Launchy::Cli do
 
   it "leaves the url on argv after parsing" do
     l = Launchy::Cli.new
-    argv = %w[ --debug --dry-run http://github.com/copiousfreetime/launchy ]
+    argv = %w[ --debug --dry-run https://github.com/copiousfreetime/launchy ]
     l.parse( argv , {} )
     _(argv.size).must_equal 1
-    _(argv[0]).must_equal "http://github.com/copiousfreetime/launchy" 
+    _(argv[0]).must_equal "https://github.com/copiousfreetime/launchy" 
   end
 
   it "prints the command on stdout when using --dry-run" do
-   argv = %w[ --debug --dry-run http://github.com/copiousfreetime/launchy ]
+   argv = %w[ --debug --dry-run https://github.com/copiousfreetime/launchy ]
    Launchy::Cli.new.good_run( argv, {} )
    _($stdout.string).must_match %r[github.com]
   end
@@ -62,12 +62,12 @@ describe Launchy::Cli do
     '--engine'      => [ :ruby_engine, 'rbx'],
     '--host-os'     => [ :host_os,     'cygwin'] }.each_pair do |opt, val|
     it "the commandline option #{opt} sets the program option #{val[0]}" do
-      argv = [ opt, val[1], "http://github.com/copiousfreetime/launchy" ]
+      argv = [ opt, val[1], "https://github.com/copiousfreetime/launchy" ]
       l = Launchy::Cli.new
       rc = l.parse( argv, {} )
       _(rc).must_equal true
       _(argv.size).must_equal 1
-      _(argv[0]).must_equal "http://github.com/copiousfreetime/launchy"
+      _(argv[0]).must_equal "https://github.com/copiousfreetime/launchy"
       _(l.options[val[0]]).must_equal val[1]
     end
   end

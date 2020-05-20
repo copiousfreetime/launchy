@@ -90,12 +90,12 @@ describe Launchy::Detect::Runner do
 
   it "does not escape %38 items in urls" do
     l = Launchy::Detect::Runner::Forkable.new
-    cmd = l.dry_run( "not-really", [ "http://ja.wikipedia.org/wiki/%E3%81%82" ] )
-    _(cmd).must_equal( 'not-really http://ja.wikipedia.org/wiki/%E3%81%82'  )
+    cmd = l.dry_run( "not-really", [ "https://ja.wikipedia.org/wiki/%E3%81%82" ] )
+    _(cmd).must_equal( 'not-really https://ja.wikipedia.org/wiki/%E3%81%82'  )
   end
 
   it "can launch a utf8 url" do
-    url = "http://ja.wikipedia.org/wiki/あ"
+    url = "https://ja.wikipedia.org/wiki/あ"
     l = Launchy::Detect::Runner::Forkable.new
     cmd = l.dry_run( "not-really", [ url ] )
     _(cmd).must_equal( "not-really #{url}" )

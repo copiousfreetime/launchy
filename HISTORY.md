@@ -21,12 +21,12 @@
 * Abstract out the argv of the commandline - <https://github.com/copiousfreetime/launchy/issues/71>
 
 ## Version 2.4.0 - 2013-11-12
-* Support `Launchy.open( url, :debug => true )` - <http://github.com/copiousfreetime/launchy/issues/63> - schmich
-* Fix inconsistencies in `debug?` and `dry_run?` methods - <http://github.com/copiousfreetime/launchy/issues/63> - schmich
-* Fix detection of missing *nix desktops - <http://github.com/copiousfreetime/launchy/issues/70>
-* Fix running tests in bare Linux environment - <http://github.com/copiousfreetime/launchy/issues/67> - gioele
-* Fix mistaking windows drive as uri schema - <http://github.com/copiousfreetime/launchy/issues/65>
-* Attempt fixing windows `start` command oddities, again - <http://github.com/copiousfreetime/launchy/issues/62>
+* Support `Launchy.open( url, :debug => true )` - <https://github.com/copiousfreetime/launchy/issues/63> - schmich
+* Fix inconsistencies in `debug?` and `dry_run?` methods - <https://github.com/copiousfreetime/launchy/issues/63> - schmich
+* Fix detection of missing *nix desktops - <https://github.com/copiousfreetime/launchy/issues/70>
+* Fix running tests in bare Linux environment - <https://github.com/copiousfreetime/launchy/issues/67> - gioele
+* Fix mistaking windows drive as uri schema - <https://github.com/copiousfreetime/launchy/issues/65>
+* Attempt fixing windows `start` command oddities, again - <https://github.com/copiousfreetime/launchy/issues/62>
 
 ## Version 2.3.0 - 2013-04-11
 
@@ -34,39 +34,39 @@
 
 ## Version 2.2.0 - 2013-02-06
 
-* Change XFCE detection to not depend on grep <http://github.com/copiousfreetime/launchy/issues/52> - bogdan
-* Suppress forked process output <http://github.com/copiousfreetime/launchy/issues/51>
-* Display help/usage if no url is given <http://github.com/copiousfreetime/launchy/issues/54>
-* Detect the fluxbox environment <http://github.com/copiousfreetime/launchy/issues/53>
-* Automatically detect `http` url's if they are missing the `http://` <http://github.com/copiousfreetime/launchy/issues/55>
+* Change XFCE detection to not depend on grep <https://github.com/copiousfreetime/launchy/issues/52> - bogdan
+* Suppress forked process output <https://github.com/copiousfreetime/launchy/issues/51>
+* Display help/usage if no url is given <https://github.com/copiousfreetime/launchy/issues/54>
+* Detect the fluxbox environment <https://github.com/copiousfreetime/launchy/issues/53>
+* Automatically detect `http` url's if they are missing the `http://` <https://github.com/copiousfreetime/launchy/issues/55>
 * Update to latest project management rake tasks
 
 ## Version 2.1.2 - 2012-08-06
 
-* Fix where HostOS would fail to convert to string on JRuby in 1.9 mode <http://github.com/copiousfreetime/launchy/issues/45>
+* Fix where HostOS would fail to convert to string on JRuby in 1.9 mode <https://github.com/copiousfreetime/launchy/issues/45>
 
 ## Version 2.1.1 - 2012-07-28
 
-* Update addressable runtime dependency <http://github.com/copiousfreetime/launchy/issues/47>
+* Update addressable runtime dependency <https://github.com/copiousfreetime/launchy/issues/47>
 * Bring minitest and ffi development dependencies up to date
 
 ## Version 2.1.0 - 2012-03-18
 
-* Fix raising exception when no browser program found <http://github.com/copiousfreetime/launchy/issues/42>
+* Fix raising exception when no browser program found <https://github.com/copiousfreetime/launchy/issues/42>
 * Add `LAUNCHY_DRY_RUN` environment variable (Mariusz Pietrzyk / wijet)
 * Update dependencies
 
 ## Version 2.0.5 - 2011-07-24
 
-* Fix the case where `$BROWSER` is set and no *nix desktop was found <http://github.com/copiousfreetime/launchy/issues/33>
+* Fix the case where `$BROWSER` is set and no *nix desktop was found <https://github.com/copiousfreetime/launchy/issues/33>
 
 ## Version 2.0.4 - 2011-07-23
 
-* Fix windows `start` commandline <http://github.com/copiousfreetime/launchy/issues/5>
-* Add capability to open local files with no file: scheme present <http://github.com/copiousfreetime/launchy/issues/29>
-* Added `rake how_to_contribute` task <http://github.com/copiousfreetime/launchy/issues/30>
-* Make better decisions on when to do shell escaping <http://github.com/copiousfreetime/launchy/issues/31>
-* Switch to Addressable::URI so UTF-8 urls may be parsed. <http://github.com/copiousfreetime/launchy/issues/32>
+* Fix windows `start` commandline <https://github.com/copiousfreetime/launchy/issues/5>
+* Add capability to open local files with no file: scheme present <https://github.com/copiousfreetime/launchy/issues/29>
+* Added `rake how_to_contribute` task <https://github.com/copiousfreetime/launchy/issues/30>
+* Make better decisions on when to do shell escaping <https://github.com/copiousfreetime/launchy/issues/31>
+* Switch to Addressable::URI so UTF-8 urls may be parsed. <https://github.com/copiousfreetime/launchy/issues/32>
 
 ## Version 2.0.3 - 2011-07-17
 
