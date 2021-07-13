@@ -7,7 +7,7 @@ This.email    = "jeremy@copiousfreetime.org"
 This.homepage = "https://github.com/copiousfreetime/#{ This.name }"
 
 This.ruby_gemspec do |spec|
-  spec.add_dependency( 'addressable', '~> 2.7')
+  spec.add_dependency( 'addressable', '~> 2.8')
 
   spec.add_development_dependency( 'rake'     , '~> 13.0')
   spec.add_development_dependency( 'minitest' , '~> 5.14' )
