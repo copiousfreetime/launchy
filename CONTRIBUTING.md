@@ -51,6 +51,7 @@ easiest way to contribute.
 * [Daniel Farina](https://github.com/fdr)
 * [Jack Turnbull](https://github.com/jackturnbull)
 * [Jeremy Moritz](https://github.com/jeremymoritz)
+* [Jamie Donnelly](https://github.com/JamieKDonnelly)
 
 [GitHub Account]: https://github.com/signup/free "GitHub Signup"
 [GitHub Issues]:  https://github.com/copiousfreetime/launchy/issues "Launchy Issues"

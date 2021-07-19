@@ -1,5 +1,8 @@
 # Launchy Changelog
 
+## Version 2.5.1 - 2021-07-XX
+* Update Addressable - <https://github.com/copiousfreetime/launchy/pull/145> - JamieKDonnelly
+
 ## Version 2.5.0 - 2020-02-27
 * Update depedencies
 * Update minimum ruby level
