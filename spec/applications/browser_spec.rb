@@ -13,22 +13,17 @@ describe Launchy::Application::Browser do
     ENV.delete( 'BROWSER' )
   end
 
-  { 'windows' => 'start "launchy" /b' ,
-    'darwin'  => [ '/usr/bin/open', '/bin/open' ], # because running tests on linux
-    'cygwin'  => 'cmd /C start "launchy" /b',
-    'linux'   => [nil, "xdg-open"], # because running tests on linux
-  }.each  do |host_os, expected|
-    it "when host_os is '#{host_os}' the appropriate 'app_list' method is called" do
+  { 'windows' => 'windows_app_list',
+    'darwin'  => 'darwin_app_list',
+    'cygwin'  => 'cygwin_app_list',
+    'linux'   => 'nix_app_list',
+  }.each  do |host_os, called_method|
+    it "when host_os is '#{host_os}' the '#{called_method}' method is called" do
       Launchy.host_os = host_os
       browser = Launchy::Application::Browser.new
-
-      item = browser.app_list.first
-      item = item.to_s if item.kind_of?(::Launchy::Argv)
-      case expected
-      when Array
-        _(expected).must_include item
-      when String
-        _(item).must_equal expected
+      browser.stub(called_method, [:called_me]) do
+        item = browser.app_list.first
+        _(item).must_equal :called_me
       end
     end
   end
