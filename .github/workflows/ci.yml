@@ -10,8 +10,6 @@ jobs:
       matrix:
         os: [ubuntu, macos, windows]
         ruby:
-          - '2.2'
-          - '2.3'
           - '2.4'
           - '2.5'
           - '2.6'
@@ -19,7 +17,6 @@ jobs:
           - '3.0'
           - 'head'
           - 'debug'
-          - 'jruby-9.1'
           - 'jruby-9.2'
           - 'truffleruby'
 
