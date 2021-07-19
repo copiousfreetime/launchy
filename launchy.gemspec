@@ -34,12 +34,12 @@ Gem::Specification.new do |s|
     s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_development_dependency(%q<minitest>.freeze, ["~> 5.14"])
     s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.2"])
-    s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.18"])
+    s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.17"])
   else
     s.add_dependency(%q<addressable>.freeze, ["~> 2.8"])
     s.add_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_dependency(%q<minitest>.freeze, ["~> 5.14"])
     s.add_dependency(%q<rdoc>.freeze, ["~> 6.2"])
-    s.add_dependency(%q<simplecov>.freeze, ["~> 0.18"])
+    s.add_dependency(%q<simplecov>.freeze, ["~> 0.17"])
   end
 end
