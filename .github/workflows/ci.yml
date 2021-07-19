@@ -22,7 +22,6 @@ jobs:
           - 'jruby-9.1'
           - 'jruby-9.2'
           - 'truffleruby'
-        continue-on-error: ${{ endsWith(matrix.ruby, 'head') || matrix.ruby == 'debug' }}
 
     steps:
       - uses: actions/checkout@v2
