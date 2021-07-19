@@ -5,8 +5,6 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ${{ matrix.os }}-latest
-    env:
-      LAUNCHY_DEBUG: "true"
     strategy:
       fail-fast: false
       matrix:
