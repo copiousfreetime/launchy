@@ -2,7 +2,6 @@
 
 [![Build Status](https://copiousfreetime.semaphoreci.com/badges/launchy/branches/main.svg)](https://copiousfreetime.semaphoreci.com/projects/launchy)
 
-
 * [Homepage](https://github.com/copiousfreetime/launchy)
 * [Github Project](https://github.com/copiousfreetime/launchy)
 
