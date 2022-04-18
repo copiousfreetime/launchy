@@ -6,6 +6,6 @@ coverage/
 pkg/
 .rvmrc
 .DS_Store
-*.lock
 .gem
 .byebug_history
+vendor/
