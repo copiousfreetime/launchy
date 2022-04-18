@@ -1,0 +1,27 @@
+version: v1.0
+name: Ruby
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: bundle exec rake test
+    task:
+      jobs:
+        - name: matrix test
+          matrix:
+            - env_var: RUBY_VERSION
+              values:
+                - 2.6.10
+                - 2.7.6
+                - 3.0.4
+                - 3.1.2
+                - jruby-9.3.4.0
+                - truffleruby-22.0.0.2
+          commands:
+            - checkout
+            - sem-version ruby ${RUBY_VERSION}
+            - bundle config set --local deployment true
+            - bundle config set --local path vendor/bundle
+            - bundle install
+            - bundle exec rake test
