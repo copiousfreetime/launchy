@@ -1,6 +1,5 @@
 # Launchy Changelog
-
-## Version 2.5.1 - 2021-07-XX
+## Version 2.5.2 - 2022-04-XX
 * Update Addressable - <https://github.com/copiousfreetime/launchy/pull/145> - JamieKDonnelly
 
 ## Version 2.5.0 - 2020-02-27
