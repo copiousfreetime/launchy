@@ -6,6 +6,7 @@ agent:
     os_image: ubuntu2004
 blocks:
   - name: Run tests in Linux environment
+    dependencies: []
     task:
       jobs:
         - name: run tests
@@ -27,6 +28,7 @@ blocks:
             - bundle install
             - bundle exec rake test
   - name: Run tests in macOS environment
+    dependencies: []
     task:
       agent:
         machine:
