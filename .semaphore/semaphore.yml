@@ -49,6 +49,7 @@ blocks:
                 - 3.2.0
           commands:
             - checkout
+            - git -C /Users/semaphore/.rbenv/plugins/ruby-build pull
             - sem-version ruby ${RUBY_VERSION}
             - bundle config set --local deployment true
             - bundle config set --local path vendor/bundle
