@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    launchy (2.5.1)
+    launchy (2.5.2)
       addressable (~> 2.8)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     docile (1.4.0)
     jar-dependencies (0.4.1)
     minitest (5.15.0)
@@ -16,7 +16,7 @@ GEM
       stringio
     psych (4.0.3-java)
       jar-dependencies (>= 0.1.7)
-    public_suffix (4.0.7)
+    public_suffix (5.0.1)
     rake (13.0.1)
     rdoc (6.4.0)
       psych (>= 4.0.0)
