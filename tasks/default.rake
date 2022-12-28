@@ -213,19 +213,19 @@ end
 # Release - the steps we go through to do a final release, this is pulled from
 #           a compbination of mojombo's rakegem, hoe and hoe-git
 #
-# 1) make sure we are on the master branch
+# 1) make sure we are on the main branch
 # 2) make sure there are no uncommitted items
 # 3) check the manifest and make sure all looks good
 # 4) build the gem
 # 5) do an empty commit to have the commit message of the version
 # 6) tag that commit as the version
-# 7) push master
+# 7) push main
 # 8) push the tag
 # 7) pus the gem
 #------------------------------------------------------------------------------
 task :release_check do
-  unless `git branch` =~ /^\* master$/
-    abort "You must be on the master branch to release!"
+  unless `git branch` =~ /^\* main$/
+    abort "You must be on the main branch to release!"
   end
   unless `git status` =~ /^nothing to commit/m
     abort "Nope, sorry, you have unfinished business"
@@ -236,7 +236,7 @@ desc "Create tag v#{This.version}, build and push #{This.platform_gemspec.full_n
 task :release => [ :release_check, 'manifest:check', :gem ] do
   sh "git commit --allow-empty -a -m 'Release #{This.version}'"
   sh "git tag -a -m 'v#{This.version}' v#{This.version}"
-  sh "git push origin master"
+  sh "git push origin main"
   sh "git push origin v#{This.version}"
   sh "gem push pkg/#{This.platform_gemspec.full_name}.gem"
 end
