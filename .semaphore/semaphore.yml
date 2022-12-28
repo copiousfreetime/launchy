@@ -15,11 +15,13 @@ blocks:
               values:
                 - 2.5.9
                 - 2.6.10
-                - 2.7.6
-                - 3.0.4
-                - 3.1.2
-                - jruby-9.3.4.0
-                - truffleruby-22.0.0.2
+                - 2.7.7
+                - 3.0.5
+                - 3.1.3
+                - 3.2.0
+                - jruby-9.3.9.0
+                - jruby-9.4.0.0
+                - truffleruby-22.3.0.0
           commands:
             - checkout
             - sem-version ruby ${RUBY_VERSION}
