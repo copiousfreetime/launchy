@@ -15,7 +15,7 @@ module Launchy::Detect
     end
 
     def self.ruby_engine_error_message( ruby_engine )
-      msg = "Unkonwn RUBY_ENGINE "
+      msg = "Unknown RUBY_ENGINE "
       if ruby_engine then
         msg += " '#{ruby_engine}'."
       elsif defined?( RUBY_ENGINE ) then
