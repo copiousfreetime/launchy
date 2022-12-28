@@ -37,7 +37,7 @@ blocks:
       agent:
         machine:
           type: a1-standard-4
-          os_image: macos-xcode13
+          os_image: macos-xcode14
       jobs:
         - name: macos matrix test
           matrix:
@@ -49,7 +49,6 @@ blocks:
                 - 3.2.0
           commands:
             - checkout
-            - git -C /Users/semaphore/.rbenv/plugins/ruby-build pull
             - sem-version ruby ${RUBY_VERSION}
             - bundle config set --local deployment true
             - bundle config set --local path vendor/bundle
