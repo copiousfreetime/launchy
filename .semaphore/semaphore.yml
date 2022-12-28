@@ -42,9 +42,10 @@ blocks:
           matrix:
             - env_var: RUBY_VERSION
               values:
-                - 2.7.6
-                - 3.0.4
-                - 3.1.2
+                - 2.7.7
+                - 3.0.5
+                - 3.1.3
+                - 3.2.0
           commands:
             - checkout
             - git -C /Users/semaphore/.rbenv/plugins/ruby-build pull
