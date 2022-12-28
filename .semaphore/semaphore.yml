@@ -28,6 +28,7 @@ blocks:
             - sem-version ruby ${RUBY_VERSION}
             - bundle config set --local deployment true
             - bundle config set --local path vendor/bundle
+            - gem install bundler:2.4.1
             - bundle install
             - bundle exec rake test
   - name: Run tests in macOS environment
@@ -52,5 +53,6 @@ blocks:
             - sem-version ruby ${RUBY_VERSION}
             - bundle config set --local deployment true
             - bundle config set --local path vendor/bundle
+            - gem install bundler:2.4.1
             - bundle install
             - bundle exec rake test
