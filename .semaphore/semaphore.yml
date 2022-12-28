@@ -21,7 +21,8 @@ blocks:
                 - 3.2.0
                 - jruby-9.3.9.0
                 - jruby-9.4.0.0
-                - truffleruby-22.3.0.0
+                - truffleruby-22.3.0
+                - truffleruby+graalvm-22.3.0
           commands:
             - checkout
             - sem-version ruby ${RUBY_VERSION}
