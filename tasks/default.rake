@@ -159,7 +159,7 @@ namespace :fixme do
   end
 
   desc "See if the fixme tools are outdated"
-  task :outdated => :release_check do
+  task :outdated do
     if fixme_up_to_date? then
       puts "Fixme files are up to date."
     else
@@ -170,7 +170,7 @@ namespace :fixme do
   end
 
   desc "Update outdated fixme files"
-  task :update => :release_check do
+  task :update do
     if fixme_up_to_date? then
       puts "Fixme files are already up to date."
     else
@@ -224,7 +224,7 @@ end
 # 7) pus the gem
 #------------------------------------------------------------------------------
 task :release_check do
-  unless `git branch` =~ /^\* main$/
+  unless `git branch` =~ /^\* main/
     abort "You must be on the main branch to release!"
   end
   unless `git status` =~ /^nothing to commit/m
