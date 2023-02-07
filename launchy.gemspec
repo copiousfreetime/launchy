@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.metadata = { "bug_tracker_uri" => "https://github.com/copiousfreetime/launchy/issues", "changelog_uri" => "https://github.com/copiousfreetime/launchy/blob/master/README.md", "homepage_uri" => "https://github.com/copiousfreetime/launchy", "source_code_uri" => "https://github.com/copiousfreetime/launchy" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
-  s.date = "2022-12-28"
+  s.date = "2023-02-07"
   s.description = "Launchy is helper class for launching cross-platform applications in a fire and forget manner. There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform. Launchy is here to make a common approach to launching external applications from within ruby programs.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.executables = ["launchy".freeze]
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.licenses = ["ISC".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.4.1".freeze
+  s.rubygems_version = "3.4.6".freeze
   s.summary = "Launchy is helper class for launching cross-platform applications in a fire and forget manner.".freeze
   s.test_files = ["spec/application_spec.rb".freeze, "spec/applications/browser_spec.rb".freeze, "spec/cli_spec.rb".freeze, "spec/detect/host_os_family_spec.rb".freeze, "spec/detect/host_os_spec.rb".freeze, "spec/detect/nix_desktop_environment_spec.rb".freeze, "spec/detect/ruby_engine_spec.rb".freeze, "spec/detect/runner_spec.rb".freeze, "spec/launchy_spec.rb".freeze, "spec/mock_application.rb".freeze, "spec/spec_helper.rb".freeze, "spec/tattle-host-os.yaml".freeze, "spec/version_spec.rb".freeze]
 
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.8"])
   s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
   s.add_development_dependency(%q<minitest>.freeze, ["~> 5.15"])
+  s.add_development_dependency(%q<minitest-junit>.freeze, ["~> 1.0"])
   s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.4"])
   s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
 end
