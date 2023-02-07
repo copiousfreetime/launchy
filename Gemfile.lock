@@ -9,9 +9,13 @@ GEM
   specs:
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    builder (3.2.4)
     docile (1.4.0)
     jar-dependencies (0.4.1)
     minitest (5.15.0)
+    minitest-junit (1.1.0)
+      builder (~> 3.2)
+      minitest (~> 5.11)
     psych (4.0.3)
       stringio
     psych (4.0.3-java)
@@ -35,6 +39,7 @@ PLATFORMS
 DEPENDENCIES
   launchy!
   minitest (~> 5.15)
+  minitest-junit (~> 1.0)
   rake (~> 13.0)
   rdoc (~> 6.4)
   simplecov (~> 0.21)
