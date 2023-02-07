@@ -13,6 +13,11 @@ blocks:
           - checkout
           - sudo apt-get update && sudo apt-get install -y libyaml-dev
           - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+      epilogue:
+        always:
+          commands:
+            - test-results publish --name ${RUBY_VERSION} ${TEST_RESULTS_FILE}
+
       jobs:
         - name: run tests
           matrix:
@@ -35,7 +40,6 @@ blocks:
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
-            - test-results publish --name linux-${RUBY_VERSION} ${TEST_RESULTS_FILE}
 
   - name: Run tests in macOS environment
     dependencies: []
@@ -44,6 +48,11 @@ blocks:
         commands:
           - checkout
           - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+      epilogue:
+        always:
+          commands:
+            - test-results publish --name ${RUBY_VERSION} ${TEST_RESULTS_FILE}
+
       agent:
         machine:
           type: a1-standard-4
@@ -66,7 +75,6 @@ blocks:
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
-            - test-results publish --name macos-${RUBY_VERSION} ${TEST_RESULTS_FILE}
 
 after_pipeline:
   task:
