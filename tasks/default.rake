@@ -143,7 +143,8 @@ namespace :fixme do
   end
 
   def local_fixme_files
-    This.manifest.select { |p| p =~ %r|^tasks/| }
+    local_files = This.manifest.select { |p| p =~ %r|^tasks/| }
+    local_files << ".semaphore/semaphore.yml"
   end
 
   def outdated_fixme_files
@@ -201,7 +202,7 @@ task :gemspec do
 end
 
 # .rbc files from ruby 2.0
-CLOBBER << FileList["**/*.rbc"]
+CLOBBER << "**/*.rbc"
 
 # The standard gem packaging task, everyone has it.
 require 'rubygems/package_task'
