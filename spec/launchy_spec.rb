@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'pathname'
+require 'mock_application'
 
 describe Launchy do
 
@@ -89,6 +90,12 @@ describe Launchy do
     _($stdout.string.strip).must_equal 'cmd /c start "launchy" /b ' + uri
   end
 
+  it "opens a data url with a foreced browser application" do
+    uri = "data:text/html,hello%20world"
+    Launchy.open( uri, :dry_run => true, :application => "browser", :host_os => 'darwin'  )
+    _($stdout.string.strip).must_equal "/usr/bin/open #{uri}"
+  end
+
   it "calls the block if instead of raising an exception if there is an error" do
     Launchy.open( @invalid_url ) { $stderr.puts "oops had an error opening #{@invalid_url}" }
     _($stderr.string.strip).must_equal "oops had an error opening #{@invalid_url}"
@@ -102,6 +109,11 @@ describe Launchy do
 
   it "raises the error in the called block" do
     _(lambda { Launchy.open( @invalid_url ) { raise StandardError, "KABOOM!" } }).must_raise StandardError
+  end
+
+  it "can force a specific application to be used" do
+    result = Launchy.open( "http://example.com", :application => "mockapplication" )
+    _(result).must_equal "MockApplication opened http://example.com"
   end
 
   [ 'www.example.com', 'www.example.com/foo/bar', "C:#{__FILE__}" ].each do |x|

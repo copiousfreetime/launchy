@@ -15,7 +15,7 @@ module Launchy
         op.separator ""
         op.separator "Launch Options:"
 
-        op.on( "-a", "--application APPLICATION", 
+        op.on( "-a", "--application APPLICATION",
                "Explicitly specify the application class to use in the launch") do |app|
           @options[:application] = app
         end

@@ -6,4 +6,8 @@ class MockApplication < Launchy::Application
   def self.handles?( uri )
     schemes.include?( uri.scheme )
   end
+
+  def open( uri, options = {} )
+    return "MockApplication opened #{uri}"
+  end
 end
