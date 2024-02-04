@@ -5,32 +5,32 @@
 
 Gem::Specification.new do |s|
   s.name = "launchy".freeze
-  s.version = "2.5.2"
+  s.version = "2.5.2".freeze
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://github.com/copiousfreetime/launchy/issues", "changelog_uri" => "https://github.com/copiousfreetime/launchy/blob/master/README.md", "homepage_uri" => "https://github.com/copiousfreetime/launchy", "source_code_uri" => "https://github.com/copiousfreetime/launchy" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
-  s.date = "2023-02-07"
+  s.date = "2024-02-04"
   s.description = "Launchy is helper class for launching cross-platform applications in a fire and forget manner. There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform. Launchy is here to make a common approach to launching external applications from within ruby programs.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.executables = ["launchy".freeze]
   s.extra_rdoc_files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "Manifest.txt".freeze, "README.md".freeze]
-  s.files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE".freeze, "Manifest.txt".freeze, "README.md".freeze, "Rakefile".freeze, "bin/launchy".freeze, "lib/launchy.rb".freeze, "lib/launchy/application.rb".freeze, "lib/launchy/applications/browser.rb".freeze, "lib/launchy/argv.rb".freeze, "lib/launchy/cli.rb".freeze, "lib/launchy/deprecated.rb".freeze, "lib/launchy/descendant_tracker.rb".freeze, "lib/launchy/detect.rb".freeze, "lib/launchy/detect/host_os.rb".freeze, "lib/launchy/detect/host_os_family.rb".freeze, "lib/launchy/detect/nix_desktop_environment.rb".freeze, "lib/launchy/detect/ruby_engine.rb".freeze, "lib/launchy/detect/runner.rb".freeze, "lib/launchy/error.rb".freeze, "lib/launchy/os_family.rb".freeze, "lib/launchy/version.rb".freeze, "spec/application_spec.rb".freeze, "spec/applications/browser_spec.rb".freeze, "spec/cli_spec.rb".freeze, "spec/detect/host_os_family_spec.rb".freeze, "spec/detect/host_os_spec.rb".freeze, "spec/detect/nix_desktop_environment_spec.rb".freeze, "spec/detect/ruby_engine_spec.rb".freeze, "spec/detect/runner_spec.rb".freeze, "spec/launchy_spec.rb".freeze, "spec/mock_application.rb".freeze, "spec/spec_helper.rb".freeze, "spec/tattle-host-os.yaml".freeze, "spec/version_spec.rb".freeze, "tasks/default.rake".freeze, "tasks/this.rb".freeze]
+  s.files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE".freeze, "Manifest.txt".freeze, "README.md".freeze, "Rakefile".freeze, "bin/launchy".freeze, "lib/launchy.rb".freeze, "lib/launchy/application.rb".freeze, "lib/launchy/applications/browser.rb".freeze, "lib/launchy/argv.rb".freeze, "lib/launchy/cli.rb".freeze, "lib/launchy/descendant_tracker.rb".freeze, "lib/launchy/detect.rb".freeze, "lib/launchy/detect/host_os.rb".freeze, "lib/launchy/detect/host_os_family.rb".freeze, "lib/launchy/detect/nix_desktop_environment.rb".freeze, "lib/launchy/detect/ruby_engine.rb".freeze, "lib/launchy/detect/runner.rb".freeze, "lib/launchy/error.rb".freeze, "lib/launchy/os_family.rb".freeze, "lib/launchy/version.rb".freeze, "spec/application_spec.rb".freeze, "spec/applications/browser_spec.rb".freeze, "spec/cli_spec.rb".freeze, "spec/detect/host_os_family_spec.rb".freeze, "spec/detect/host_os_spec.rb".freeze, "spec/detect/nix_desktop_environment_spec.rb".freeze, "spec/detect/ruby_engine_spec.rb".freeze, "spec/detect/runner_spec.rb".freeze, "spec/launchy_spec.rb".freeze, "spec/mock_application.rb".freeze, "spec/spec_helper.rb".freeze, "spec/tattle-host-os.yaml".freeze, "spec/version_spec.rb".freeze, "tasks/default.rake".freeze, "tasks/this.rb".freeze]
   s.homepage = "https://github.com/copiousfreetime/launchy".freeze
   s.licenses = ["ISC".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.4.6".freeze
+  s.rubygems_version = "3.5.3".freeze
   s.summary = "Launchy is helper class for launching cross-platform applications in a fire and forget manner.".freeze
   s.test_files = ["spec/application_spec.rb".freeze, "spec/applications/browser_spec.rb".freeze, "spec/cli_spec.rb".freeze, "spec/detect/host_os_family_spec.rb".freeze, "spec/detect/host_os_spec.rb".freeze, "spec/detect/nix_desktop_environment_spec.rb".freeze, "spec/detect/ruby_engine_spec.rb".freeze, "spec/detect/runner_spec.rb".freeze, "spec/launchy_spec.rb".freeze, "spec/mock_application.rb".freeze, "spec/spec_helper.rb".freeze, "spec/tattle-host-os.yaml".freeze, "spec/version_spec.rb".freeze]
 
   s.specification_version = 4
 
-  s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.8"])
-  s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
-  s.add_development_dependency(%q<minitest>.freeze, ["~> 5.15"])
-  s.add_development_dependency(%q<minitest-junit>.freeze, ["~> 1.0"])
-  s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.4"])
-  s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
+  s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.8".freeze])
+  s.add_development_dependency(%q<rake>.freeze, ["~> 13.0".freeze])
+  s.add_development_dependency(%q<minitest>.freeze, ["~> 5.21".freeze])
+  s.add_development_dependency(%q<minitest-junit>.freeze, ["~> 1.0".freeze])
+  s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.6".freeze])
+  s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.22".freeze])
 end

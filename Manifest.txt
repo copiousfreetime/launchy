@@ -10,7 +10,6 @@ lib/launchy/application.rb
 lib/launchy/applications/browser.rb
 lib/launchy/argv.rb
 lib/launchy/cli.rb
-lib/launchy/deprecated.rb
 lib/launchy/descendant_tracker.rb
 lib/launchy/detect.rb
 lib/launchy/detect/host_os.rb

@@ -10,10 +10,10 @@ This.ruby_gemspec do |spec|
   spec.add_dependency( 'addressable', '~> 2.8')
 
   spec.add_development_dependency( 'rake'     , '~> 13.0')
-  spec.add_development_dependency( 'minitest' , '~> 5.15' )
+  spec.add_development_dependency( 'minitest' , '~> 5.21' )
   spec.add_development_dependency( 'minitest-junit' , '~> 1.0' )
-  spec.add_development_dependency( 'rdoc'     , '~> 6.4' )
-  spec.add_development_dependency( 'simplecov', '~> 0.21' )
+  spec.add_development_dependency( 'rdoc'     , '~> 6.6' )
+  spec.add_development_dependency( 'simplecov', '~> 0.22' )
 
   spec.licenses = ['ISC']
 

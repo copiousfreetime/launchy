@@ -12,25 +12,25 @@ GEM
     builder (3.2.4)
     docile (1.4.0)
     jar-dependencies (0.4.1)
-    minitest (5.15.0)
+    minitest (5.21.2)
     minitest-junit (1.1.0)
       builder (~> 3.2)
       minitest (~> 5.11)
-    psych (4.0.3)
+    psych (5.1.2)
       stringio
-    psych (4.0.3-java)
+    psych (5.1.2-java)
       jar-dependencies (>= 0.1.7)
     public_suffix (5.0.1)
     rake (13.0.1)
-    rdoc (6.4.0)
+    rdoc (6.6.2)
       psych (>= 4.0.0)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    stringio (3.0.1)
+    stringio (3.1.0)
 
 PLATFORMS
   java
@@ -38,11 +38,11 @@ PLATFORMS
 
 DEPENDENCIES
   launchy!
-  minitest (~> 5.15)
+  minitest (~> 5.21)
   minitest-junit (~> 1.0)
   rake (~> 13.0)
-  rdoc (~> 6.4)
-  simplecov (~> 0.21)
+  rdoc (~> 6.6)
+  simplecov (~> 0.22)
 
 BUNDLED WITH
-   2.4.6
+   2.5.5
