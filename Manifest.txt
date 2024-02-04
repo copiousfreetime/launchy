@@ -15,7 +15,6 @@ lib/launchy/detect.rb
 lib/launchy/detect/host_os.rb
 lib/launchy/detect/host_os_family.rb
 lib/launchy/detect/nix_desktop_environment.rb
-lib/launchy/detect/ruby_engine.rb
 lib/launchy/detect/runner.rb
 lib/launchy/error.rb
 lib/launchy/os_family.rb
@@ -26,7 +25,6 @@ spec/cli_spec.rb
 spec/detect/host_os_family_spec.rb
 spec/detect/host_os_spec.rb
 spec/detect/nix_desktop_environment_spec.rb
-spec/detect/ruby_engine_spec.rb
 spec/detect/runner_spec.rb
 spec/launchy_spec.rb
 spec/mock_application.rb

@@ -67,11 +67,6 @@ describe Launchy do
     _(Launchy.host_os).must_equal 'my-special-os-v2'
   end
 
-  it "has the global option :ruby_engine" do
-    Launchy.extract_global_options(  { :ruby_engine => "myruby" } )
-    _(Launchy.ruby_engine).must_equal 'myruby'
-  end
-
   it "raises an exception if no scheme is found for the given uri" do
     _(lambda { Launchy.open( @invalid_url ) }).must_raise Launchy::ApplicationNotFoundError
   end
