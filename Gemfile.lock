@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    launchy (2.5.2)
+    launchy (3.0.0)
       addressable (~> 2.8)
       childprocess (~> 5.0)
 
