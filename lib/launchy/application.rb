@@ -24,8 +24,18 @@ module Launchy
         raise ApplicationNotFoundError, "No application found to handle '#{uri}'"
       end
 
+      # Find the application with the given name
       #
+      # returns the Class that has the given name
+      def for_name( name )
+        klass = find_child( :has_name?, name )
+        return klass if klass
+        raise ApplicationNotFoundError, "No application found named '#{name}'"
+      end
+
       # Find the given executable in the available paths
+      #
+      # returns the path to the executable or nil if not found
       def find_executable( bin, *paths )
         paths = Launchy.path.split( File::PATH_SEPARATOR ) if paths.empty?
         paths.each do |path|
@@ -37,6 +47,13 @@ module Launchy
         end
         Launchy.log "#{self.name} : Unable to find `#{bin}' in #{paths.join(", ")}"
         return nil
+      end
+
+      # Does this class have the given name-like string?
+      #
+      # returns true if the class has the given name
+      def has_name?( qname )
+        qname.to_s.downcase == self.name.split("::").last.downcase
       end
     end
 

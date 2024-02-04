@@ -44,6 +44,10 @@ module Launchy
       Launchy::Application.handling( uri )
     end
 
+    def app_for_name( name )
+      Launchy::Application.for_name( name )
+    end
+
     def app_for_uri_string( s )
       app_for_uri( string_to_uri( s ) )
     end
