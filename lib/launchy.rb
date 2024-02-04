@@ -1,4 +1,6 @@
 require 'addressable/uri'
+require 'shellwords'
+require 'stringio'
 
 #
 # The entry point into Launchy. This is the sole supported public API.
@@ -27,9 +29,12 @@ module Launchy
       uri = string_to_uri( uri_s )
       if name = options[:application] then
         app = app_for_name( name )
-      else
+      end
+
+      if app.nil? then
         app = app_for_uri( uri )
       end
+
       app.new.open( uri, leftover )
     rescue Launchy::Error => le
       raise le
@@ -49,6 +54,8 @@ module Launchy
 
     def app_for_name( name )
       Launchy::Application.for_name( name )
+    rescue Launchy::ApplicationNotFoundError
+      nil
     end
 
     def app_for_uri_string( s )
