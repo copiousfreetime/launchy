@@ -62,7 +62,7 @@ module Launchy
 
     def initialize
       @host_os_family = Launchy::Detect::HostOsFamily.detect
-      @runner         = Launchy::Detect::Runner.detect
+      @runner         = Launchy::Runner.new
     end
 
     def find_executable( bin, *paths )
