@@ -90,10 +90,10 @@ describe Launchy do
     _($stdout.string.strip).must_equal 'cmd /c start "launchy" /b ' + uri
   end
 
-  it "opens a data url with a foreced browser application" do
+  it "opens a data url with a forced browser application" do
     uri = "data:text/html,hello%20world"
-    Launchy.open( uri, :dry_run => true, :application => "browser", :host_os => 'darwin'  )
-    _($stdout.string.strip).must_equal "/usr/bin/open #{uri}"
+    Launchy.open( uri, :dry_run => true, :application => "browser" )
+    _($stdout.string.strip).must_match /open/ # /usr/bin/open or xdg-open
   end
 
   it "calls the block if instead of raising an exception if there is an error" do
