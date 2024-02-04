@@ -146,7 +146,7 @@ namespace :fixme do
 
   def local_fixme_files
     local_files = This.manifest.select { |p| p =~ %r|^tasks/| }
-    local_files << ".semaphore/semaphore.yml"
+    local_files.concat( Dir.glob( ".semaphore/*" ) )
   end
 
   def outdated_fixme_files

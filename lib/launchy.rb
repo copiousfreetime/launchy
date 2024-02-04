@@ -26,7 +26,11 @@ module Launchy
     def open(uri_s, options = {}, &error_block )
       leftover = extract_global_options( options )
       uri = string_to_uri( uri_s )
-      app = app_for_uri( uri )
+      if name = options[:application] then
+        app = app_for_name( name )
+      else
+        app = app_for_uri( uri )
+      end
       app.new.open( uri, leftover )
     rescue Launchy::Error => le
       raise le
@@ -42,6 +46,10 @@ module Launchy
 
     def app_for_uri( uri )
       Launchy::Application.handling( uri )
+    end
+
+    def app_for_name( name )
+      Launchy::Application.for_name( name )
     end
 
     def app_for_uri_string( s )

@@ -1,3 +1,5 @@
+# Ensure the correct Ruby version is installed and cached
+#
 cache_key="${SEMAPHORE_AGENT_MACHINE_OS_IMAGE}-${RUBY_VERSION}"
 
 if cache has_key "${cache_key}"; then

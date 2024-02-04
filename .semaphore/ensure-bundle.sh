@@ -1,3 +1,6 @@
+# Ensure that the bundle is installed and cached
+#
+
 bundle config set --local deployment true
 bundle config set --local path vendor/bundle
 gem update --no-doc bundler

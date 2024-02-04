@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'pathname'
+require 'mock_application'
 
 describe Launchy do
 
@@ -89,6 +90,12 @@ describe Launchy do
     _($stdout.string.strip).must_equal 'cmd /c start "launchy" /b ' + uri
   end
 
+  it "opens a data url with a forced browser application" do
+    uri = "data:text/html,hello%20world"
+    Launchy.open( uri, :dry_run => true, :application => "browser" )
+    _($stdout.string.strip).must_match /open/ # /usr/bin/open or xdg-open
+  end
+
   it "calls the block if instead of raising an exception if there is an error" do
     Launchy.open( @invalid_url ) { $stderr.puts "oops had an error opening #{@invalid_url}" }
     _($stderr.string.strip).must_equal "oops had an error opening #{@invalid_url}"
@@ -104,6 +111,11 @@ describe Launchy do
     _(lambda { Launchy.open( @invalid_url ) { raise StandardError, "KABOOM!" } }).must_raise StandardError
   end
 
+  it "can force a specific application to be used" do
+    result = Launchy.open( "http://example.com", :application => "mockapplication" )
+    _(result).must_equal "MockApplication opened http://example.com"
+  end
+
   [ 'www.example.com', 'www.example.com/foo/bar', "C:#{__FILE__}" ].each do |x|
     it "picks a Browser for #{x}" do
       app = Launchy.app_for_uri_string( x )
@@ -115,5 +127,12 @@ describe Launchy do
     path = Pathname.new( Dir.pwd )
     app = Launchy.app_for_uri_string( path )
     _(app).must_equal( Launchy::Application::Browser )
+  end
+
+  [ "BROWSER", "bRoWsEr", "browser", "Browser" ].each do |x|
+    it "can find the browser by name #{x}" do
+      app = Launchy.app_for_name( x )
+    _(app).must_equal( Launchy::Application::Browser )
+    end
   end
 end

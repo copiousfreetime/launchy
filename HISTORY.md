@@ -2,6 +2,8 @@
 ## Version 2.6.0 - 2024-02-03
 * Remove unused `deprecated.rb` file - <https://github.com/copiousfreetime/launchy/issues/148>
 * Update supported ruby versin to be 3.x
+* use the `:application` parameter - <https://github.com/copiousfreetime/launchy/issues/121>
+* adjust the semaphore configuration to allow better caching
 
 ## Version 2.5.2 - 2022-12-27
 * Update Addressable - <https://github.com/copiousfreetime/launchy/pull/145> - JamieKDonnelly
