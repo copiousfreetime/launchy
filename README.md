@@ -110,41 +110,6 @@ exception that was raised.
       puts "Attempted to open #{uri} and failed because #{exception}"
     end
 
-## UPGRADING from versions before 2.0.0
-
-The previously published version of Launchy before the 2.0.0 series was 0.4.0.
-There have been so many changes, and a mistaken tag at 1.0.0, that I have
-decided to bump all the way to 2.x.y.
-
-I have attempted to keep backward compatibility with the previous examples. The
-previous API examples of:
-
-    Launchy::Browser.run("https://www.ruby-lang.org/")
-
-and
-
-    Launchy::Browser.new.visit("https://www.ruby-lang.org/")
-
-will still work, and you will get a deprecation notice, along with the line
-of code you should probably update. For example, this is what would print out
-in the github gem if it was updated to use 2.0.x but not use the supported API.
-
-    % gh home
-    WARNING: You made a call to a deprecated Launchy API. This call should be changed to 'Launchy.open( uri )'
-    WARNING: I think I was able to find the location that needs to be fixed. Please go look at:
-    WARNING:
-    WARNING: /Users/jeremy/.rvm/gems/ruby-1.8.7-p334/gems/github-0.6.2/lib/commands/helpers.rb:275:in `open'
-    WARNING: helper :open do |url|
-    WARNING:   has_launchy? proc {
-    WARNING:     Launchy::Browser.new.visit url
-    WARNING:   }
-    WARNING: end
-    WARNING:
-    WARNING: If this is not the case, please file a bug. Please file a bug at https://github.com/copiousfreetime/launchy/issues/new
-
-These deprecation notices will go away with version 3.0 and the only available
-API will be the documented one.
-
 ## ISC LICENSE
 
 https://opensource.org/licenses/isc-license.txt
