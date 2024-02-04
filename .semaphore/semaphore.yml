@@ -1,9 +1,14 @@
 version: v1.0
-name: Ruby
+name: CI Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+
+auto_cancel:
+  running:
+    when: "branch != 'main'"
+
 blocks:
   - name: Run tests in Linux environment
     dependencies: []
@@ -30,15 +35,11 @@ blocks:
                 - jruby-9.4.5.0
                 - truffleruby-23.1.2
           commands:
-            - sem-version ruby ${RUBY_VERSION} -f
-            - bundle config set --local deployment true
-            - bundle config set --local path vendor/bundle
-            - gem update --no-doc bundler
-            - bundle install
+            - source .semaphore/ensure-ruby-version.sh
+            - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
-
   - name: Run tests in macOS environment
     dependencies: []
     task:
@@ -65,11 +66,8 @@ blocks:
                 - 3.2.2
                 - 3.3.0
           commands:
-            - sem-version ruby ${RUBY_VERSION} -f
-            - bundle config set --local deployment true
-            - bundle config set --local path vendor/bundle
-            - gem update --no-doc bundler
-            - bundle install
+            - source .semaphore/ensure-ruby-version.sh
+            - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
