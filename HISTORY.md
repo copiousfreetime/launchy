@@ -1,5 +1,5 @@
 # Launchy Changelog
-## Version 3.0.0 - 2024-02-04
+## Version 3.0.0 - 2024-03-03
 * Remove unused `deprecated.rb` file - <https://github.com/copiousfreetime/launchy/issues/148>
 * Update supported ruby versin to be 3.x
 * use the `:application` parameter - <https://github.com/copiousfreetime/launchy/issues/121>
