@@ -92,7 +92,6 @@ At the moment, the only available options are:
     :debug        Turn on debugging output
     :application  Explicitly state what application class is going to be used
     :host_os      Explicitly state what host operating system to pretend to be
-    :ruby_engine  Explicitly state what ruby engine to pretend to be under
     :dry_run      Do nothing and print the command that would be executed on $stdout
 
 If `Launchy.open` is invoked with a block, then no exception will be thrown, and

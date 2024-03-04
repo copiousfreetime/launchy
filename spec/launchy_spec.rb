@@ -67,13 +67,17 @@ describe Launchy do
     _(Launchy.host_os).must_equal 'my-special-os-v2'
   end
 
-  it "has the global option :ruby_engine" do
-    Launchy.extract_global_options(  { :ruby_engine => "myruby" } )
-    _(Launchy.ruby_engine).must_equal 'myruby'
-  end
-
   it "raises an exception if no scheme is found for the given uri" do
     _(lambda { Launchy.open( @invalid_url ) }).must_raise Launchy::ApplicationNotFoundError
+  end
+
+  it "raises an exepction if the browser failed to launch" do
+    skip("because headless CI") if ENV["CI"] == "true"
+    caught = nil
+    Launchy.open( @invalid_url, application: "browser") do |exception|
+      caught = exception
+    end
+    _(caught).must_be_kind_of Launchy::Error
   end
 
   it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
@@ -87,13 +91,13 @@ describe Launchy do
   it "opens a local file if we have a drive letter and a valid path on windows" do
     uri = "C:#{__FILE__}"
     Launchy.open( uri, :dry_run => true, :host_os => 'windows'  )
-    _($stdout.string.strip).must_equal 'cmd /c start "launchy" /b ' + uri
+    _($stdout.string.strip).must_equal 'start launchy /b ' + uri
   end
 
   it "opens a data url with a forced browser application" do
     uri = "data:text/html,hello%20world"
     Launchy.open( uri, :dry_run => true, :application => "browser" )
-    _($stdout.string.strip).must_match /open/ # /usr/bin/open or xdg-open
+    _($stdout.string.strip).must_match(/open/) # /usr/bin/open or xdg-open
   end
 
   it "calls the block if instead of raising an exception if there is an error" do

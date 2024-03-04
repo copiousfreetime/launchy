@@ -20,7 +20,7 @@ module Launchy::Detect
     end
 
     def default_host_os
-      ::RbConfig::CONFIG['host_os']
+      ::RbConfig::CONFIG['host_os'].downcase
     end
 
     def override_host_os

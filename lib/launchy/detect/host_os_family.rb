@@ -42,7 +42,7 @@ module Launchy::Detect
     #
     class Windows < HostOsFamily
       def self.matching_regex
-        /(mingw|mswin|windows)/i
+        /(mingw|mswin|msys|windows)/i
       end
       def app_list( app ) app.windows_app_list; end
     end
@@ -56,7 +56,7 @@ module Launchy::Detect
 
     class Nix < HostOsFamily
       def self.matching_regex
-        /(linux|bsd|aix|solaris)/i
+        /(linux|bsd|aix|solaris|sunos|dragonfly)/i
       end
       def app_list( app ) app.nix_app_list; end
     end

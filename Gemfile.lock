@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    launchy (2.5.2)
+    launchy (3.0.0)
       addressable (~> 2.8)
+      childprocess (~> 5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -10,6 +11,7 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     builder (3.2.4)
+    childprocess (5.0.0)
     docile (1.4.0)
     jar-dependencies (0.4.1)
     minitest (5.21.2)

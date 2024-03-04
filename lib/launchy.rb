@@ -1,4 +1,6 @@
 require 'addressable/uri'
+require 'shellwords'
+require 'stringio'
 
 #
 # The entry point into Launchy. This is the sole supported public API.
@@ -11,7 +13,6 @@ require 'addressable/uri'
 #   :application  Explicitly state what application class is going to be used.
 #                 This must be a child class of Launchy::Application
 #   :host_os      Explicitly state what host operating system to pretend to be
-#   :ruby_engine  Explicitly state what ruby engine to pretend to be under
 #   :dry_run      Do nothing and print the command that would be executed on $stdout
 #
 # Other options may be used, and those will be passed directly to the
@@ -28,9 +29,12 @@ module Launchy
       uri = string_to_uri( uri_s )
       if name = options[:application] then
         app = app_for_name( name )
-      else
+      end
+
+      if app.nil? then
         app = app_for_uri( uri )
       end
+
       app.new.open( uri, leftover )
     rescue Launchy::Error => le
       raise le
@@ -38,7 +42,7 @@ module Launchy
       msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg
     ensure
-      if $! and block_given? then
+      if $! && block_given? then
         yield $!
         return # explicitly swallow the errors
       end
@@ -50,6 +54,8 @@ module Launchy
 
     def app_for_name( name )
       Launchy::Application.for_name( name )
+    rescue Launchy::ApplicationNotFoundError
+      nil
     end
 
     def app_for_uri_string( s )
@@ -72,7 +78,6 @@ module Launchy
       Launchy.debug       = false
       Launchy.application = nil
       Launchy.host_os     = nil
-      Launchy.ruby_engine = nil
       Launchy.dry_run     = false
       Launchy.path        = ENV['PATH']
     end
@@ -82,7 +87,6 @@ module Launchy
       Launchy.debug        = leftover.delete( :debug       ) || ENV['LAUNCHY_DEBUG']
       Launchy.application  = leftover.delete( :application ) || ENV['LAUNCHY_APPLICATION']
       Launchy.host_os      = leftover.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
-      Launchy.ruby_engine  = leftover.delete( :ruby_engine ) || ENV['LAUNCHY_RUBY_ENGINE']
       Launchy.dry_run      = leftover.delete( :dry_run     ) || ENV['LAUNCHY_DRY_RUN']
     end
 
@@ -110,14 +114,6 @@ module Launchy
 
     def host_os
       @host_os || ENV['LAUNCHY_HOST_OS']
-    end
-
-    def ruby_engine=( ruby_engine )
-      @ruby_engine = ruby_engine
-    end
-
-    def ruby_engine
-      @ruby_engine || ENV['LAUNCHY_RUBY_ENGINE']
     end
 
     def dry_run=( dry_run )
@@ -168,3 +164,4 @@ require 'launchy/descendant_tracker'
 require 'launchy/error'
 require 'launchy/application'
 require 'launchy/detect'
+require 'launchy/runner'
