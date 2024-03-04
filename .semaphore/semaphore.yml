@@ -39,7 +39,7 @@ blocks:
             - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
-            - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
+            - A="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
   - name: Run tests in macOS environment
     dependencies: []
     task:
@@ -70,7 +70,7 @@ blocks:
             - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
-            - TESTOPTS="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
+            - A="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
 
 after_pipeline:
   task:
