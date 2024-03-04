@@ -72,6 +72,7 @@ describe Launchy do
   end
 
   it "raises an exepction if the browser failed to launch" do
+    skip("because headless CI") if ENV["CI"] == "true"
     caught = nil
     Launchy.open( @invalid_url, application: "browser") do |exception|
       caught = exception
