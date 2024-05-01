@@ -14,7 +14,7 @@ This.ruby_gemspec do |spec|
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/copiousfreetime/launchy/issues",
-    "changelog_uri"   => "https://github.com/copiousfreetime/launchy/blob/master/README.md",
+    "changelog_uri"   => "https://github.com/copiousfreetime/launchy/blob/master/HISTORY.md",
     "homepage_uri"    => "https://github.com/copiousfreetime/launchy",
     "source_code_uri" => "https://github.com/copiousfreetime/launchy",
   }
