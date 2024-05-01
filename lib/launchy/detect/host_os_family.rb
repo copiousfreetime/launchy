@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Launchy::Detect
   # Detect the current host os family
   #

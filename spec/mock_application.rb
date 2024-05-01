@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MockApplication < Launchy::Application
   def self.schemes
     %w[ mock mockother ]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Launchy::Application
   #
   # The class handling the browser application and all of its schemes

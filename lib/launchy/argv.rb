@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Launchy
   class Argv
     attr_reader :argv

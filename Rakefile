@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # vim: syntax=ruby
 load "tasks/this.rb"
 
