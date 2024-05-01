@@ -12,6 +12,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bigdecimal (3.1.7)
+    bigdecimal (3.1.7-java)
     builder (3.2.4)
     childprocess (5.0.0)
     concurrent-ruby (1.2.3)
@@ -43,39 +44,27 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
-    heel (4.0.1)
-      launchy (~> 2.5)
-      mime-types (~> 3.4)
-      puma (~> 6.0)
-      rack (~> 3.0)
-      rackup (~> 2.1)
-      rouge (~> 4.0)
+    jar-dependencies (0.4.1)
     json (2.7.2)
+    json (2.7.2-java)
     language_server-protocol (3.17.0.3)
-    mime-types (3.5.2)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0305)
     minitest (5.22.3)
     minitest-focus (1.4.0)
       minitest (>= 4, < 6)
     minitest-junit (1.1.0)
       builder (~> 3.2)
       minitest (~> 5.11)
-    nio4r (2.7.1)
     parallel (1.24.0)
     parser (3.3.1.0)
       ast (~> 2.4.1)
       racc
     psych (5.1.2)
       stringio
+    psych (5.1.2-java)
+      jar-dependencies (>= 0.1.7)
     public_suffix (5.0.5)
-    puma (6.4.2)
-      nio4r (~> 2.0)
     racc (1.7.3)
-    rack (3.0.10)
-    rackup (2.1.0)
-      rack (>= 3)
-      webrick (~> 1.8)
+    racc (1.7.3-java)
     rainbow (3.1.1)
     rake (13.2.1)
     rdoc (6.6.3.1)
@@ -87,7 +76,6 @@ GEM
       rexml (~> 3.1)
     regexp_parser (2.9.0)
     rexml (3.2.6)
-    rouge (4.2.1)
     rubocop (1.63.4)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -124,15 +112,15 @@ GEM
     simplecov_json_formatter (0.1.4)
     stringio (3.1.0)
     unicode-display_width (2.5.0)
-    webrick (1.8.1)
     zeitwerk (2.6.13)
 
 PLATFORMS
   arm64-darwin-23
+  java
   ruby
+  x86_64-linux
 
 DEPENDENCIES
-  heel
   launchy!
   minitest (~> 5.11)
   minitest-focus (~> 1.2)
