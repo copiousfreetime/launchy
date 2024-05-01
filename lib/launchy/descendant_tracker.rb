@@ -11,7 +11,7 @@ module Launchy
   #   end
   #
   # or
-  #   
+  #
   #   class Foo
   #     class << self
   #       include DescendantTracker
@@ -39,7 +39,7 @@ module Launchy
 
     #
     # Find one of the child classes by calling the given method
-    # and passing all the rest of the parameters to that method in 
+    # and passing all the rest of the parameters to that method in
     # each child
     def find_child(method, *args)
       children.find do |child|

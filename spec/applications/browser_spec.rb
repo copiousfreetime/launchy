@@ -30,7 +30,7 @@ describe Launchy::Application::Browser do
     end
   end
 
-  %w[ linux windows darwin cygwin ].each do |host_os|
+  %w[linux windows darwin cygwin].each do |host_os|
     it "the BROWSER environment variable overrides any host defaults on '#{host_os}'" do
       ENV["BROWSER"] = "my_special_browser --new-tab '%s'"
       Launchy.host_os = host_os
@@ -58,11 +58,11 @@ describe Launchy::Application::Browser do
   # NOTE: Unable to figure out how capture the stderr from the child which has
   # moved it at least once. This test just serves the purpose of noting why
   # something happens, and the problem we are attempting to fix.
-  #it "When BROWSER is set to something that is not executable, error still appears on stderr" do
+  # it "When BROWSER is set to something that is not executable, error still appears on stderr" do
   #  ENV['BROWSER'] = "not-an-app"
   #  url = "http://example.com/"
 
-  #  _, err = capture_subprocess_io do 
+  #  _, err = capture_subprocess_io do
   #    begin
   #      Launchy.open( url )
   #    rescue => nil
@@ -70,6 +70,5 @@ describe Launchy::Application::Browser do
   #  end
   #  #_(err).must_match( /wibble/m )
   #  err # something
-  #end
+  # end
 end
-

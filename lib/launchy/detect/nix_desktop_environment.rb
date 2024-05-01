@@ -21,11 +21,11 @@ module Launchy::Detect
     end
 
     def self.fallback_browsers
-      %w[ firefox iceweasel seamonkey opera mozilla netscape galeon links lynx ].map { |x| ::Launchy::Argv.new(x) }
+      %w[firefox iceweasel seamonkey opera mozilla netscape galeon links lynx].map { |x| ::Launchy::Argv.new(x) }
     end
 
     def self.browsers
-      [ browser, fallback_browsers ].flatten
+      [browser, fallback_browsers].flatten
     end
 
     #---------------------------------------
@@ -57,14 +57,14 @@ module Launchy::Detect
     class Xfce < NixDesktopEnvironment
       def self.is_current_desktop_environment?
         if Launchy::Application.find_executable("xprop") then
-          %x[ xprop -root _DT_SAVE_MODE].include?("xfce")
+          %x[xprop -root _DT_SAVE_MODE].include?("xfce")
         else
           false
         end
       end
 
       def self.browser
-        ::Launchy::Argv.new(%w[ exo-open --launch WebBrowser ])
+        ::Launchy::Argv.new(%w[exo-open --launch WebBrowser])
       end
     end
 
@@ -92,4 +92,3 @@ module Launchy::Detect
 
   end
 end
-

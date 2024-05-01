@@ -8,7 +8,7 @@ describe Launchy do
 
   before do
     Launchy.reset_global_options
-    @stderr  = $stderr
+    @stderr = $stderr
     $stderr = StringIO.new
     @stdout = $stdout
     $stdout = StringIO.new
@@ -84,7 +84,7 @@ describe Launchy do
 
   it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
     uri = "blah://example.com/#{__FILE__}"
-    Launchy.open(uri , :dry_run => true)
+    Launchy.open(uri, :dry_run => true)
     parts = $stdout.string.strip.split
     _(parts.size).must_be :>, 1
     _(parts.last).must_equal uri
@@ -122,7 +122,7 @@ describe Launchy do
     _(result).must_equal "MockApplication opened http://example.com"
   end
 
-  [ "www.example.com", "www.example.com/foo/bar", "C:#{__FILE__}" ].each do |x|
+  ["www.example.com", "www.example.com/foo/bar", "C:#{__FILE__}"].each do |x|
     it "picks a Browser for #{x}" do
       app = Launchy.app_for_uri_string(x)
       _(app).must_equal(Launchy::Application::Browser)
@@ -135,10 +135,10 @@ describe Launchy do
     _(app).must_equal(Launchy::Application::Browser)
   end
 
-  [ "BROWSER", "bRoWsEr", "browser", "Browser" ].each do |x|
+  ["BROWSER", "bRoWsEr", "browser", "Browser"].each do |x|
     it "can find the browser by name #{x}" do
       app = Launchy.app_for_name(x)
-    _(app).must_equal(Launchy::Application::Browser)
+      _(app).must_equal(Launchy::Application::Browser)
     end
   end
 end

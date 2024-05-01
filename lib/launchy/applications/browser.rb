@@ -6,7 +6,7 @@ class Launchy::Application
   #
   class Browser < Launchy::Application
     def self.schemes
-      %w[ http https ftp file ]
+      %w[http https ftp file]
     end
 
     def self.handles?(uri)
@@ -15,16 +15,16 @@ class Launchy::Application
     end
 
     def windows_app_list
-      [ 'start "launchy" /b' ]
+      ['start "launchy" /b']
     end
 
     def cygwin_app_list
-      [ 'cmd /C start "launchy" /b' ]
+      ['cmd /C start "launchy" /b']
     end
 
     # hardcode this to open?
     def darwin_app_list
-      [ find_executable("open") ]
+      [find_executable("open")]
     end
 
     def nix_app_list
@@ -33,7 +33,7 @@ class Launchy::Application
       list.find_all { |argv| argv.valid? }
     end
 
-    # use a call back mechanism to get the right app_list that is decided by the 
+    # use a call back mechanism to get the right app_list that is decided by the
     # host_os_family class.
     def app_list
       host_os_family.app_list(self)
@@ -67,14 +67,14 @@ class Launchy::Application
 
     def cmd_and_args(uri, options = {})
       cmd = browser_cmdline.to_s
-      args = [ uri.to_s ]
+      args = [uri.to_s]
       if cmd =~ /%s/ then
         cmd.gsub!(/%s/, args.shift)
       end
       [cmd, args]
     end
 
-    # final assembly of the command and do %s substitution 
+    # final assembly of the command and do %s substitution
     # http://www.catb.org/~esr/BROWSER/index.html
     def open(uri, options = {})
       cmd, args = cmd_and_args(uri, options)

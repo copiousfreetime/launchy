@@ -33,7 +33,7 @@ describe Launchy::Application do
   end
 
   it "can find open or curl or xdg-open" do
-    found = %w[ open curl xdg-open ].any? do |app|
+    found = %w[open curl xdg-open].any? do |app|
       Launchy::Application.find_executable(app)
     end
     _(found).must_equal true

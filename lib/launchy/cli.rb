@@ -22,7 +22,7 @@ module Launchy
           @options[:application] = app
         end
 
-        op.on("-d", "--debug", 
+        op.on("-d", "--debug",
               "Force debug. Output lots of information.") do |d|
           @options[:debug] = true
         end
@@ -31,7 +31,7 @@ module Launchy
           @options[:dry_run] = true
         end
 
-        op.on("-o", "--host-os HOST_OS", 
+        op.on("-o", "--host-os HOST_OS",
               "Force launchy to behave as if it was on a particular host os.") do |os|
           @options[:host_os] = os
         end

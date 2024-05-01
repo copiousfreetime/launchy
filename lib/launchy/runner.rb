@@ -13,7 +13,7 @@ module Launchy
     end
 
     def wet_run(cmd, *args)
-      argv = [ cmd, *args ].flatten
+      argv = [cmd, *args].flatten
       Launchy.log "ChildProcess: argv => #{argv.inspect}"
       process = ChildProcess.build(*argv)
 
@@ -33,8 +33,8 @@ module Launchy
     # and in that case system shell escaping rules are not done.
     #
     def shell_commands(cmd, args)
-      cmdline = [ cmd.to_s.shellsplit ]
-      cmdline << args.flatten.collect{ |a| a.to_s }
+      cmdline = [cmd.to_s.shellsplit]
+      cmdline << args.flatten.collect { |a| a.to_s }
       return commandline_normalize(cmdline)
     end
 

@@ -21,7 +21,7 @@ describe Launchy::Detect::NixDesktopEnvironment do
     Launchy.host_os = "linux"
     ENV.delete("KDE_FULL_SESSION")
     ENV.delete("GNOME_DESKTOP_SESSION_ID")
-    Launchy.path = %w[ / /tmp ].join(File::PATH_SEPARATOR)
+    Launchy.path = %w[/ /tmp].join(File::PATH_SEPARATOR)
     not_found = Launchy::Detect::NixDesktopEnvironment.detect
     _(not_found).must_equal(Launchy::Detect::NixDesktopEnvironment::NotFound)
     _(not_found.browser).must_equal(Launchy::Argv.new)
