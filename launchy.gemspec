@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/copiousfreetime/launchy".freeze
   s.licenses = ["ISC".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
-  s.required_ruby_version = Gem::Requirement.new(">= 3.0.0".freeze)
+  s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
   s.rubygems_version = "3.5.9".freeze
   s.summary = "Launchy is helper class for launching cross-platform applications in a fire and forget manner.".freeze
 
