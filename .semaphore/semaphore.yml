@@ -28,49 +28,48 @@ blocks:
           matrix:
             - env_var: RUBY_VERSION
               values:
-                - 3.0.6
-                - 3.1.4
-                - 3.2.3
-                - 3.3.0
+                - 3.0.7
+                - 3.1.5
+                - 3.2.4
+                - 3.3.1
                 - jruby-9.4.5.0
-                - truffleruby-23.1.2
+                - truffleruby-24.0.1
           commands:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
+            - bundle exec rake rubocop
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - A="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
-  - name: Run tests in macOS environment
+
+  - name: Run MacOS Tests
     dependencies: []
     task:
-      prologue:
-        commands:
-          - checkout
-          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
-      epilogue:
-        always:
-          commands:
-            - test-results publish --name ${RUBY_VERSION} ${TEST_RESULTS_FILE}
-
       agent:
         machine:
           type: a1-standard-4
           os_image: macos-xcode14
+      prologue:
+        commands:
+          - checkout
+          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
       jobs:
         - name: macos matrix test
           matrix:
             - env_var: RUBY_VERSION
               values:
-                - 3.0.6
-                - 3.1.4
-                - 3.2.3
-                - 3.3.0
+                - 3.0.7
+                - 3.1.5
+                - 3.2.4
+                - 3.3.1
           commands:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
+            - bundle exec rake rubocop
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
-            - A="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
+            - bundle exec rake test
+
 
 after_pipeline:
   task:

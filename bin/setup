@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "pathname"
+require "fileutils"
+
+PROJECT_ROOT = Pathname.new(__dir__).parent.expand_path
+
+FileUtils.chdir(PROJECT_ROOT) do
+  puts "Installing dependencies..."
+  system("bundle install")
+end

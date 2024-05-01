@@ -1,0 +1,83 @@
+require:
+  - rubocop-md
+  - rubocop-minitest
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-thread_safety
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'coverage/**/*'
+    - 'doc/**/*'
+    - 'pkg/**/*'
+    - 'tmp/**/*'
+    - '*.gemspec'
+    - 'vendor/bundle/**/*'
+
+Layout/ExtraSpacing:
+  AllowBeforeTrailingComments: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+Lint/DuplicateBranch:
+  IgnoreLiteralBranches: true
+  IgnoreConstantBranches: true
+
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+  Max: 25
+  Exclude:
+    - 'test/**/*'
+    - 'tasks/**/*'
+
+Metrics/BlockLength:
+  CountAsOne:
+    - heredoc
+  Exclude:
+    - 'tasks/**/*'
+
+Metrics/ClassLength:
+  Max: 175
+  CountAsOne:
+    - heredoc
+    - array
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 20
+  CountAsOne:
+    - heredoc
+    - array
+  Exclude:
+    - 'test/**/*'
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
+Style/Documentation:
+  Exclude:
+    - 'test/**/*'
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+ThreadSafety/InstanceVariableInClassMethod:
+  Enabled: false

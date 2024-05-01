@@ -1,4 +1,6 @@
-require 'pathname'
+# frozen_string_literal: true
+
+require "pathname"
 
 # Public: A Class containing all the metadata and utilities needed to manage a
 # ruby project.
@@ -15,22 +17,22 @@ class ThisProject
   # The homepage of this project
   attr_accessor :homepage
 
-  # The regex of files to exclude from the manifest
-  attr_accessor :exclude_from_manifest
+  # The regex of files to include in the manifest
+  attr_accessor :include_in_manifest
 
   # The hash of Gem::Specifications keyed' by platform
   attr_accessor :gemspecs
 
+  # List of cross platforms to build the gem for
+  attr_accessor :cross_platforms
+
   # Public: Initialize ThisProject
   #
   # Yields self
-  def initialize(&block)
-    @exclude_from_manifest = Regexp.union(/\.(git|DS_Store|semaphore)/,
-                                          /^(doc|coverage|pkg|tmp|Gemfile(\.lock)?)/,
-                                          /^[^\/]+\.gemspec/,
-                                          /\.(swp|jar|bundle|so|rvmrc|travis.yml|byebug_history|fossa.yml|ruby-version)$/,
-                                          /~$/)
-    @gemspecs              = Hash.new
+  def initialize
+    @include_in_manifest = Regexp.union(/\Alib/, /\Aexe/, /\Aext/,
+                                        %r{\A[^/]+\.(gemspec|txt|md|rdoc|adoc)\Z})
+    @gemspecs = {}
     yield self if block_given?
   end
 
@@ -42,12 +44,10 @@ class ThisProject
   #
   # Returns a String version
   def version
-    [ "lib/#{ name }.rb", "lib/#{ name }/version.rb" ].each do |v|
-      path = project_path( v )
+    ["lib/#{name}.rb", "lib/#{name}/version.rb"].each do |v|
+      path = project_path(v)
       line = path.read[/^\s*VERSION\s*=\s*.*/]
-      if line then
-        return line.match(/.*VERSION\s*=\s*['"](.*)['"]/)[1]
-      end
+      return line.match(/.*VERSION\s*=\s*['"](.*)['"]/)[1] if line
     end
   end
 
@@ -57,22 +57,22 @@ class ThisProject
   # section_name - the section out of the file from which to parse data
   #
   # Retuns the text of the section as an array of paragrphs.
-  def section_of( file, section_name )
-    re    = /^[=#]+ (.*)$/
-    sectional = project_path( file )
-    parts = sectional.read.split( re )[1..-1]
-    parts.map! { |p| p.strip }
+  def section_of(file, section_name)
+    re = /^[=#]+ (.*)$/
+    sectional = project_path(file)
+    parts = sectional.read.split(re)[1..]
+    parts.map!(&:strip)
 
-    sections = Hash.new
-    Hash[*parts].each do |k,v|
+    sections = {}
+    Hash[*parts].each do |k, v|
       sections[k] = v.split("\n\n")
     end
-    return sections[section_name]
+    sections[section_name]
   end
 
   # Internal: print out a warning about the give task
-  def task_warning( task )
-    warn "WARNING: '#{task}' tasks are not defined. Please run 'rake develop'"
+  def task_warning(task)
+    warn "WARNING: '#{task}' tasks are not defined. Please run 'bin/setup'"
   end
 
   # Internal: Return the full path to the file that is relative to the project
@@ -81,15 +81,15 @@ class ThisProject
   # path - the relative path of the file from the project root
   #
   # Returns the Pathname of the file
-  def project_path( *relative_path )
-    project_root.join( *relative_path )
+  def project_path(*relative_path)
+    project_root.join(*relative_path)
   end
 
   # Internal: The absolute path of this file
   #
   # Returns the Pathname of this file.
   def this_file_path
-    Pathname.new( __FILE__ ).expand_path
+    Pathname.new(__FILE__).expand_path
   end
 
   # Internal: The root directory of this project
@@ -100,7 +100,7 @@ class ThisProject
   # Returns the Pathname of the directory
   def project_root
     this_file_path.ascend do |p|
-      rakefile = p.join( 'Rakefile' )
+      rakefile = p.join("Rakefile")
       return p if rakefile.exist?
     end
   end
@@ -109,16 +109,16 @@ class ThisProject
   #
   # Returns an Array of strings
   def manifest
-    manifest_file = project_path( "Manifest.txt" )
+    manifest_file = project_path("Manifest.txt")
     abort "You need a Manifest.txt" unless manifest_file.readable?
-    manifest_file.readlines.map { |l| l.strip }
+    manifest_file.readlines.map(&:strip)
   end
 
   # Internal: Return the files that define the extensions
   #
   # Returns an Array
   def extension_conf_files
-    manifest.grep( /extconf.rb\Z/ )
+    manifest.grep(/extconf.rb\Z/)
   end
 
   # Internal: Returns the gemspace associated with the current ruby platform
@@ -139,25 +139,26 @@ class ThisProject
       spec.license     = license
 
       spec.files       = manifest
-      spec.executables = spec.files.grep(/^bin/) { |f| File.basename(f) }
-      spec.test_files  = spec.files.grep(/^spec/)
+      spec.bindir      = "exe"
+      spec.executables = spec.files.grep(/^exe/) { |f| File.basename(f) }
+      spec.test_files  = []
 
       spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc|md)$/)
-      spec.rdoc_options = [ "--main"  , 'README.md',
-                            "--markup", "tomdoc" ]
+      spec.rdoc_options = ["--main", "README.md",
+                           "--markup", "tomdoc",]
 
-      spec.required_ruby_version = '>= 2.3.0'
+      spec.required_ruby_version = ">= 3.0.0"
     end
   end
 
   # Internal: Return the gemspec for the ruby platform
-  def ruby_gemspec( core = core_gemspec, &block )
-    yielding_gemspec( 'ruby', core, &block )
+  def ruby_gemspec(core = core_gemspec, &block)
+    yielding_gemspec("ruby", core, &block)
   end
 
   # Internal: Return the gemspec for the jruby platform
-  def java_gemspec( core = core_gemspec, &block )
-    yielding_gemspec( 'java', core, &block )
+  def java_gemspec(core = core_gemspec, &block)
+    yielding_gemspec("java", core, &block)
   end
 
   # Internal: give an initial spec and a key, create a new gemspec based off of
@@ -166,21 +167,21 @@ class ThisProject
   # This will force the new gemspecs 'platform' to be that of the key, since the
   # only reason you would have multiple gemspecs at this point is to deal with
   # different platforms.
-  def yielding_gemspec( key, core )
+  def yielding_gemspec(key, core)
     spec = gemspecs[key] ||= core.dup
     spec.platform = key
     yield spec if block_given?
-    return spec
+    spec
   end
 
   # Internal: Return the platform of ThisProject at the current moment in time.
   def platform
-    (RUBY_PLATFORM == "java") ? 'java' : Gem::Platform::RUBY
+    (RUBY_PLATFORM == "java") ? "java" : Gem::Platform::RUBY
   end
 
   # Internal: Return the DESCRIPTION section of the README.rdoc file
   def description_section
-    section_of( 'README.md', 'DESCRIPTION')
+    section_of("README.md", "DESCRIPTION")
   end
 
   # Internal: Return the summary text from the README
@@ -190,18 +191,18 @@ class ThisProject
 
   # Internal: Return the full description text from the README
   def description
-    description_section.join(" ").tr("\n", ' ').gsub(/[{}]/,'').gsub(/\[[^\]]+\]/,'') # strip rdoc
+    description_section.join(" ").tr("\n", " ").gsub(/[{}]/, "").gsub(/\[[^\]]+\]/, "") # strip rdoc
   end
 
   def license
-    license_file = project_path("LICENSE")
+    license_file = project_path("LICENSE.txt")
     line = license_file.readlines.first
     line.split(/\s+/).first
   end
 
   # Internal: The path to the gemspec file
   def gemspec_file
-    project_path( "#{ name }.gemspec" )
+    project_path("#{name}.gemspec")
   end
 end
 
