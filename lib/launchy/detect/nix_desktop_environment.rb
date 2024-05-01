@@ -13,13 +13,13 @@ module Launchy::Detect
     # If the current dekstop environment be detected, the return
     # NixDekstopEnvironment::Unknown
     def self.detect
-      found = find_child( :is_current_desktop_environment? )
+      found = find_child(:is_current_desktop_environment?)
       Launchy.log("Current Desktop environment not found. #{Launchy.bug_report_message}") unless found
       return found
     end
 
     def self.fallback_browsers
-      %w[ firefox iceweasel seamonkey opera mozilla netscape galeon links lynx ].map { |x| ::Launchy::Argv.new( x ) }
+      %w[ firefox iceweasel seamonkey opera mozilla netscape galeon links lynx ].map { |x| ::Launchy::Argv.new(x) }
     end
 
     def self.browsers
@@ -32,29 +32,29 @@ module Launchy::Detect
 
     class Kde < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        ENV['KDE_FULL_SESSION'] &&
-          Launchy::Application.find_executable( 'kde-open' )
+        ENV["KDE_FULL_SESSION"] &&
+          Launchy::Application.find_executable("kde-open")
       end
 
       def self.browser
-        ::Launchy::Argv.new( 'kde-open' )
+        ::Launchy::Argv.new("kde-open")
       end
     end
 
     class Gnome < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        ENV['GNOME_DESKTOP_SESSION_ID'] &&
-          Launchy::Application.find_executable( 'gnome-open' )
+        ENV["GNOME_DESKTOP_SESSION_ID"] &&
+          Launchy::Application.find_executable("gnome-open")
       end
 
       def self.browser
-        ::Launchy::Argv.new( 'gnome-open' )
+        ::Launchy::Argv.new("gnome-open")
       end
     end
 
     class Xfce < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        if Launchy::Application.find_executable( 'xprop' ) then
+        if Launchy::Application.find_executable("xprop") then
           %x[ xprop -root _DT_SAVE_MODE].include?("xfce")
         else
           false
@@ -62,18 +62,18 @@ module Launchy::Detect
       end
 
       def self.browser
-        ::Launchy::Argv.new( %w[ exo-open --launch WebBrowser ] )
+        ::Launchy::Argv.new(%w[ exo-open --launch WebBrowser ])
       end
     end
 
     # Fall back environment as the last case
     class Xdg < NixDesktopEnvironment
       def self.is_current_desktop_environment?
-        Launchy::Application.find_executable( browser )
+        Launchy::Application.find_executable(browser)
       end
 
       def self.browser
-        ::Launchy::Argv.new( 'xdg-open' )
+        ::Launchy::Argv.new("xdg-open")
       end
     end
 

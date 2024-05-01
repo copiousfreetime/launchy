@@ -1,22 +1,22 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Launchy::Application::Browser do
   before do
     Launchy.reset_global_options
-    ENV['KDE_FULL_SESSION'] = "launchy"
+    ENV["KDE_FULL_SESSION"] = "launchy"
     @test_url = "http://example.com/"
   end
 
   after do
     Launchy.reset_global_options
-    ENV.delete( 'KDE_FULL_SESSION' )
-    ENV.delete( 'BROWSER' )
+    ENV.delete("KDE_FULL_SESSION")
+    ENV.delete("BROWSER")
   end
 
-  { 'windows' => 'windows_app_list',
-    'darwin'  => 'darwin_app_list',
-    'cygwin'  => 'cygwin_app_list',
-    'linux'   => 'nix_app_list',
+  { "windows" => "windows_app_list",
+    "darwin"  => "darwin_app_list",
+    "cygwin"  => "cygwin_app_list",
+    "linux"   => "nix_app_list",
   }.each  do |host_os, called_method|
     it "when host_os is '#{host_os}' the '#{called_method}' method is called" do
       Launchy.host_os = host_os
@@ -30,25 +30,25 @@ describe Launchy::Application::Browser do
 
   %w[ linux windows darwin cygwin ].each do |host_os|
     it "the BROWSER environment variable overrides any host defaults on '#{host_os}'" do
-      ENV['BROWSER'] = "my_special_browser --new-tab '%s'"
+      ENV["BROWSER"] = "my_special_browser --new-tab '%s'"
       Launchy.host_os = host_os
       browser = Launchy::Application::Browser.new
-      cmd, args = browser.cmd_and_args( @test_url )
+      cmd, args = browser.cmd_and_args(@test_url)
       _(cmd).must_equal "my_special_browser --new-tab 'http://example.com/'"
       _(args).must_equal []
     end
   end
 
   it "handles a file on the file system when there is no file:// scheme" do
-    uri = Addressable::URI.parse( __FILE__ )
-    _(Launchy::Application::Browser.handles?( uri )).must_equal true
+    uri = Addressable::URI.parse(__FILE__)
+    _(Launchy::Application::Browser.handles?(uri)).must_equal true
   end
 
   it "handles the case where $BROWSER is set and no *nix desktop environment is found" do
-    ENV.delete( "KDE_FULL_SESSION" )
-    ENV.delete( "GNOME_DESKTOP_SESSION_ID" )
-    ENV['BROWSER'] = "do-this-instead"
-    Launchy.host_os = 'linux'
+    ENV.delete("KDE_FULL_SESSION")
+    ENV.delete("GNOME_DESKTOP_SESSION_ID")
+    ENV["BROWSER"] = "do-this-instead"
+    Launchy.host_os = "linux"
     browser = Launchy::Application::Browser.new
     _(browser.browser_cmdline).must_equal "do-this-instead"
   end

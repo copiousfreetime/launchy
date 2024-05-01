@@ -1,4 +1,4 @@
-require 'rbconfig'
+require "rbconfig"
 
 module Launchy::Detect
   class HostOs
@@ -7,7 +7,7 @@ module Launchy::Detect
     alias to_s host_os
     alias to_str host_os
 
-    def initialize( host_os = nil )
+    def initialize(host_os = nil)
       @host_os = host_os
 
       if not @host_os then
@@ -20,7 +20,7 @@ module Launchy::Detect
     end
 
     def default_host_os
-      ::RbConfig::CONFIG['host_os'].downcase
+      ::RbConfig::CONFIG["host_os"].downcase
     end
 
     def override_host_os

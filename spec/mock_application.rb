@@ -3,11 +3,11 @@ class MockApplication < Launchy::Application
     %w[ mock mockother ]
   end
 
-  def self.handles?( uri )
-    schemes.include?( uri.scheme )
+  def self.handles?(uri)
+    schemes.include?(uri.scheme)
   end
 
-  def open( uri, options = {} )
+  def open(uri, options = {})
     return "MockApplication opened #{uri}"
   end
 end

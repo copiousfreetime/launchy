@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 module Launchy
   #
   # Application is the base class of all the application types that launchy may
@@ -18,8 +18,8 @@ module Launchy
       # Find the application that handles the given uri.
       #
       # returns the Class that can handle the uri
-      def handling( uri )
-        klass = find_child( :handles?, uri )
+      def handling(uri)
+        klass = find_child(:handles?, uri)
         return klass if klass
         raise ApplicationNotFoundError, "No application found to handle '#{uri}'"
       end
@@ -27,8 +27,8 @@ module Launchy
       # Find the application with the given name
       #
       # returns the Class that has the given name
-      def for_name( name )
-        klass = find_child( :has_name?, name )
+      def for_name(name)
+        klass = find_child(:has_name?, name)
         return klass if klass
         raise ApplicationNotFoundError, "No application found named '#{name}'"
       end
@@ -36,11 +36,11 @@ module Launchy
       # Find the given executable in the available paths
       #
       # returns the path to the executable or nil if not found
-      def find_executable( bin, *paths )
-        paths = Launchy.path.split( File::PATH_SEPARATOR ) if paths.empty?
+      def find_executable(bin, *paths)
+        paths = Launchy.path.split(File::PATH_SEPARATOR) if paths.empty?
         paths.each do |path|
-          file = File.join( path, bin )
-          if File.executable?( file ) then
+          file = File.join(path, bin)
+          if File.executable?(file) then
             Launchy.log "#{self.name} : found executable #{file}"
             return file
           end
@@ -52,7 +52,7 @@ module Launchy
       # Does this class have the given name-like string?
       #
       # returns true if the class has the given name
-      def has_name?( qname )
+      def has_name?(qname)
         qname.to_s.downcase == self.name.split("::").last.downcase
       end
     end
@@ -65,13 +65,13 @@ module Launchy
       @runner         = Launchy::Runner.new
     end
 
-    def find_executable( bin, *paths )
-      Application.find_executable( bin, *paths )
+    def find_executable(bin, *paths)
+      Application.find_executable(bin, *paths)
     end
 
-    def run( cmd, *args )
-      runner.run( cmd, *args )
+    def run(cmd, *args)
+      runner.run(cmd, *args)
     end
   end
 end
-require 'launchy/applications/browser'
+require "launchy/applications/browser"

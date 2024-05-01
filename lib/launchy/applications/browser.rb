@@ -7,9 +7,9 @@ class Launchy::Application
       %w[ http https ftp file ]
     end
 
-    def self.handles?( uri )
-      return true if schemes.include?( uri.scheme )
-      return true if File.exist?( uri.path )
+    def self.handles?(uri)
+      return true if schemes.include?(uri.scheme)
+      return true if File.exist?(uri.path)
     end
 
     def windows_app_list
@@ -22,7 +22,7 @@ class Launchy::Application
 
     # hardcode this to open?
     def darwin_app_list
-      [ find_executable( "open" ) ]
+      [ find_executable("open") ]
     end
 
     def nix_app_list
@@ -34,12 +34,12 @@ class Launchy::Application
     # use a call back mechanism to get the right app_list that is decided by the 
     # host_os_family class.
     def app_list
-      host_os_family.app_list( self )
+      host_os_family.app_list(self)
     end
 
     def browser_env
-      return [] unless ENV['BROWSER']
-      browser_env = ENV['BROWSER'].split( File::PATH_SEPARATOR )
+      return [] unless ENV["BROWSER"]
+      browser_env = ENV["BROWSER"].split(File::PATH_SEPARATOR)
       browser_env.flatten!
       browser_env.delete_if { |b| b.nil? || (b.strip.size == 0) }
       return browser_env
@@ -63,20 +63,20 @@ class Launchy::Application
       raise Launchy::CommandNotFoundError, "Unable to find a browser command. If this is unexpected, #{Launchy.bug_report_message}"
     end
 
-    def cmd_and_args( uri, options = {} )
+    def cmd_and_args(uri, options = {})
       cmd = browser_cmdline.to_s
       args = [ uri.to_s ]
       if cmd =~ /%s/ then
-        cmd.gsub!( /%s/, args.shift )
+        cmd.gsub!(/%s/, args.shift)
       end
       [cmd, args]
     end
 
     # final assembly of the command and do %s substitution 
     # http://www.catb.org/~esr/BROWSER/index.html
-    def open( uri, options = {} )
-      cmd, args = cmd_and_args( uri, options )
-      run( cmd, args )
+    def open(uri, options = {})
+      cmd, args = cmd_and_args(uri, options)
+      run(cmd, args)
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 
 module Launchy
   #
@@ -20,8 +20,8 @@ module Launchy
   # them in a Set that is available via the 'children' method.
   #
   module DescendantTracker
-    def inherited( klass )
-      return unless klass.instance_of?( Class )
+    def inherited(klass)
+      return unless klass.instance_of?(Class)
       self.children << klass
     end
 
@@ -39,10 +39,10 @@ module Launchy
     # Find one of the child classes by calling the given method
     # and passing all the rest of the parameters to that method in 
     # each child
-    def find_child( method, *args )
+    def find_child(method, *args)
       children.find do |child|
         Launchy.log "Checking if class #{child} is the one for #{method}(#{args.join(', ')})}"
-        child.send( method, *args )
+        child.send(method, *args)
       end
     end
   end

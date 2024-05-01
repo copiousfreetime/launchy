@@ -1,12 +1,12 @@
 module Launchy
   class Argv
     attr_reader :argv
-    def initialize( *args )
+    def initialize(*args)
       @argv = args.flatten
     end
 
     def to_s
-      @argv.join(' ')
+      @argv.join(" ")
     end
 
     def to_str
@@ -26,10 +26,10 @@ module Launchy
     end
 
     def executable?
-      ::Launchy::Application.find_executable( @argv.first )
+      ::Launchy::Application.find_executable(@argv.first)
     end
 
-    def ==( other )
+    def ==(other)
       @argv == other.argv
     end
   end

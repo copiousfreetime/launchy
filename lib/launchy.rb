@@ -1,6 +1,6 @@
-require 'addressable/uri'
-require 'shellwords'
-require 'stringio'
+require "addressable/uri"
+require "shellwords"
+require "stringio"
 
 #
 # The entry point into Launchy. This is the sole supported public API.
@@ -24,18 +24,18 @@ module Launchy
     #
     # Launch an application for the given uri string
     #
-    def open(uri_s, options = {}, &error_block )
-      leftover = extract_global_options( options )
-      uri = string_to_uri( uri_s )
+    def open(uri_s, options = {}, &error_block)
+      leftover = extract_global_options(options)
+      uri = string_to_uri(uri_s)
       if name = options[:application] then
-        app = app_for_name( name )
+        app = app_for_name(name)
       end
 
       if app.nil? then
-        app = app_for_uri( uri )
+        app = app_for_uri(uri)
       end
 
-      app.new.open( uri, leftover )
+      app.new.open(uri, leftover)
     rescue Launchy::Error => le
       raise le
     rescue Exception => e
@@ -48,26 +48,26 @@ module Launchy
       end
     end
 
-    def app_for_uri( uri )
-      Launchy::Application.handling( uri )
+    def app_for_uri(uri)
+      Launchy::Application.handling(uri)
     end
 
-    def app_for_name( name )
-      Launchy::Application.for_name( name )
+    def app_for_name(name)
+      Launchy::Application.for_name(name)
     rescue Launchy::ApplicationNotFoundError
       nil
     end
 
-    def app_for_uri_string( s )
-      app_for_uri( string_to_uri( s ) )
+    def app_for_uri_string(s)
+      app_for_uri(string_to_uri(s))
     end
 
-    def string_to_uri( s )
+    def string_to_uri(s)
       s = s.to_s
-      uri = Addressable::URI.parse( s )
+      uri = Addressable::URI.parse(s)
       Launchy.log "URI parsing pass 1 : #{s} -> #{uri.to_hash}"
       if not uri.scheme then
-        uri = Addressable::URI.heuristic_parse( s )
+        uri = Addressable::URI.heuristic_parse(s)
         Launchy.log "URI parsing pass 2 : #{s} -> #{uri.to_hash}"
       end
       raise Launchy::ArgumentError, "Invalid URI given: #{s.inspect}" unless uri
@@ -79,49 +79,49 @@ module Launchy
       Launchy.application = nil
       Launchy.host_os     = nil
       Launchy.dry_run     = false
-      Launchy.path        = ENV['PATH']
+      Launchy.path        = ENV["PATH"]
     end
 
-    def extract_global_options( options )
+    def extract_global_options(options)
       leftover = options.dup
-      Launchy.debug        = leftover.delete( :debug       ) || ENV['LAUNCHY_DEBUG']
-      Launchy.application  = leftover.delete( :application ) || ENV['LAUNCHY_APPLICATION']
-      Launchy.host_os      = leftover.delete( :host_os     ) || ENV['LAUNCHY_HOST_OS']
-      Launchy.dry_run      = leftover.delete( :dry_run     ) || ENV['LAUNCHY_DRY_RUN']
+      Launchy.debug        = leftover.delete(:debug) || ENV["LAUNCHY_DEBUG"]
+      Launchy.application  = leftover.delete(:application) || ENV["LAUNCHY_APPLICATION"]
+      Launchy.host_os      = leftover.delete(:host_os) || ENV["LAUNCHY_HOST_OS"]
+      Launchy.dry_run      = leftover.delete(:dry_run) || ENV["LAUNCHY_DRY_RUN"]
     end
 
-    def debug=( d )
-      @debug = to_bool( d )
+    def debug=(d)
+      @debug = to_bool(d)
     end
 
     # we may do logging before a call to 'open', hence the need to check
     # LAUNCHY_DEBUG here
     def debug?
-      @debug || to_bool( ENV['LAUNCHY_DEBUG'] )
+      @debug || to_bool(ENV["LAUNCHY_DEBUG"])
     end
 
-    def application=( app )
+    def application=(app)
       @application = app
     end
 
     def application
-      @application || ENV['LAUNCHY_APPLICATION']
+      @application || ENV["LAUNCHY_APPLICATION"]
     end
 
-    def host_os=( host_os )
+    def host_os=(host_os)
       @host_os = host_os
     end
 
     def host_os
-      @host_os || ENV['LAUNCHY_HOST_OS']
+      @host_os || ENV["LAUNCHY_HOST_OS"]
     end
 
-    def dry_run=( dry_run )
-      @dry_run = to_bool( dry_run )
+    def dry_run=(dry_run)
+      @dry_run = to_bool(dry_run)
     end
 
     def dry_run?
-      @dry_run || to_bool( ENV['LAUNCHY_DRY_RUN'] )
+      @dry_run || to_bool(ENV["LAUNCHY_DRY_RUN"])
     end
 
     def bug_report_message
@@ -141,9 +141,9 @@ module Launchy
     end
 
   private
-    def to_bool( arg )
+    def to_bool(arg)
       if arg.is_a? String
-        arg == 'true'
+        arg == "true"
       elsif arg.is_a? TrueClass
         true
       else
@@ -157,11 +157,11 @@ module Launchy
   Launchy.reset_global_options
 end
 
-require 'launchy/version'
-require 'launchy/argv'
-require 'launchy/cli'
-require 'launchy/descendant_tracker'
-require 'launchy/error'
-require 'launchy/application'
-require 'launchy/detect'
-require 'launchy/runner'
+require "launchy/version"
+require "launchy/argv"
+require "launchy/cli"
+require "launchy/descendant_tracker"
+require "launchy/error"
+require "launchy/application"
+require "launchy/detect"
+require "launchy/runner"

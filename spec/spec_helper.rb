@@ -1,8 +1,8 @@
-require 'simplecov'
-SimpleCov.start if ENV['COVERAGE']
+require "simplecov"
+SimpleCov.start if ENV["COVERAGE"]
 
-gem 'minitest'
-require 'launchy'
-require 'stringio'
-require 'minitest/autorun'
-require 'minitest/pride'
+gem "minitest"
+require "launchy"
+require "stringio"
+require "minitest/autorun"
+require "minitest/pride"
