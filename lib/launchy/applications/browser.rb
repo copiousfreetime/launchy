@@ -70,7 +70,7 @@ module Launchy
       def cmd_and_args(uri, _options = {})
         cmd = browser_cmdline.to_s
         args = [uri.to_s]
-        cmd.gsub!(/%s/, args.shift) if cmd.include?("%s")
+        cmd.gsub!("%s", args.shift) if cmd.include?("%s")
         [cmd, args]
       end
 
