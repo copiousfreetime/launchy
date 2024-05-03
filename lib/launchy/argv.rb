@@ -23,7 +23,7 @@ module Launchy
     end
 
     def valid?
-      (not blank?) && executable?
+      !blank? && executable?
     end
 
     def blank?

@@ -70,7 +70,7 @@ module Launchy
       str = str.to_s
       uri = Addressable::URI.parse(str)
       Launchy.log "URI parsing pass 1 : #{str} -> #{uri.to_hash}"
-      if not uri.scheme
+      unless uri.scheme
         uri = Addressable::URI.heuristic_parse(str)
         Launchy.log "URI parsing pass 2 : #{str} -> #{uri.to_hash}"
       end
