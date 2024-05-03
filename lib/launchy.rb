@@ -28,7 +28,7 @@ module Launchy
     def open(uri_s, options = {}, &error_block)
       leftover = extract_global_options(options)
       uri = string_to_uri(uri_s)
-      if name = options[:application] then
+      if (name = options[:application]) then
         app = app_for_name(name)
       end
 

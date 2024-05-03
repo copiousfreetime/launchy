@@ -59,7 +59,7 @@ class Launchy::Application
 
       possibilities = (browser_env + app_list).flatten
 
-      if browser = possibilities.shift then
+      if (browser = possibilities.shift) then
         Launchy.log "#{self.class.name} : Using browser value '#{browser}'"
         return browser
       end
