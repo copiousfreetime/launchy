@@ -6,7 +6,10 @@ module Launchy
   #
   class Runner
     def run(cmd, *args)
-      raise Launchy::CommandNotFoundError, "No command found to run with args '#{args.join(' ')}'. If this is unexpected, #{Launchy.bug_report_message}" unless cmd
+      unless cmd
+        raise Launchy::CommandNotFoundError,
+              "No command found to run with args '#{args.join(' ')}'. If this is unexpected, #{Launchy.bug_report_message}"
+      end
 
       if Launchy.dry_run?
         $stdout.puts dry_run(cmd, *args)

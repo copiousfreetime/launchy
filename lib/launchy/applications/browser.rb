@@ -65,7 +65,8 @@ module Launchy
           Launchy.log "#{self.class.name} : Using browser value '#{browser}'"
           return browser
         end
-        raise Launchy::CommandNotFoundError, "Unable to find a browser command. If this is unexpected, #{Launchy.bug_report_message}"
+        raise Launchy::CommandNotFoundError,
+              "Unable to find a browser command. If this is unexpected, #{Launchy.bug_report_message}"
       end
 
       def cmd_and_args(uri, _options = {})

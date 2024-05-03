@@ -108,7 +108,9 @@ describe Launchy do
 
   it "calls the block with the values passed to launchy and the error" do
     options = { dry_run: true }
-    Launchy.open(@invalid_url, dry_run: true) { |e| $stderr.puts "had an error opening #{@invalid_url} with options #{options}: #{e}" }
+    Launchy.open(@invalid_url, dry_run: true) do |e|
+      $stderr.puts "had an error opening #{@invalid_url} with options #{options}: #{e}"
+    end
     _($stderr.string.strip).must_equal "had an error opening #{@invalid_url} with options #{options}: No application found to handle '#{@invalid_url}'"
   end
 
