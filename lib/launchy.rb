@@ -86,15 +86,15 @@ module Launchy
       Launchy.application = nil
       Launchy.host_os     = nil
       Launchy.dry_run     = false
-      Launchy.path        = ENV["PATH"]
+      Launchy.path        = ENV.fetch("PATH", nil)
     end
 
     def extract_global_options(options)
       leftover = options.dup
-      Launchy.debug        = leftover.delete(:debug) || ENV["LAUNCHY_DEBUG"]
-      Launchy.application  = leftover.delete(:application) || ENV["LAUNCHY_APPLICATION"]
-      Launchy.host_os      = leftover.delete(:host_os) || ENV["LAUNCHY_HOST_OS"]
-      Launchy.dry_run      = leftover.delete(:dry_run) || ENV["LAUNCHY_DRY_RUN"]
+      Launchy.debug        = leftover.delete(:debug) || ENV.fetch("LAUNCHY_DEBUG", nil)
+      Launchy.application  = leftover.delete(:application) || ENV.fetch("LAUNCHY_APPLICATION", nil)
+      Launchy.host_os      = leftover.delete(:host_os) || ENV.fetch("LAUNCHY_HOST_OS", nil)
+      Launchy.dry_run      = leftover.delete(:dry_run) || ENV.fetch("LAUNCHY_DRY_RUN", nil)
     end
 
     def debug=(enabled)
@@ -104,7 +104,7 @@ module Launchy
     # we may do logging before a call to 'open', hence the need to check
     # LAUNCHY_DEBUG here
     def debug?
-      @debug || to_bool(ENV["LAUNCHY_DEBUG"])
+      @debug || to_bool(ENV.fetch("LAUNCHY_DEBUG", nil))
     end
 
     def application=(app)
@@ -112,7 +112,7 @@ module Launchy
     end
 
     def application
-      @application || ENV["LAUNCHY_APPLICATION"]
+      @application || ENV.fetch("LAUNCHY_APPLICATION", nil)
     end
 
     def host_os=(host_os)
@@ -120,7 +120,7 @@ module Launchy
     end
 
     def host_os
-      @host_os || ENV["LAUNCHY_HOST_OS"]
+      @host_os || ENV.fetch("LAUNCHY_HOST_OS", nil)
     end
 
     def dry_run=(dry_run)
@@ -128,7 +128,7 @@ module Launchy
     end
 
     def dry_run?
-      @dry_run || to_bool(ENV["LAUNCHY_DRY_RUN"])
+      @dry_run || to_bool(ENV.fetch("LAUNCHY_DRY_RUN", nil))
     end
 
     def bug_report_message

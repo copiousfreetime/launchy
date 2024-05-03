@@ -36,7 +36,7 @@ module Launchy
       # KDE desktop environment
       class Kde < NixDesktopEnvironment
         def self.is_current_desktop_environment?
-          ENV["KDE_FULL_SESSION"] &&
+          ENV.fetch("KDE_FULL_SESSION", nil) &&
             Launchy::Application.find_executable("kde-open")
         end
 
@@ -48,7 +48,7 @@ module Launchy
       # Gnome desktop environment
       class Gnome < NixDesktopEnvironment
         def self.is_current_desktop_environment?
-          ENV["GNOME_DESKTOP_SESSION_ID"] &&
+          ENV.fetch("GNOME_DESKTOP_SESSION_ID", nil) &&
             Launchy::Application.find_executable("gnome-open")
         end
 

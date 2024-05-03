@@ -12,7 +12,7 @@ describe Launchy::Detect::HostOsFamily do
     Launchy.reset_global_options
   end
 
-  YAML.load_file(File.expand_path("../../tattle-host-os.yaml", __FILE__))["host_os"].keys.sort.each do |os|
+  YAML.load_file(File.expand_path("../tattle-host-os.yaml", __dir__))["host_os"].keys.sort.each do |os|
     it "OS family of #{os} is detected" do
       os_family = Launchy::Detect::HostOsFamily.detect(os)
       _(os_family).must_be_kind_of Launchy::Detect::HostOsFamily
