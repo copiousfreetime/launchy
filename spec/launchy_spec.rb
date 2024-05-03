@@ -45,26 +45,26 @@ describe Launchy do
   end
 
   it "has the global option :debug" do
-    Launchy.extract_global_options({ :debug => "true" })
+    Launchy.extract_global_options({ debug: "true" })
     _(Launchy.debug?).must_equal true
-    Launchy.extract_global_options({ :debug => true })
+    Launchy.extract_global_options({ debug: true })
     _(Launchy.debug?).must_equal true
   end
 
   it "has the global option :dry_run" do
-    Launchy.extract_global_options({ :dry_run => "true" })
+    Launchy.extract_global_options({ dry_run: "true" })
     _(Launchy.dry_run?).must_equal true
-    Launchy.extract_global_options({ :dry_run => true })
+    Launchy.extract_global_options({ dry_run: true })
     _(Launchy.dry_run?).must_equal true
   end
 
   it "has the global option :application" do
-    Launchy.extract_global_options({ :application => "wibble" })
+    Launchy.extract_global_options({ application: "wibble" })
     _(Launchy.application).must_equal "wibble"
   end
 
   it "has the global option :host_os" do
-    Launchy.extract_global_options({ :host_os => "my-special-os-v2" })
+    Launchy.extract_global_options({ host_os: "my-special-os-v2" })
     _(Launchy.host_os).must_equal "my-special-os-v2"
   end
 
@@ -83,7 +83,7 @@ describe Launchy do
 
   it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
     uri = "blah://example.com/#{__FILE__}"
-    Launchy.open(uri, :dry_run => true)
+    Launchy.open(uri, dry_run: true)
     parts = $stdout.string.strip.split
     _(parts.size).must_be :>, 1
     _(parts.last).must_equal uri
@@ -91,13 +91,13 @@ describe Launchy do
 
   it "opens a local file if we have a drive letter and a valid path on windows" do
     uri = "C:#{__FILE__}"
-    Launchy.open(uri, :dry_run => true, :host_os => "windows")
+    Launchy.open(uri, dry_run: true, host_os: "windows")
     _($stdout.string.strip).must_equal "start launchy /b " + uri
   end
 
   it "opens a data url with a forced browser application" do
     uri = "data:text/html,hello%20world"
-    Launchy.open(uri, :dry_run => true, :application => "browser")
+    Launchy.open(uri, dry_run: true, application: "browser")
     _($stdout.string.strip).must_match(/open/) # /usr/bin/open or xdg-open
   end
 
@@ -107,8 +107,8 @@ describe Launchy do
   end
 
   it "calls the block with the values passed to launchy and the error" do
-    options = { :dry_run => true }
-    Launchy.open(@invalid_url, :dry_run => true) { |e| $stderr.puts "had an error opening #{@invalid_url} with options #{options}: #{e}" }
+    options = { dry_run: true }
+    Launchy.open(@invalid_url, dry_run: true) { |e| $stderr.puts "had an error opening #{@invalid_url} with options #{options}: #{e}" }
     _($stderr.string.strip).must_equal "had an error opening #{@invalid_url} with options #{options}: No application found to handle '#{@invalid_url}'"
   end
 
@@ -117,7 +117,7 @@ describe Launchy do
   end
 
   it "can force a specific application to be used" do
-    result = Launchy.open("http://example.com", :application => "mockapplication")
+    result = Launchy.open("http://example.com", application: "mockapplication")
     _(result).must_equal "MockApplication opened http://example.com"
   end
 
