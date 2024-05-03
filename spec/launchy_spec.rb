@@ -134,7 +134,7 @@ describe Launchy do
     _(app).must_equal(Launchy::Application::Browser)
   end
 
-  ["BROWSER", "bRoWsEr", "browser", "Browser"].each do |x|
+  %w[BROWSER bRoWsEr browser Browser].each do |x|
     it "can find the browser by name #{x}" do
       app = Launchy.app_for_name(x)
       _(app).must_equal(Launchy::Application::Browser)
