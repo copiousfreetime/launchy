@@ -22,10 +22,21 @@ module Launchy
           matching_regex.match(host_os.to_s)
         end
 
-        def windows?() self == Windows; end
-        def darwin?()  self == Darwin;  end
-        def nix?()     self == Nix;     end
-        def cygwin?()  self == Cygwin;  end
+        def windows?
+          self == Windows
+        end
+
+        def darwin?
+          self == Darwin
+        end
+
+        def nix?
+          self == Nix
+        end
+
+        def cygwin?
+          self == Cygwin
+        end
       end
 
       attr_reader :host_os
@@ -34,10 +45,21 @@ module Launchy
         @host_os = host_os
       end
 
-      def windows?() self.class.windows?; end
-      def darwin?()  self.class.darwin?;  end
-      def nix?()     self.class.nix?; end
-      def cygwin?()  self.class.cygwin?; end
+      def windows?
+        self.class.windows?
+      end
+
+      def darwin?
+        self.class.darwin?
+      end
+
+      def nix?
+        self.class.nix?
+      end
+
+      def cygwin?
+        self.class.cygwin?
+      end
 
       #---------------------------
       # All known host os families
@@ -48,7 +70,9 @@ module Launchy
           /(mingw|mswin|msys|windows)/i
         end
 
-        def app_list(app) app.windows_app_list; end
+        def app_list(app)
+          app.windows_app_list
+        end
       end
 
       # Mac OS X family
@@ -57,7 +81,9 @@ module Launchy
           /(darwin|mac os)/i
         end
 
-        def app_list(app) app.darwin_app_list; end
+        def app_list(app)
+          app.darwin_app_list
+        end
       end
 
       # All the *nix family of operating systems, and BSDs
@@ -66,7 +92,9 @@ module Launchy
           /(linux|bsd|aix|solaris|sunos|dragonfly)/i
         end
 
-        def app_list(app) app.nix_app_list; end
+        def app_list(app)
+          app.nix_app_list
+        end
       end
 
       # Cygwin - if anyone is still using that
@@ -75,7 +103,9 @@ module Launchy
           /cygwin/i
         end
 
-        def app_list(app) app.cygwin_app_list; end
+        def app_list(app)
+          app.cygwin_app_list
+        end
       end
     end
   end
