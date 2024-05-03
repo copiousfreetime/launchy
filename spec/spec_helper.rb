@@ -1,8 +1,6 @@
-require 'simplecov'
-SimpleCov.start if ENV['COVERAGE']
+# frozen_string_literal: true
 
-gem 'minitest'
-require 'launchy'
-require 'stringio'
-require 'minitest/autorun'
-require 'minitest/pride'
+require "launchy"
+require "stringio"
+require "minitest/autorun"
+require "minitest/pride"

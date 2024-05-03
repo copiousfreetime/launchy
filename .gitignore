@@ -1,11 +1,24 @@
+*.gem
+*.rbc
+*.log
+/.config/
+/coverage/
+/pkg/
+/test/tmp/
+/test/version_tmp/
+/tmp/
+/log/
+
+# documentation
+/doc/
+
+# editor
 *~
-*.swo
 *.swp
-doc/
-coverage/
-pkg/
-.rvmrc
-.DS_Store
-.gem
-.byebug_history
-vendor/
+*.swo
+
+# environment normalization
+/.gem/
+/.bundle/
+/vendor/bundle/
+/lib/bundler/man/

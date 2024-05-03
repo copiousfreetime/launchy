@@ -1,4 +1,6 @@
-require 'set'
+# frozen_string_literal: true
+
+require "set"
 
 module Launchy
   #
@@ -9,7 +11,7 @@ module Launchy
   #   end
   #
   # or
-  #   
+  #
   #   class Foo
   #     class << self
   #       include DescendantTracker
@@ -20,29 +22,29 @@ module Launchy
   # them in a Set that is available via the 'children' method.
   #
   module DescendantTracker
-    def inherited( klass )
-      return unless klass.instance_of?( Class )
-      self.children << klass
+    def inherited(klass)
+      super
+      return unless klass.instance_of?(Class)
+
+      children << klass
     end
 
     #
     # The list of children that are registered
     #
     def children
-      unless defined? @children
-        @children = Array.new
-      end
-      return @children
+      @children = [] unless defined? @children
+      @children
     end
 
     #
     # Find one of the child classes by calling the given method
-    # and passing all the rest of the parameters to that method in 
+    # and passing all the rest of the parameters to that method in
     # each child
-    def find_child( method, *args )
+    def find_child(method, *args)
       children.find do |child|
         Launchy.log "Checking if class #{child} is the one for #{method}(#{args.join(', ')})}"
-        child.send( method, *args )
+        child.send(method, *args)
       end
     end
   end

@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
 module Launchy
+  # Internal: Ecapsulate the commandline argumens passed to Launchy
+  #
   class Argv
     attr_reader :argv
-    def initialize( *args )
+
+    def initialize(*args)
       @argv = args.flatten
     end
 
     def to_s
-      @argv.join(' ')
+      @argv.join(" ")
     end
 
     def to_str
@@ -18,18 +23,18 @@ module Launchy
     end
 
     def valid?
-      (not blank?) && executable?
+      !blank? && executable?
     end
 
     def blank?
-      @argv.empty? || (@argv.first.strip.size == 0)
+      @argv.empty? || @argv.first.strip.empty?
     end
 
     def executable?
-      ::Launchy::Application.find_executable( @argv.first )
+      ::Launchy::Application.find_executable(@argv.first)
     end
 
-    def ==( other )
+    def ==(other)
       @argv == other.argv
     end
   end

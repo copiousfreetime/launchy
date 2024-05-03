@@ -1,4 +1,6 @@
-require 'set'
+# frozen_string_literal: true
+
+require "set"
 module Launchy
   #
   # Application is the base class of all the application types that launchy may
@@ -18,60 +20,61 @@ module Launchy
       # Find the application that handles the given uri.
       #
       # returns the Class that can handle the uri
-      def handling( uri )
-        klass = find_child( :handles?, uri )
+      def handling(uri)
+        klass = find_child(:handles?, uri)
         return klass if klass
+
         raise ApplicationNotFoundError, "No application found to handle '#{uri}'"
       end
 
       # Find the application with the given name
       #
       # returns the Class that has the given name
-      def for_name( name )
-        klass = find_child( :has_name?, name )
+      def for_name(name)
+        klass = find_child(:has_name?, name)
         return klass if klass
+
         raise ApplicationNotFoundError, "No application found named '#{name}'"
       end
 
       # Find the given executable in the available paths
       #
       # returns the path to the executable or nil if not found
-      def find_executable( bin, *paths )
-        paths = Launchy.path.split( File::PATH_SEPARATOR ) if paths.empty?
+      def find_executable(bin, *paths)
+        paths = Launchy.path.split(File::PATH_SEPARATOR) if paths.empty?
         paths.each do |path|
-          file = File.join( path, bin )
-          if File.executable?( file ) then
-            Launchy.log "#{self.name} : found executable #{file}"
+          file = File.join(path, bin)
+          if File.executable?(file)
+            Launchy.log "#{name} : found executable #{file}"
             return file
           end
         end
-        Launchy.log "#{self.name} : Unable to find `#{bin}' in #{paths.join(", ")}"
-        return nil
+        Launchy.log "#{name} : Unable to find `#{bin}' in #{paths.join(', ')}"
+        nil
       end
 
       # Does this class have the given name-like string?
       #
       # returns true if the class has the given name
-      def has_name?( qname )
-        qname.to_s.downcase == self.name.split("::").last.downcase
+      def has_name?(qname)
+        qname.to_s.downcase == name.split("::").last.downcase
       end
     end
 
-    attr_reader :host_os_family
-    attr_reader :runner
+    attr_reader :host_os_family, :runner
 
     def initialize
       @host_os_family = Launchy::Detect::HostOsFamily.detect
       @runner         = Launchy::Runner.new
     end
 
-    def find_executable( bin, *paths )
-      Application.find_executable( bin, *paths )
+    def find_executable(bin, *paths)
+      Application.find_executable(bin, *paths)
     end
 
-    def run( cmd, *args )
-      runner.run( cmd, *args )
+    def run(cmd, *args)
+      runner.run(cmd, *args)
     end
   end
 end
-require 'launchy/applications/browser'
+require "launchy/applications/browser"

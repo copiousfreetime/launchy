@@ -1,0 +1,104 @@
+require:
+  - rubocop-md
+  - rubocop-minitest
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-thread_safety
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'coverage/**/*'
+    - 'doc/**/*'
+    - 'pkg/**/*'
+    - 'tmp/**/*'
+    - '*.gemspec'
+    - 'vendor/bundle/**/*'
+
+Layout/ExtraSpacing:
+  AllowBeforeTrailingComments: true
+
+Layout/LineLength:
+  Max: 175
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+Lint/DuplicateBranch:
+  IgnoreLiteralBranches: true
+  IgnoreConstantBranches: true
+
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+  Max: 25
+  Exclude:
+    - 'spec/**/*'
+    - 'tasks/**/*'
+
+Metrics/BlockLength:
+  CountAsOne:
+    - heredoc
+  Max: 30
+  Exclude:
+    - 'spec/**/*'
+    - 'tasks/**/*'
+
+Metrics/ClassLength:
+  Max: 175
+  CountAsOne:
+    - heredoc
+    - array
+
+Metrics/ModuleLength:
+  Max: 175
+  CountAsOne:
+    - heredoc
+    - array
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 30
+  CountAsOne:
+    - heredoc
+    - array
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+# this gem outputs to stderr on purpose
+Style/StderrPuts:
+  Enabled: false
+
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrivialAccessors:
+  Exclude:
+    - lib/launchy.rb
+
+ThreadSafety/InstanceVariableInClassMethod:
+  Enabled: false
