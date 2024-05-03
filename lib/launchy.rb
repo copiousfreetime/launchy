@@ -45,7 +45,12 @@ module Launchy
     ensure
       if $! && block_given? then
         yield $!
-        return # explicitly swallow the errors
+
+        # explicitly return here to swallow the errors if there was an error
+        # and we yielded to the block
+        # rubocop:disable Lint/EnsureReturn
+        return
+        # rubocop:enable Lint/EnsureReturn
       end
     end
 
