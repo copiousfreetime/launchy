@@ -32,7 +32,7 @@ module Launchy
       def nix_app_list
         nix_de = Launchy::Detect::NixDesktopEnvironment.detect
         list   = nix_de.browsers
-        list.find_all { |argv| argv.valid? }
+        list.find_all(&:valid?)
       end
 
       # use a call back mechanism to get the right app_list that is decided by the

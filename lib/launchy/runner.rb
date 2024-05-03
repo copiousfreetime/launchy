@@ -37,7 +37,7 @@ module Launchy
     #
     def shell_commands(cmd, args)
       cmdline = [cmd.to_s.shellsplit]
-      cmdline << args.flatten.collect { |a| a.to_s }
+      cmdline << args.flatten.collect(&:to_s)
       commandline_normalize(cmdline)
     end
 
