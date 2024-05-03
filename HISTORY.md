@@ -1,4 +1,11 @@
 # Launchy Changelog
+## Version 3.0.1 - 2024-05-03
+* Added rubocop and fix all the warnings
+* Fix rubygem changelog_uri - Spone
+* Update the semaphore flow
+* Update the ruby test matrix
+* Change to Gemfile for development
+
 ## Version 3.0.0 - 2024-03-03
 * Remove unused `deprecated.rb` file - <https://github.com/copiousfreetime/launchy/issues/148>
 * Update supported ruby version to be 3.x
