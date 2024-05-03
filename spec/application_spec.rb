@@ -11,11 +11,13 @@ end
 
 describe Launchy::Application do
   it "registers inherited classes" do
+    # rubocop:disable Lint/ConstantDefinitionInBlock
     class Junk2App < Launchy::Application
       def self.handles?(uri)
         uri.scheme == "junk2"
       end
     end
+    # rubocop:enable Lint/ConstantDefinitionInBlock
     _(Launchy::Application.children).must_include(Junk2App)
     Launchy::Application.children.delete(Junk2App)
   end
