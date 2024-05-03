@@ -31,11 +31,11 @@ describe Launchy::Detect::HostOsFamily do
 
   it "uses the global host_os overrides" do
     ENV["LAUNCHY_HOST_OS"] = "fake-os-2"
-    _(lambda { Launchy::Detect::HostOsFamily.detect }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
+    _(-> { Launchy::Detect::HostOsFamily.detect }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
     ENV.delete("LAUNCHY_HOST_OS")
   end
 
   it "does not find an os of 'dos'" do
-    _(lambda { Launchy::Detect::HostOsFamily.detect("dos") }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
+    _(-> { Launchy::Detect::HostOsFamily.detect("dos") }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
   end
 end

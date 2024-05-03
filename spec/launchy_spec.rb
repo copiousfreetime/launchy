@@ -69,7 +69,7 @@ describe Launchy do
   end
 
   it "raises an exception if no scheme is found for the given uri" do
-    _(lambda { Launchy.open(@invalid_url) }).must_raise Launchy::ApplicationNotFoundError
+    _(-> { Launchy.open(@invalid_url) }).must_raise Launchy::ApplicationNotFoundError
   end
 
   it "raises an exepction if the browser failed to launch" do
@@ -113,7 +113,7 @@ describe Launchy do
   end
 
   it "raises the error in the called block" do
-    _(lambda { Launchy.open(@invalid_url) { raise StandardError, "KABOOM!" } }).must_raise StandardError
+    _(-> { Launchy.open(@invalid_url) { raise StandardError, "KABOOM!" } }).must_raise StandardError
   end
 
   it "can force a specific application to be used" do

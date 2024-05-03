@@ -31,7 +31,7 @@ describe Launchy::Application do
 
   it "raises an error if an application cannot be found for the given scheme" do
     uri = Addressable::URI.parse("foo:///bar")
-    _(lambda { Launchy::Application.handling(uri) }).must_raise(Launchy::ApplicationNotFoundError)
+    _(-> { Launchy::Application.handling(uri) }).must_raise(Launchy::ApplicationNotFoundError)
   end
 
   it "can find open or curl or xdg-open" do
