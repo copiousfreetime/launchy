@@ -53,7 +53,7 @@ describe Launchy::Cli do
   it "prints the command on stdout when using --dry-run" do
     argv = %w[--debug --dry-run https://github.com/copiousfreetime/launchy]
     Launchy::Cli.new.good_run(argv, {})
-    _($stdout.string).must_match %r{github.com}
+    _($stdout.string).must_match(/github.com/)
   end
 
   {
