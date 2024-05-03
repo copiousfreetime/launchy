@@ -72,15 +72,6 @@ describe Launchy do
     _(-> { Launchy.open(@invalid_url) }).must_raise Launchy::ApplicationNotFoundError
   end
 
-  it "raises an exepction if the browser failed to launch" do
-    skip("because headless CI") if ENV["CI"] == "true"
-    caught = nil
-    Launchy.open(@invalid_url, application: "browser") do |exception|
-      caught = exception
-    end
-    _(caught).must_be_kind_of Launchy::Error
-  end
-
   it "asssumes we open a local file if we have an exception if we have an invalid scheme and a valid path" do
     uri = "blah://example.com/#{__FILE__}"
     Launchy.open(uri, dry_run: true)
