@@ -22,6 +22,5 @@ gem "rubocop-rake", "~> 0.6", require: false
 gem "rubocop-thread_safety", "~> 0.5", require: false
 
 gem "rubocop-md", "~> 1.2", require: false
-# gem "rubocop-rails", "~> 2.11", require: false
 
 gem "simplecov", "~> 0.22", require: false
