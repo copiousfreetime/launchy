@@ -37,8 +37,8 @@ module Launchy
       end
 
       app.new.open(uri, leftover)
-    rescue Launchy::Error => le
-      raise le
+    rescue Launchy::Error => e
+      raise e
     rescue StandardError => e
       msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg

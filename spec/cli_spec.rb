@@ -21,8 +21,8 @@ describe Launchy::Cli do
   def cli_test(argv, env, exit_val, stderr_regex, stdout_regex)
     begin
       Launchy::Cli.new.run(argv, env)
-    rescue SystemExit => se
-      _(se.status).must_equal exit_val
+    rescue SystemExit => e
+      _(e.status).must_equal exit_val
       _($stderr.string).must_match stderr_regex if stderr_regex
       _($stdout.string).must_match stdout_regex if stdout_regex
     end

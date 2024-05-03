@@ -56,8 +56,8 @@ module Launchy
     def parse(argv, _env)
       parser.parse!(argv)
       return true
-    rescue ::OptionParser::ParseError => pe
-      error_output(pe)
+    rescue ::OptionParser::ParseError => e
+      error_output(e)
     end
 
     def good_run(argv, env)
