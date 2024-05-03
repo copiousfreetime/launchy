@@ -46,7 +46,7 @@ module Launchy
 
         browser_env = ENV["BROWSER"].split(File::PATH_SEPARATOR)
         browser_env.flatten!
-        browser_env.delete_if { |b| b.nil? || b.strip.size.zero? }
+        browser_env.delete_if { |b| b.nil? || b.strip.empty? }
         browser_env
       end
 

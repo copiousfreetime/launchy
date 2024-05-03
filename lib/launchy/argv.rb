@@ -27,7 +27,7 @@ module Launchy
     end
 
     def blank?
-      @argv.empty? || @argv.first.strip.size.zero?
+      @argv.empty? || @argv.first.strip.empty?
     end
 
     def executable?
