@@ -6,7 +6,6 @@ module Launchy::Detect
   # Internal: Determine the host operating system that Launchy is running on
   #
   class HostOs
-
     attr_reader :host_os
     alias to_s host_os
     alias to_str host_os
@@ -30,7 +29,5 @@ module Launchy::Detect
     def override_host_os
       Launchy.host_os
     end
-
   end
-
 end

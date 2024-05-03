@@ -92,6 +92,5 @@ module Launchy::Detect
         ::Launchy::Argv.new
       end
     end
-
   end
 end

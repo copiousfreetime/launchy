@@ -5,7 +5,6 @@ require "pathname"
 require "mock_application"
 
 describe Launchy do
-
   before do
     Launchy.reset_global_options
     @stderr = $stderr

@@ -3,7 +3,6 @@
 require "spec_helper"
 
 describe Launchy::Detect::NixDesktopEnvironment do
-
   before do
     Launchy.reset_global_options
   end

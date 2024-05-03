@@ -6,8 +6,8 @@ module Launchy
   # Internal: Command line interface for Launchy
   #
   class Cli
-
     attr_reader :options
+
     def initialize
       @options = {}
     end
@@ -39,7 +39,6 @@ module Launchy
           @options[:host_os] = os
         end
 
-
         op.separator ""
         op.separator "Standard Options:"
 
@@ -52,7 +51,6 @@ module Launchy
           $stdout.puts "Launchy version #{Launchy::VERSION}"
           exit 0
         end
-
       end
     end
     # rubocop:enable Metrics/MethodLength

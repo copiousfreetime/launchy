@@ -24,6 +24,7 @@ module Launchy
   module DescendantTracker
     def inherited(klass)
       return unless klass.instance_of?(Class)
+
       self.children << klass
     end
 

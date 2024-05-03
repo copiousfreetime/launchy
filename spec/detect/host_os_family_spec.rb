@@ -4,7 +4,6 @@ require "spec_helper"
 require "yaml"
 
 describe Launchy::Detect::HostOsFamily do
-
   before do
     Launchy.reset_global_options
   end
@@ -36,9 +35,7 @@ describe Launchy::Detect::HostOsFamily do
     ENV.delete("LAUNCHY_HOST_OS")
   end
 
-
   it "does not find an os of 'dos'" do
     _(lambda { Launchy::Detect::HostOsFamily.detect("dos") }).must_raise Launchy::Detect::HostOsFamily::NotFoundError
   end
-
 end

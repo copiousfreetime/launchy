@@ -23,6 +23,7 @@ module Launchy
       def handling(uri)
         klass = find_child(:handles?, uri)
         return klass if klass
+
         raise ApplicationNotFoundError, "No application found to handle '#{uri}'"
       end
 
@@ -32,6 +33,7 @@ module Launchy
       def for_name(name)
         klass = find_child(:has_name?, name)
         return klass if klass
+
         raise ApplicationNotFoundError, "No application found named '#{name}'"
       end
 

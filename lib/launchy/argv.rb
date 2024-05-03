@@ -5,6 +5,7 @@ module Launchy
   #
   class Argv
     attr_reader :argv
+
     def initialize(*args)
       @argv = args.flatten
     end

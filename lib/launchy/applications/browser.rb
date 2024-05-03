@@ -41,6 +41,7 @@ class Launchy::Application
 
     def browser_env
       return [] unless ENV["BROWSER"]
+
       browser_env = ENV["BROWSER"].split(File::PATH_SEPARATOR)
       browser_env.flatten!
       browser_env.delete_if { |b| b.nil? || (b.strip.size == 0) }

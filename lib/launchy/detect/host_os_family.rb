@@ -10,10 +10,10 @@ module Launchy::Detect
     extend ::Launchy::DescendantTracker
 
     class << self
-
       def detect(host_os = HostOs.new)
         found = find_child(:matches?, host_os)
         return found.new(host_os) if found
+
         raise NotFoundError, "Unknown OS family for host os '#{host_os}'. #{Launchy.bug_report_message}"
       end
 
@@ -27,16 +27,16 @@ module Launchy::Detect
       def cygwin?()  self == Cygwin;  end
     end
 
-
     attr_reader :host_os
+
     def initialize(host_os = HostOs.new)
       @host_os = host_os
     end
 
     def windows?() self.class.windows?; end
     def darwin?()  self.class.darwin?;  end
-    def nix?()     self.class.nix?;      end
-    def cygwin?()  self.class.cygwin?;  end
+    def nix?()     self.class.nix?; end
+    def cygwin?()  self.class.cygwin?; end
 
     #---------------------------
     # All known host os families
@@ -46,6 +46,7 @@ module Launchy::Detect
       def self.matching_regex
         /(mingw|mswin|msys|windows)/i
       end
+
       def app_list(app) app.windows_app_list; end
     end
 
@@ -54,6 +55,7 @@ module Launchy::Detect
       def self.matching_regex
         /(darwin|mac os)/i
       end
+
       def app_list(app) app.darwin_app_list; end
     end
 
@@ -62,6 +64,7 @@ module Launchy::Detect
       def self.matching_regex
         /(linux|bsd|aix|solaris|sunos|dragonfly)/i
       end
+
       def app_list(app) app.nix_app_list; end
     end
 
@@ -70,6 +73,7 @@ module Launchy::Detect
       def self.matching_regex
         /cygwin/i
       end
+
       def app_list(app) app.cygwin_app_list; end
     end
   end

@@ -3,7 +3,6 @@
 require "spec_helper"
 
 describe Launchy::Detect::HostOs do
-
   it "uses the defult host os from ruby's config" do
     _(Launchy::Detect::HostOs.new.host_os).must_equal RbConfig::CONFIG["host_os"]
   end
@@ -17,5 +16,4 @@ describe Launchy::Detect::HostOs do
     _(Launchy::Detect::HostOs.new.host_os).must_equal "fake-os-2"
     ENV.delete("LAUNCHY_HOST_OS")
   end
-
 end

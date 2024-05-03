@@ -21,7 +21,6 @@ require "stringio"
 # application class
 #
 module Launchy
-
   class << self
     #
     # Launch an application for the given uri string
@@ -73,6 +72,7 @@ module Launchy
         Launchy.log "URI parsing pass 2 : #{s} -> #{uri.to_hash}"
       end
       raise Launchy::ArgumentError, "Invalid URI given: #{s.inspect}" unless uri
+
       return uri
     end
 
@@ -142,7 +142,8 @@ module Launchy
       @path = path
     end
 
-  private
+    private
+
     def to_bool(arg)
       if arg.is_a? String
         arg == "true"

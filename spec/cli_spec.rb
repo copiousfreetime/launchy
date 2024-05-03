@@ -3,7 +3,6 @@
 require "spec_helper"
 
 describe Launchy::Cli do
-
   before do
     @old_stderr = $stderr
     $stderr = StringIO.new
