@@ -34,7 +34,7 @@ module Launchy
     #
     def children
       unless defined? @children
-        @children = Array.new
+        @children = []
       end
       return @children
     end
