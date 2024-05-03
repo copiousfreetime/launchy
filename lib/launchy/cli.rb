@@ -12,7 +12,6 @@ module Launchy
       @options = {}
     end
 
-    # rubocop:disable Metrics/MethodLength
     def parser
       @parser ||= OptionParser.new do |op|
         op.banner = "Usage: launchy [options] thing-to-launch"
@@ -53,7 +52,6 @@ module Launchy
         end
       end
     end
-    # rubocop:enable Metrics/MethodLength
 
     def parse(argv, _env)
       parser.parse!(argv)
