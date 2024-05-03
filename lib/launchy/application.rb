@@ -49,7 +49,7 @@ module Launchy
             return file
           end
         end
-        Launchy.log "#{name} : Unable to find `#{bin}' in #{paths.join(", ")}"
+        Launchy.log "#{name} : Unable to find `#{bin}' in #{paths.join(', ')}"
         nil
       end
 
