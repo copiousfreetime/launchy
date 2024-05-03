@@ -43,7 +43,7 @@ module Launchy
 
     def commandline_normalize(cmdline)
       c = cmdline.flatten!
-      c = c.find_all { |a| !a.nil? and (a.size > 0) }
+      c = c.find_all { |a| !a.nil? and a.size.positive? }
       Launchy.log "commandline_normalized => #{c.join(' ')}"
       return c
     end
