@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "English"
 require "addressable/uri"
 require "shellwords"
 require "stringio"
@@ -41,8 +42,8 @@ module Launchy
       msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg
     ensure
-      if $! && block_given?
-        yield $!
+      if $ERROR_INFO && block_given?
+        yield $ERROR_INFO
 
         # explicitly return here to swallow the errors if there was an error
         # and we yielded to the block
