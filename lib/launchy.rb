@@ -64,19 +64,19 @@ module Launchy
       nil
     end
 
-    def app_for_uri_string(s)
-      app_for_uri(string_to_uri(s))
+    def app_for_uri_string(str)
+      app_for_uri(string_to_uri(str))
     end
 
-    def string_to_uri(s)
-      s = s.to_s
-      uri = Addressable::URI.parse(s)
-      Launchy.log "URI parsing pass 1 : #{s} -> #{uri.to_hash}"
+    def string_to_uri(str)
+      str = str.to_s
+      uri = Addressable::URI.parse(str)
+      Launchy.log "URI parsing pass 1 : #{str} -> #{uri.to_hash}"
       if not uri.scheme then
-        uri = Addressable::URI.heuristic_parse(s)
-        Launchy.log "URI parsing pass 2 : #{s} -> #{uri.to_hash}"
+        uri = Addressable::URI.heuristic_parse(str)
+        Launchy.log "URI parsing pass 2 : #{str} -> #{uri.to_hash}"
       end
-      raise Launchy::ArgumentError, "Invalid URI given: #{s.inspect}" unless uri
+      raise Launchy::ArgumentError, "Invalid URI given: #{str.inspect}" unless uri
 
       return uri
     end
@@ -97,8 +97,8 @@ module Launchy
       Launchy.dry_run      = leftover.delete(:dry_run) || ENV["LAUNCHY_DRY_RUN"]
     end
 
-    def debug=(d)
-      @debug = to_bool(d)
+    def debug=(enabled)
+      @debug = to_bool(enabled)
     end
 
     # we may do logging before a call to 'open', hence the need to check
