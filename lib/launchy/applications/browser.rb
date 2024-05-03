@@ -66,7 +66,7 @@ class Launchy::Application
       raise Launchy::CommandNotFoundError, "Unable to find a browser command. If this is unexpected, #{Launchy.bug_report_message}"
     end
 
-    def cmd_and_args(uri, options = {})
+    def cmd_and_args(uri, _options = {})
       cmd = browser_cmdline.to_s
       args = [uri.to_s]
       if cmd =~ /%s/ then

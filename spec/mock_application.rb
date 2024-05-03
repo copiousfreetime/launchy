@@ -9,7 +9,7 @@ class MockApplication < Launchy::Application
     schemes.include?(uri.scheme)
   end
 
-  def open(uri, options = {})
+  def open(uri, _options = {})
     return "MockApplication opened #{uri}"
   end
 end

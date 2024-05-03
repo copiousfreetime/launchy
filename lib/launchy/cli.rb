@@ -26,11 +26,11 @@ module Launchy
         end
 
         op.on("-d", "--debug",
-              "Force debug. Output lots of information.") do |d|
+              "Force debug. Output lots of information.") do |_d|
           @options[:debug] = true
         end
 
-        op.on("-n", "--dry-run", "Don't launchy, print the command to be executed on stdout") do |x|
+        op.on("-n", "--dry-run", "Don't launchy, print the command to be executed on stdout") do |_x|
           @options[:dry_run] = true
         end
 
@@ -42,12 +42,12 @@ module Launchy
         op.separator ""
         op.separator "Standard Options:"
 
-        op.on("-h", "--help", "Print this message.") do |h|
+        op.on("-h", "--help", "Print this message.") do |_h|
           $stdout.puts op.to_s
           exit 0
         end
 
-        op.on("-v", "--version", "Output the version of Launchy") do |v|
+        op.on("-v", "--version", "Output the version of Launchy") do |_v|
           $stdout.puts "Launchy version #{Launchy::VERSION}"
           exit 0
         end
@@ -55,7 +55,7 @@ module Launchy
     end
     # rubocop:enable Metrics/MethodLength
 
-    def parse(argv, env)
+    def parse(argv, _env)
       parser.parse!(argv)
       return true
     rescue ::OptionParser::ParseError => pe
