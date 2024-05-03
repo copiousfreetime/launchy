@@ -45,19 +45,19 @@ module Launchy
         paths.each do |path|
           file = File.join(path, bin)
           if File.executable?(file)
-            Launchy.log "#{self.name} : found executable #{file}"
+            Launchy.log "#{name} : found executable #{file}"
             return file
           end
         end
-        Launchy.log "#{self.name} : Unable to find `#{bin}' in #{paths.join(", ")}"
-        return nil
+        Launchy.log "#{name} : Unable to find `#{bin}' in #{paths.join(", ")}"
+        nil
       end
 
       # Does this class have the given name-like string?
       #
       # returns true if the class has the given name
       def has_name?(qname)
-        qname.to_s.downcase == self.name.split("::").last.downcase
+        qname.to_s.downcase == name.split("::").last.downcase
       end
     end
 

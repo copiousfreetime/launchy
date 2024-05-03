@@ -12,7 +12,8 @@ module Launchy
 
       def self.handles?(uri)
         return true if schemes.include?(uri.scheme)
-        return true if File.exist?(uri.path)
+
+        true if File.exist?(uri.path)
       end
 
       def windows_app_list
@@ -46,7 +47,7 @@ module Launchy
         browser_env = ENV["BROWSER"].split(File::PATH_SEPARATOR)
         browser_env.flatten!
         browser_env.delete_if { |b| b.nil? || b.strip.size.zero? }
-        return browser_env
+        browser_env
       end
 
       # Get the full commandline of what we are going to add the uri to

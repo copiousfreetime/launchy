@@ -76,7 +76,7 @@ module Launchy
       end
       raise Launchy::ArgumentError, "Invalid URI given: #{str.inspect}" unless uri
 
-      return uri
+      uri
     end
 
     def reset_global_options

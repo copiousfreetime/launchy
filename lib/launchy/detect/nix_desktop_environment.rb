@@ -18,7 +18,7 @@ module Launchy
       def self.detect
         found = find_child(:is_current_desktop_environment?)
         Launchy.log("Current Desktop environment not found. #{Launchy.bug_report_message}") unless found
-        return found
+        found
       end
 
       def self.fallback_browsers

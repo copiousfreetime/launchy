@@ -38,14 +38,14 @@ module Launchy
     def shell_commands(cmd, args)
       cmdline = [cmd.to_s.shellsplit]
       cmdline << args.flatten.collect { |a| a.to_s }
-      return commandline_normalize(cmdline)
+      commandline_normalize(cmdline)
     end
 
     def commandline_normalize(cmdline)
       c = cmdline.flatten!
       c = c.find_all { |a| !a.nil? and a.size.positive? }
       Launchy.log "commandline_normalized => #{c.join(' ')}"
-      return c
+      c
     end
   end
 end

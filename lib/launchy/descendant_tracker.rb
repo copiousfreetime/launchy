@@ -26,7 +26,7 @@ module Launchy
       super
       return unless klass.instance_of?(Class)
 
-      self.children << klass
+      children << klass
     end
 
     #
@@ -34,7 +34,7 @@ module Launchy
     #
     def children
       @children = [] unless defined? @children
-      return @children
+      @children
     end
 
     #

@@ -10,6 +10,6 @@ class MockApplication < Launchy::Application
   end
 
   def open(uri, _options = {})
-    return "MockApplication opened #{uri}"
+    "MockApplication opened #{uri}"
   end
 end

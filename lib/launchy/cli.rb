@@ -55,7 +55,7 @@ module Launchy
 
     def parse(argv, _env)
       parser.parse!(argv)
-      return true
+      true
     rescue ::OptionParser::ParseError => e
       error_output(e)
     end
@@ -64,7 +64,7 @@ module Launchy
       return false unless parse(argv, env)
 
       Launchy.open(argv.shift, options) { |e| error_output(e) }
-      return true
+      true
     end
 
     def error_output(error)
@@ -74,7 +74,7 @@ module Launchy
         Launchy.log bt
       end
       $stderr.puts "Try `#{parser.program_name} --help' for more information."
-      return false
+      false
     end
 
     def run(argv = ARGV, env = ENV)
