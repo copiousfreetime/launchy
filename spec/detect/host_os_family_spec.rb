@@ -22,7 +22,7 @@ describe Launchy::Detect::HostOsFamily do
   { "mswin" => :windows?,
     "darwin" => :darwin?,
     "linux" => :nix?,
-    "cygwin" => :cygwin? }.each_pair do |os, method|
+    "cygwin" => :cygwin?, }.each_pair do |os, method|
     it "#{method} returns true for #{os} " do
       r = Launchy::Detect::HostOsFamily.detect(os).send(method)
       _(r).must_equal true

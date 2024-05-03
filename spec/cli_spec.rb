@@ -58,7 +58,7 @@ describe Launchy::Cli do
 
   {
     "--application" => [:application, "Browser"],
-    "--host-os" => [:host_os, "cygwin"]
+    "--host-os" => [:host_os, "cygwin"],
   }.each_pair do |opt, val|
     it "the commandline option #{opt} sets the program option #{val[0]}" do
       argv = [opt, val[1], "https://github.com/copiousfreetime/launchy"]
