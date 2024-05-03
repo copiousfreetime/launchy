@@ -61,8 +61,7 @@ module Launchy
       end
     end
 
-    attr_reader :host_os_family
-    attr_reader :runner
+    attr_reader :host_os_family, :runner
 
     def initialize
       @host_os_family = Launchy::Detect::HostOsFamily.detect
