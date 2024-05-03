@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Launchy
+  # Internal: Ecapsulate the commandline argumens passed to Launchy
+  #
   class Argv
     attr_reader :argv
     def initialize(*args)

@@ -3,6 +3,8 @@
 require "rbconfig"
 
 module Launchy::Detect
+  # Internal: Determine the host operating system that Launchy is running on
+  #
   class HostOs
 
     attr_reader :host_os

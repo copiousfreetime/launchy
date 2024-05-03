@@ -2,6 +2,8 @@
 
 require "childprocess"
 module Launchy
+  # Internal: Run a command in a child process
+  #
   class Runner
     def run(cmd, *args)
       raise Launchy::CommandNotFoundError, "No command found to run with args '#{args.join(' ')}'. If this is unexpected, #{Launchy.bug_report_message}" unless cmd

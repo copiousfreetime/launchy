@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Launchy
+  # Internal: Namespace for detecting the environment that Launchy is running in
+  #
   module Detect
   end
 end

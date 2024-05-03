@@ -32,6 +32,7 @@ module Launchy::Detect
     # The list of known desktop environments
     #---------------------------------------
 
+    # KDE desktop environment
     class Kde < NixDesktopEnvironment
       def self.is_current_desktop_environment?
         ENV["KDE_FULL_SESSION"] &&
@@ -43,6 +44,7 @@ module Launchy::Detect
       end
     end
 
+    # Gnome desktop environment
     class Gnome < NixDesktopEnvironment
       def self.is_current_desktop_environment?
         ENV["GNOME_DESKTOP_SESSION_ID"] &&
@@ -54,6 +56,7 @@ module Launchy::Detect
       end
     end
 
+    # Xfce desktop environment
     class Xfce < NixDesktopEnvironment
       def self.is_current_desktop_environment?
         if Launchy::Application.find_executable("xprop") then

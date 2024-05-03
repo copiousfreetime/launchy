@@ -3,6 +3,7 @@
 module Launchy
   VERSION = "3.0.0"
 
+  # Internal: Version number of Launchy
   module Version
 
     MAJOR   = Integer(VERSION.split(".")[0])

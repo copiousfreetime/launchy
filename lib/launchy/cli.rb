@@ -3,6 +3,8 @@
 require "optparse"
 
 module Launchy
+  # Internal: Command line interface for Launchy
+  #
   class Cli
 
     attr_reader :options

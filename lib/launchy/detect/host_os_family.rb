@@ -49,6 +49,7 @@ module Launchy::Detect
       def app_list(app) app.windows_app_list; end
     end
 
+    # Mac OS X family
     class Darwin < HostOsFamily
       def self.matching_regex
         /(darwin|mac os)/i
@@ -56,6 +57,7 @@ module Launchy::Detect
       def app_list(app) app.darwin_app_list; end
     end
 
+    # All the *nix family of operating systems, and BSDs
     class Nix < HostOsFamily
       def self.matching_regex
         /(linux|bsd|aix|solaris|sunos|dragonfly)/i
@@ -63,6 +65,7 @@ module Launchy::Detect
       def app_list(app) app.nix_app_list; end
     end
 
+    # Cygwin - if anyone is still using that
     class Cygwin < HostOsFamily
       def self.matching_regex
         /cygwin/i
