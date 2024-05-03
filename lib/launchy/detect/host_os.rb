@@ -16,7 +16,7 @@ module Launchy
 
         return if @host_os
 
-        if (@host_os = override_host_os) then
+        if (@host_os = override_host_os)
           Launchy.log "Using LAUNCHY_HOST_OS override value of '#{Launchy.host_os}'"
         else
           @host_os = default_host_os

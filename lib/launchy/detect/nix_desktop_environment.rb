@@ -60,7 +60,7 @@ module Launchy
       # Xfce desktop environment
       class Xfce < NixDesktopEnvironment
         def self.is_current_desktop_environment?
-          if Launchy::Application.find_executable("xprop") then
+          if Launchy::Application.find_executable("xprop")
             `xprop -root _DT_SAVE_MODE`.include?("xfce")
           else
             false

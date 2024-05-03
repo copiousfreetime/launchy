@@ -33,9 +33,7 @@ module Launchy
     # The list of children that are registered
     #
     def children
-      unless defined? @children
-        @children = []
-      end
+      @children = [] unless defined? @children
       return @children
     end
 

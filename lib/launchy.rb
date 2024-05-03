@@ -28,13 +28,11 @@ module Launchy
     def open(uri_s, options = {})
       leftover = extract_global_options(options)
       uri = string_to_uri(uri_s)
-      if (name = options[:application]) then
+      if (name = options[:application])
         app = app_for_name(name)
       end
 
-      if app.nil? then
-        app = app_for_uri(uri)
-      end
+      app = app_for_uri(uri) if app.nil?
 
       app.new.open(uri, leftover)
     rescue Launchy::Error => e
@@ -43,7 +41,7 @@ module Launchy
       msg = "Failure in opening uri #{uri_s.inspect} with options #{options.inspect}: #{e}"
       raise Launchy::Error, msg
     ensure
-      if $! && block_given? then
+      if $! && block_given?
         yield $!
 
         # explicitly return here to swallow the errors if there was an error
@@ -72,7 +70,7 @@ module Launchy
       str = str.to_s
       uri = Addressable::URI.parse(str)
       Launchy.log "URI parsing pass 1 : #{str} -> #{uri.to_hash}"
-      if not uri.scheme then
+      if not uri.scheme
         uri = Addressable::URI.heuristic_parse(str)
         Launchy.log "URI parsing pass 2 : #{str} -> #{uri.to_hash}"
       end
@@ -152,11 +150,8 @@ module Launchy
     def to_bool(arg)
       if arg.is_a? String
         arg == "true"
-      elsif arg.is_a? TrueClass
-        true
       else
-        # All other values mapped to false.
-        false
+        arg.is_a? TrueClass
       end
     end
   end

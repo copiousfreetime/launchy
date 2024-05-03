@@ -44,7 +44,7 @@ module Launchy
         paths = Launchy.path.split(File::PATH_SEPARATOR) if paths.empty?
         paths.each do |path|
           file = File.join(path, bin)
-          if File.executable?(file) then
+          if File.executable?(file)
             Launchy.log "#{self.name} : found executable #{file}"
             return file
           end
