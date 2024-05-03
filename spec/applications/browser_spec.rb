@@ -16,10 +16,9 @@ describe Launchy::Application::Browser do
   end
 
   { "windows" => "windows_app_list",
-    "darwin"  => "darwin_app_list",
-    "cygwin"  => "cygwin_app_list",
-    "linux"   => "nix_app_list",
-  }.each do |host_os, called_method|
+    "darwin" => "darwin_app_list",
+    "cygwin" => "cygwin_app_list",
+    "linux" => "nix_app_list", }.each do |host_os, called_method|
     it "when host_os is '#{host_os}' the '#{called_method}' method is called" do
       Launchy.host_os = host_os
       browser = Launchy::Application::Browser.new
