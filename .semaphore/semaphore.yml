@@ -59,7 +59,7 @@ blocks:
             - env_var: RUBY_VERSION
               values:
                 - 3.1.6
-                - 3.2.6
+                - 3.2.5
                 - 3.3.7
                 - 3.4.1
           commands:
