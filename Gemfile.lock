@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    launchy (3.0.1)
+    launchy (3.1.0)
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
@@ -170,7 +170,7 @@ CHECKSUMS
   json (2.9.1) sha256=d2bdef4644052fad91c1785d48263756fe32fcac08b96a20bb15840e96550d11
   json (2.9.1-java) sha256=88de8c79b54fee6ae1b4854bc48b8d7089f524cbacaf4596df24f86b10896ee8
   language_server-protocol (3.17.0.3) sha256=3d5c58c02f44a20d972957a9febe386d7e7468ab3900ce6bd2b563dd910c6b3f
-  launchy (3.0.1)
+  launchy (3.1.0)
   logger (1.6.5) sha256=c3cfe56d01656490ddd103d38b8993d73d86296adebc5f58cefc9ec03741e56b
   minitest (5.25.4) sha256=9cf2cae25ac4dfc90c988ebc3b917f53c054978b673273da1bd20bcb0778f947
   minitest-focus (1.4.0) sha256=4cf04bd2b5fe0649922db56f9f2ae30af91475a0f51e02c2baa33f5c5a47ff6c
