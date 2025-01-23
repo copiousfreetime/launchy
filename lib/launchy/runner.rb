@@ -19,8 +19,9 @@ module Launchy
     end
 
     def wet_run(cmd, *args)
-      argv = [cmd, *args].flatten
+      argv = shell_commands(cmd, args)
       Launchy.log "ChildProcess: argv => #{argv.inspect}"
+
       process = ChildProcess.build(*argv)
 
       process.io.inherit!
