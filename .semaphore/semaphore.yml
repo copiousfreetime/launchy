@@ -34,7 +34,7 @@ blocks:
                 - 3.3.7
                 - 3.4.1
                 - jruby-9.4.10.0
-                - truffleruby-24.1.2
+                - truffleruby-24.1.1
           commands:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
