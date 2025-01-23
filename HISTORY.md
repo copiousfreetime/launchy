@@ -1,6 +1,8 @@
 # Launchy Changelog
-## Version 3.1.0 - 2025-01-22
+## Version 3.1.0 - 2025-01-23
 * Fix the argv array when passing to ChildProcess on windows - <https://github.com/copiousfreetime/launchy/issues/159>
+* Update the ruby test matrix for 3.4
+* Update the ruby test matrix to drop 3.0
 
 ## Version 3.0.1 - 2024-05-03
 * Added rubocop and fix all the warnings

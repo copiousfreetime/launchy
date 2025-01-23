@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Launchy
-  VERSION = "3.0.1"
+  VERSION = "3.1.0"
 
   # Internal: Version number of Launchy
   module Version
