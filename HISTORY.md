@@ -1,4 +1,7 @@
 # Launchy Changelog
+## Version 3.1.0 - 2025-01-22
+* Fix the argv array when passing to ChildProcess on windows - <https://github.com/copiousfreetime/launchy/issues/159>
+
 ## Version 3.0.1 - 2024-05-03
 * Added rubocop and fix all the warnings
 * Fix rubygem changelog_uri - Spone
