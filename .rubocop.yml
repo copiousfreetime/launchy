@@ -103,3 +103,5 @@ Style/TrivialAccessors:
 
 ThreadSafety/ClassInstanceVariable:
   Enabled: false
+ThreadSafety/DirChdir:
+  Enabled: false

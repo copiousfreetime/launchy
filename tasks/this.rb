@@ -152,13 +152,13 @@ class ThisProject
   end
 
   # Internal: Return the gemspec for the ruby platform
-  def ruby_gemspec(core = core_gemspec, &block)
-    yielding_gemspec("ruby", core, &block)
+  def ruby_gemspec(core = core_gemspec, &)
+    yielding_gemspec("ruby", core, &)
   end
 
   # Internal: Return the gemspec for the jruby platform
-  def java_gemspec(core = core_gemspec, &block)
-    yielding_gemspec("java", core, &block)
+  def java_gemspec(core = core_gemspec, &)
+    yielding_gemspec("java", core, &)
   end
 
   # Internal: give an initial spec and a key, create a new gemspec based off of
