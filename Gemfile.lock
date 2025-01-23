@@ -145,7 +145,7 @@ DEPENDENCIES
   rubocop-packaging (~> 0.5)
   rubocop-performance (~> 1.21)
   rubocop-rake (~> 0.6)
-  rubocop-thread_safety (~> 0.5)
+  rubocop-thread_safety (~> 0.6)
   simplecov (~> 0.22)
 
 BUNDLED WITH
