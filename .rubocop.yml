@@ -8,6 +8,7 @@ require:
 
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 3.1
   Exclude:
     - 'coverage/**/*'
     - 'doc/**/*'
@@ -100,5 +101,7 @@ Style/TrivialAccessors:
   Exclude:
     - lib/launchy.rb
 
-ThreadSafety/InstanceVariableInClassMethod:
+ThreadSafety/ClassInstanceVariable:
+  Enabled: false
+ThreadSafety/DirChdir:
   Enabled: false

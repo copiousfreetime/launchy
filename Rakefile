@@ -11,6 +11,7 @@ This.homepage = "https://github.com/copiousfreetime/#{This.name}"
 This.ruby_gemspec do |spec|
   spec.add_dependency("addressable", "~> 2.8")
   spec.add_dependency("childprocess", "~> 5.0")
+  spec.add_dependency("logger", "~> 1.6")
 
   spec.licenses = ["ISC"]
 

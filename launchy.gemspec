@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
   s.bindir = "exe".freeze
-  s.date = "2024-05-03"
+  s.date = "2025-01-23"
   s.description = "Launchy is helper class for launching cross-platform applications in a fire and forget manner. There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform. Launchy is here to make a common approach to launching external applications from within ruby programs.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.executables = ["launchy".freeze]
@@ -22,11 +22,12 @@ Gem::Specification.new do |s|
   s.licenses = ["ISC".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.5.9".freeze
+  s.rubygems_version = "3.5.22".freeze
   s.summary = "Launchy is helper class for launching cross-platform applications in a fire and forget manner.".freeze
 
   s.specification_version = 4
 
   s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.8".freeze])
   s.add_runtime_dependency(%q<childprocess>.freeze, ["~> 5.0".freeze])
+  s.add_runtime_dependency(%q<logger>.freeze, ["~> 1.6".freeze])
 end
