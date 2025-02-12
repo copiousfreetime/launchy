@@ -17,7 +17,7 @@ blocks:
         commands:
           - checkout
           - sudo apt-get update && sudo apt-get install -y libyaml-dev
-          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+          - source .semaphore/ensure-ruby-build.sh
       epilogue:
         always:
           commands:
@@ -52,7 +52,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+          - source .semaphore/ensure-ruby-build.sh
       jobs:
         - name: macos matrix test
           matrix:
