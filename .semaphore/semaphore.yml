@@ -17,7 +17,7 @@ blocks:
         commands:
           - checkout
           - sudo apt-get update && sudo apt-get install -y libyaml-dev
-          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+          - source .semaphore/ensure-ruby-build.sh
       epilogue:
         always:
           commands:
@@ -29,11 +29,11 @@ blocks:
             - env_var: RUBY_VERSION
               values:
                 - 3.1.6
-                - 3.2.6
+                - 3.2.7
                 - 3.3.7
                 - 3.4.1
-                - jruby-9.4.10.0
-                - truffleruby-24.1.1
+                - jruby-9.4.12.0
+                - truffleruby-24.1.2
           commands:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
@@ -47,19 +47,19 @@ blocks:
     task:
       agent:
         machine:
-          type: a1-standard-4
-          os_image: macos-xcode15
+          type: a2-standard-4
+          os_image: macos-xcode16
       prologue:
         commands:
           - checkout
-          - git -C ${HOME}/.rbenv/plugins/ruby-build pull
+          - source .semaphore/ensure-ruby-build.sh
       jobs:
         - name: macos matrix test
           matrix:
             - env_var: RUBY_VERSION
               values:
                 - 3.1.6
-                - 3.2.5
+                - 3.2.7
                 - 3.3.7
                 - 3.4.1
           commands:
