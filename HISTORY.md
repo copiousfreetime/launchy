@@ -1,4 +1,7 @@
 # Launchy Changelog
+## Version 3.1.1 - 2025-02-21
+* Fix the quoted parameter for windows launching - <https://github.com/copiousfreetime/launchy/issues/164>
+
 ## Version 3.1.0 - 2025-01-23
 * Fix the argv array when passing to ChildProcess on windows - <https://github.com/copiousfreetime/launchy/issues/159>
 * Update the ruby test matrix for 3.4
