@@ -16,7 +16,7 @@ module Launchy
         true if File.exist?(uri.path)
       end
 
-      # The escaped \\ is necessary so that when shellsplit is done later, 
+      # The escaped \\ is necessary so that when shellsplit is done later,
       # the "launchy", with quotes, goes through to the commandline, since that
       def windows_app_list
         ['start \\"launchy\\" /b']
