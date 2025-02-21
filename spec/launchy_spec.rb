@@ -83,7 +83,7 @@ describe Launchy do
   it "opens a local file if we have a drive letter and a valid path on windows" do
     uri = "C:#{__FILE__}"
     Launchy.open(uri, dry_run: true, host_os: "windows")
-    _($stdout.string.strip).must_equal "start launchy /b #{uri}"
+    _($stdout.string.strip).must_equal "start \"launchy\" /b #{uri}"
   end
 
   it "opens a data url with a forced browser application" do
